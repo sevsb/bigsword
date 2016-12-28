@@ -5,7 +5,7 @@ class index_controller {
 
     public function index_action() {
         $tpl = new tpl("index/header", "index/footer");
-        $tpl->display("index/index");
+        $tpl->display("index/login");
     }
 
 }

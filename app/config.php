@@ -1,10 +1,10 @@
 <?php
 
-if (file_exists(dirname(__FILE__) . "/../PATH.php")) {
-    include_once(dirname(__FILE__) . "/../PATH.php");
+if (file_exists(dirname(__FILE__) . "/../../PATH.php")) {
+    include_once(dirname(__FILE__) . "/../../PATH.php");
 }
 
-include_once(dirname(__FILE__) . "/../framework/config.php");
+include_once(dirname(__FILE__) . "/../../framework/config.php");
 include_once(dirname(__FILE__) . "/database/db_user.class.php");
 include_once(dirname(__FILE__) . "/database/db_settings.class.php");
 include_once(dirname(__FILE__) . "/user.class.php");
