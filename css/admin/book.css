@@ -1,0 +1,48 @@
+
+.bookwrapper {
+    margin-left: 10px;
+    margin-bottom: 10px;
+    height: 204px;
+    min-width: 147px;
+}
+
+.bookface {
+    position: relative;
+}
+
+.bookface img {
+    height: 204px;
+    width: 147px;
+}
+
+.bookdesc {
+    margin-left: 10px;
+}
+
+.book-status {
+    position: absolute;
+    top: 188px;
+    left: -5px;
+}
+
+.new-book {
+    width: 147px;
+    height: 204px;
+    padding-top: 77px;
+    border: 2px solid #f47920;
+    border-radius: 8px;
+}
+
+.plus-wrapper {
+    width: 50px;
+    height: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    border-radius: 50px;
+    border: 2px solid #f47920;
+    line-height: 47px;
+    color: #f47920;
+    font-size: 20px;
+}
+
