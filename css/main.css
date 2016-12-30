@@ -111,6 +111,13 @@ img.user-face {
     border-radius: 100px;
 }
 
+/* 导航栏CSS */
+.sidebar {
+    width: 170px;
+}
 
+#page-wrapper {
+    margin: 0 0 0 170px;
+}
 
 

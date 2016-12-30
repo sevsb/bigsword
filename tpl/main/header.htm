@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,initial-scale=1.0,user-scalable=no"/>
+
+        <link rel="stylesheet" href="[:vendor]/bootstrap/css/bootstrap.css" type="text/css">
+        <link rel="stylesheet" href="[:vendor]/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="[:vendor]/sb-admin/sb-admin-2.min.css">
+        
+        <link rel="stylesheet" href="[:app]/css/main.css">
+        <link rel="stylesheet" href="[:app]/css/modify-on-click.css">
+
+        <script src="[:vendor]/jquery/jquery-2.1.1.min.js"></script>
+        <script src="[:vendor]/bootstrap/js/bootstrap.min.js"></script>
+        <script src="[:vendor]/metisMenu/metisMenu.min.js"></script>
+        <script src="[:vendor]/sb-admin/sb-admin-2.min.js"></script>
+        
+        <script src="[:app]/js/main.js"></script>
+        <script src="[:app]/js/modify-on-click.js"></script>
+
+        <title> 预约系统 </title>
+    </head>
+    <body>
+    <body>
+    
+    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="?main/main"> 预约系统 </a>
+            </div>
+            <!-- /.navbar-header -->
+        
+            <ul class="nav navbar-top-links navbar-right">
+                <li>
+                    <?php echo get_session("username", ""); ?>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+                        <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <!-- li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                        </li>
+                        <li class="divider"></li -->
+                        <li data-toggle="modal" data-target="#sign_out_dialog_modal"><a href="#"><i class="fa fa-sign-out fa-fw"></i> 注销</a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-user -->
+                </li>
+                <!-- /.dropdown -->
+            </ul>
+            <!-- /.navbar-top-links -->
+        
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav in" id="side-menu">
+                        <!--
+                        <li class="sidebar-search">
+                            <div class="input-group custom-search-form">
+                                <input type="text" class="form-control" placeholder="Search...">
+                                <span class="input-group-btn">
+                                <button class="btn btn-default" type="button">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
+                            </div>
+                        </li>
+                        -->
+                        <li>
+                            <a href="#"><i class="fa fa-dashboard fa-fw"></i> 服务项管理<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level collapse">
+
+                                <li>
+                                    <a href="?main/serve_index">服务项列表</a>
+                                </li>
+                                <li>
+                                    <a href="?main/new_serve">新增服务</a>
+                                </li>
+
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-table fa-fw"></i> 技师管理<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level collapse">
+                                <li>
+                                    <a href="?table/index">技师列表</a>
+                                </li>
+                                <li>
+                                    <a href="?table/hk">新增技师</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-edit fa-fw"></i> 考勤管理<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level collapse">
+                                <li>
+                                    <a href="?paper/list_paper">考勤列表</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li><li>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> 订单管理<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level collapse">
+                                <li>
+                                    <a href="?sheet/index">订单列表</a>
+                                </li>
+                                <li>
+                                    <a href="?sheet/index">新增订单</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+
+                        <li>
+                            <a href="#"><i class="fa  fa-sitemap fa-fw"></i> 客户管理<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level collapse">
+                                <li>
+                                    <a href="?admin/index">客户管理</a>
+                                </li>
+                                <li>
+                                    <a href="?admin/group">客户组管理</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+
+                        <li>
+                            <a href="#"><i class="fa fa-fw fa-wrench "></i> 系统设置<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level collapse">
+                                <li>
+                                    <a href="?system">系统选项</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                     
+                    </ul>
+                </div>
+                <!-- /.sidebar-collapse -->
+            </div>
+            <!-- /.navbar-static-side -->
+        </nav>

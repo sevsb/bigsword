@@ -15,6 +15,11 @@ class login {
 
         $password = $user["password"];
         $c1 = md5($email. $salt . $password);
+        logging::d("Login", "email = " . $email);
+        logging::d("Login", "salt = " . $salt);
+        logging::d("Login", "password = " . $password);
+        logging::d("Login", "c1 = " . $c1);
+        logging::d("Login", "cipher = " . $cipher);
         if ($c1 == $cipher) {
             $_SESSION["user.id"] = $user["id"];
             $_SESSION["user.name"] = $user["nick"];

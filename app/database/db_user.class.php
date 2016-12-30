@@ -39,7 +39,7 @@ class db_user extends database {
 
     public function add($nick, $email, $password, $face) {
         $now = time();
-        return $this->insert(TABLE_USERS, array("nick" => $nick, "email" => $email, "password" => $password, "face" => $face, "register_time" => $now));
+        return $this->insert(TABLE_USERS, array("nick" => $nick, "email" => $email, "password" => $password, "face" => $face, "register_time" => $now, "groupid" => "2"));
     }
 
     public function update_login_time($userid) {

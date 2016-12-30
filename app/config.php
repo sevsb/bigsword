@@ -29,16 +29,19 @@ defined('ALLOW_ROOT') or define('ALLOW_ROOT', true);
 
 // database
 defined('MYSQL_SERVER') or define('MYSQL_SERVER', 'localhost');
-defined('MYSQL_USERNAME') or define('MYSQL_USERNAME', 'comacc');
-defined('MYSQL_PASSWORD') or define('MYSQL_PASSWORD', 'comacc');
-defined('MYSQL_DATABASE') or define('MYSQL_DATABASE', 'comacc');
-defined('MYSQL_PREFIX') or define('MYSQL_PREFIX', 'common_');
+defined('MYSQL_USERNAME') or define('MYSQL_USERNAME', 'bigsword');
+defined('MYSQL_PASSWORD') or define('MYSQL_PASSWORD', 'bigsword');
+defined('MYSQL_DATABASE') or define('MYSQL_DATABASE', 'bigsword');
+defined('MYSQL_PREFIX') or define('MYSQL_PREFIX', 'bigsword_');
 
 
-// db_book
-defined('TABLE_USERS') or define('TABLE_USERS', MYSQL_PREFIX . "users");
+// db_settings
 defined('TABLE_SETTINGS') or define('TABLE_SETTINGS', MYSQL_PREFIX . "settings");
+
+// db_user
+defined('TABLE_USERS') or define('TABLE_USERS', MYSQL_PREFIX . "users");
 defined('TABLE_USERSETTINGS') or define('TABLE_USERSETTINGS', MYSQL_PREFIX . "user_settings");
+defined('TABLE_USER_GROUPS') or define('TABLE_USER_GROUPS', MYSQL_PREFIX . "user_groups");
 
 // mailer
 defined('MAIL_SUBJECT_PREFIX') or define('MAIL_SUBJECT_PREFIX', '');
