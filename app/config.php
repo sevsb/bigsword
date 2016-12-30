@@ -28,7 +28,7 @@ defined('UPLOAD_LIMIT') or define('UPLOAD_LIMIT', 10 * 1024 * 1024);
 defined('ALLOW_ROOT') or define('ALLOW_ROOT', true);
 
 // database
-defined('MYSQL_SERVER') or define('MYSQL_SERVER', 'localhost');
+defined('MYSQL_SERVER') or define('MYSQL_SERVER', '180.76.188.68');
 defined('MYSQL_USERNAME') or define('MYSQL_USERNAME', 'bigsword');
 defined('MYSQL_PASSWORD') or define('MYSQL_PASSWORD', 'bigsword');
 defined('MYSQL_DATABASE') or define('MYSQL_DATABASE', 'bigsword');
