@@ -13,6 +13,10 @@ class login_controller {
         $tpl->display("index/login");
     }
 
+    public function get_salt_ajax() {
+        return get_session('login_salt');
+    }
+    
     public function register_action() {
         $tpl = new tpl("index/header", "index/footer");
         $tpl->display("index/register");
