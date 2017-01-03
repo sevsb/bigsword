@@ -28,6 +28,7 @@ class login {
             $_SESSION["user.large-face"] = $user["face"];
             $_SESSION["user.last_login_time"] = $user["last_login_time"];
             $_SESSION["user.admin"] = ($user["admin"] == "1");
+            $_SESSION["login.next"] = HOME_URL . "?main/main";
             db_user::inst()->update_login_time($user["id"]);
 
             $token = "l" . md5($user["id"] . uniqid());

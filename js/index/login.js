@@ -21,8 +21,8 @@ $(document).ready(function() {
                 console.debug("cipher = " + cipher);
 
                 __ajax("login.login", {email: email, cipher: cipher}, function(data) {
-                    //console.log(data.refer);
-                    document.location.href = '?main/main';
+                    console.log(data.refer);
+                    document.location.href = data.refer;
                 });
             }
         });
