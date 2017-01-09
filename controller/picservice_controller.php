@@ -9,6 +9,23 @@ class picservice_controller {
         return $ret;
     }
     
+    public function get_code_ajax() {
+        $ret = picservice::get_code();
+        return $ret;
+    }
+    
+    public function get_token_ajax() {
+        $ret = picservice::get_token();
+        return $ret;
+    }
+    
+    public function save_token_ajax() {
+        $token = get_request('token');
+        $expired = get_request('expired');
+        $ret = picservice::save_token($token, $expired);
+        return $ret;
+    }
+    
 
 }
 

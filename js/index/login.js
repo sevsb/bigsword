@@ -22,7 +22,8 @@ $(document).ready(function() {
 
                 __ajax("login.login", {email: email, cipher: cipher}, function(data) {
                     console.log(data.refer);
-                    document.location.href = data.refer;
+                    document.location.href = "?main/main";
+                    //document.location.href = data.refer;
                 });
             }
         });

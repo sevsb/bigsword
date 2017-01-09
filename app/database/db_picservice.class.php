@@ -25,6 +25,23 @@ class db_picservice extends database {
     public function update_code($code) {
         return $this->update(TABLE_SETTINGS, array('value' => $code), "name = 'authorized_code'");
     }
+    
+    public function save_token($token, $expired) {
+        $ret1 = $this->update(TABLE_SETTINGS, array('value' => $token), "name = 'picservice_token'");
+        $ret2 = $this->update(TABLE_SETTINGS, array('value' => $expired), "name = 'picservice_token_expired'");
+        return $ret1 && $ret2;
+    }
+    
+    public function get_code() {
+        return $this->get_one_table(TABLE_SETTINGS, "name = 'authorized_code'");
+    }
+    
+    public function get_token() {
+        $token = $this->get_one_table(TABLE_SETTINGS, "name = 'picservice_token'");
+        $expired = $this->get_one_table(TABLE_SETTINGS, "name = 'picservice_token_expired'");
+        
+        return array('token' => $token['value'], 'expired' => $expired['value']);
+    }
 
 };
 

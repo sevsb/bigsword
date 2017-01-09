@@ -7,6 +7,13 @@ function get_request(name) {
     return null;
 }
 
+function get_url_path() {
+    url = window.location.href;
+    var url_arr = [];
+    url_arr = url.split('?');
+    return url_arr[0];
+}
+
 function __ajax(action, data, success, fail, message_on_success) {
     $.ajax({
         url: "ajax.php?action=" + action,
