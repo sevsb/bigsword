@@ -7,11 +7,13 @@ if (file_exists(dirname(__FILE__) . "/../../PATH.php")) {
 include_once(dirname(__FILE__) . "/../../framework/config.php");
 include_once(dirname(__FILE__) . "/database/db_user.class.php");
 include_once(dirname(__FILE__) . "/database/db_settings.class.php");
+include_once(dirname(__FILE__) . "/database/db_picservice.class.php");
 include_once(dirname(__FILE__) . "/user.class.php");
 include_once(dirname(__FILE__) . "/upload.php");
 include_once(dirname(__FILE__) . "/thumbnail.php");
 include_once(dirname(__FILE__) . "/mailer.class.php");
 include_once(dirname(__FILE__) . "/settings.class.php");
+include_once(dirname(__FILE__) . "/picservice.class.php");
 include_once(FRAMEWORK_PATH . "/helper.php");
 include_once(FRAMEWORK_PATH . "/logging.php");
 include_once(FRAMEWORK_PATH . "/tpl.php");
