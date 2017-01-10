@@ -29,6 +29,10 @@ class db_service_item extends database {
     public function get_all_items() {
         return $this->get_all_table(TABLE_SERVICE_ITEMS);
     }
+    
+    public function get_item_detail($id) {
+        return $this->get_one_table(TABLE_SERVICE_ITEMS, "id = $id");
+    }
 
 
 };

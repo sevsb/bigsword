@@ -16,6 +16,11 @@ class service_item {
         $ret = db_service_item::inst()->get_all_items();
         return $ret;
     }
+    
+    public static function get_item_detail($id) {
+        $ret = db_service_item::inst()->get_item_detail($id);
+        return $ret;
+    }
 
     
     

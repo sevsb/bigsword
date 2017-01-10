@@ -3,12 +3,21 @@ include_once(dirname(__FILE__) . "/../app/config.php");
 
 class service_item_controller {
 
-    
     public function index_action() {
         $tpl = new tpl("main/header", "main/footer");
         $service_items = service_item::get_all_items();
         $tpl->set('items', $service_items);
         $tpl->display("service_item/index");
+    }
+    
+    public function detail_action() {
+        $tpl = new tpl("main/header", "main/footer");
+        $id = get_request('id');
+        $item = service_item::get_item_detail($id);
+        $token = picservice::get_token();
+        $tpl->set('item', $item);
+        $tpl->set('token', $token["token"]);
+        $tpl->display("service_item/detail");
     }
     
     public function new_action() {
