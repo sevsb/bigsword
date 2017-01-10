@@ -75,8 +75,8 @@ function refresh_picservice_token() {
                     console.debug(data);
 
                     data = eval("(" + data + ")");
-                    var token = data.token;
-                    var expired = data.expired;
+                    token = data.token;
+                    expired = data.expired;
                     //console.debug(data);
                     //console.debug(expired);
                     
