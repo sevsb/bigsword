@@ -1,30 +1,25 @@
 $(document).ready(function() {
-    
-    //code = null;
     check_picservice_token();
-    //console.log(code);
+    
     $('.upload_btn').click(function (){
         $("#upload_input").click();
     });
-    
 
     $("#upload_input").change(function() {
         if (typeof FileReader == 'undefined') {
-            alert("ÄúµÄä¯ÀÀÆ÷²»Ö§³ÖÉÏ´«£¬Çë¸ü»»ä¯ÀÀÆ÷ÖØÊÔ£¡");
+            alert("æ‚¨çš„æµè§ˆå™¨ä¸æ”¯æŒä¸Šä¼ ï¼Œè¯·æ›´æ¢æµè§ˆå™¨é‡è¯•ï¼");
             return false;
         }
 
         var file = this.files[0];
         if (!/image\/\w+/.test(file.type)) {
-            alert("ÎÄ¼þ²»ÊÇÍ¼ÏñÀàÐÍ£¡");
+            alert("æ–‡ä»¶ä¸æ˜¯å›¾åƒç±»åž‹ï¼");
             return false;
         }
         
         var reader = new FileReader();
         reader.onload = function(e){
             var img_src = e.target.result;
-            
-           
             
             var now_time = Date.parse(new Date()) / 1000;
             if (now_time > expired) {
@@ -35,7 +30,7 @@ $(document).ready(function() {
             console.log(token);
             console.log(expired);
             
-            $.ajax({    //ÉÏ´«Í¼Æ¬
+            $.ajax({    //ä¸Šä¼ å›¾ç‰‡
                 url: pic_url + "ajax.php?action=" + 'picservice.upload_image',
                 type: 'post',
                 data: {token: token ,img_src: img_src},
@@ -49,18 +44,12 @@ $(document).ready(function() {
                     }
                     
                     if (data.status == 'success') {
-                        var img_drone = "<img src='" + img_src +"' style='width: 100px;' filename=" + data.info + ">";
+                        var img_drone = "<img src='" + img_src +"' filename=" + data.info + ">";
                         $('.previews').append(img_drone);
                         
                     } else if (data.status == 'fail') {
                         alert(data.info);
                     }
-                    //
-                    //var token = data.token;
-                    //var expired = data.expired;
-                    //console.debug(data);
-                    //console.debug(expired);
-                    
                 } 
             });
             
@@ -70,7 +59,36 @@ $(document).ready(function() {
         return true;
     });
 
-    
+    $('.addquestion').click(function () {
+        var title = $('#title').val();
+        var content = $('#content').val();
+        var time = $('#time').val();
+        var price = $('#price').val();
+        var interval = $('#interval').val();
+        var filename_list = [];
+        $('.previews').find('img').each(function (){
+            var filename = $(this).attr('filename');
+            filename_list.push(filename);
+        });
+        
+        console.log("title:" + title);
+        console.log("content:" + content);
+        console.log("time:" + time);
+        console.log("interval:" + interval);
+        console.log("price:" + price);
+        console.log(filename_list);
+        if (title == '' || content == '' || time == '' || interval == '' || price == '' ) {
+            alert('è¯·å°†å†…å®¹å¡«å†™å®Œæ•´');
+            return;
+        }
+        if (filename_list.length == 0) {
+            alert('è¯·ä¸Šä¼ å›¾ç‰‡');
+            return;   
+        }
+        
+        __ajax("service_item.add", {title: title, content: content, time: time, interval: interval, price: price, filename_list: filename_list}, "?service_item/index");
+
+    });
     
     
     

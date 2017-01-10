@@ -8,12 +8,14 @@ include_once(dirname(__FILE__) . "/../../framework/config.php");
 include_once(dirname(__FILE__) . "/database/db_user.class.php");
 include_once(dirname(__FILE__) . "/database/db_settings.class.php");
 include_once(dirname(__FILE__) . "/database/db_picservice.class.php");
+include_once(dirname(__FILE__) . "/database/db_service_item.class.php");
 include_once(dirname(__FILE__) . "/user.class.php");
 include_once(dirname(__FILE__) . "/upload.php");
 include_once(dirname(__FILE__) . "/thumbnail.php");
 include_once(dirname(__FILE__) . "/mailer.class.php");
 include_once(dirname(__FILE__) . "/settings.class.php");
 include_once(dirname(__FILE__) . "/picservice.class.php");
+include_once(dirname(__FILE__) . "/service_item.class.php");
 include_once(FRAMEWORK_PATH . "/helper.php");
 include_once(FRAMEWORK_PATH . "/logging.php");
 include_once(FRAMEWORK_PATH . "/tpl.php");
@@ -48,7 +50,7 @@ defined('TABLE_USER_GROUPS') or define('TABLE_USER_GROUPS', MYSQL_PREFIX . "user
 // mailer
 defined('MAIL_SUBJECT_PREFIX') or define('MAIL_SUBJECT_PREFIX', '');
 
-// serve
+// service_items
 defined('TABLE_SERVICE_ITEMS') or define('TABLE_SERVICE_ITEMS', MYSQL_PREFIX . "service_items");
 
 
