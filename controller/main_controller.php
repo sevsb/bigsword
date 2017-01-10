@@ -10,12 +10,12 @@ class main_controller {
     
     public function serve_index_action() {
         $tpl = new tpl("main/header", "main/footer");
-        $tpl->display("serve/index");
+        $tpl->display("service_item/index");
     }
     
     public function new_serve_action() {
         $tpl = new tpl("main/header", "main/footer");
-        $tpl->display("serve/new");
+        $tpl->display("service_item/new");
     }
 
 }

@@ -51,10 +51,11 @@ class db_init extends database {
         $this->create_table(TABLE_USERS,  array("nick" => "TEXT", "email" => "TEXT", "password" => "TEXT", "face" => "TEXT", "register_time" => "TEXT", "groupid" => "INT", "token" => "TEXT", "tokentime" => "TEXT"));
         $this->create_table(TABLE_USERSETTINGS,  array("userid" => "INT", "name" => "TEXT", "value" => "TEXT"));
         $this->create_table(TABLE_USER_GROUPS,  array("name" => "TEXT", "access" => "TEXT"));
+
         
-        
-        
-        
+        //serve
+        //$this->create_table(TABLE_SERVICE_ITEMS, array('title' => "TEXT",'content' => "TEXT",'price' => "TEXT",'service_time' => "TEXT",'interval' => "TEXT",'pic' => "TEXT"));
+        $this->create_table(TABLE_SERVICE_ITEMS,  array("title" => "TEXT", "content" => "TEXT", "price" => "TEXT", "service_time" => "TEXT", "interval_time" => "TEXT",  "pic" => "TEXT" ));
         
         
         
