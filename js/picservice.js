@@ -12,10 +12,9 @@ function check_picservice_token() {
             var now_time = Date.parse(new Date()) / 1000;
             token = data.token;
             expired = data.expired;
-
-            console.debug(token);
-            console.debug(expired);
-            console.debug(now_time);
+            console.debug('token:' + token);
+            console.debug('expired:' + expired);
+            console.debug('now_time:' + now_time);
             if (now_time > expired || token == null) {
                 refresh_picservice_token();
             }
@@ -23,7 +22,7 @@ function check_picservice_token() {
     });
 }
 
-function upload_image() {
+function upload_image(img_src,functionname) {   //现阶段只能接受第二个必须为function(data){}
 
     var now_time = Date.parse(new Date()) / 1000;
     if (now_time > expired) {
@@ -31,25 +30,19 @@ function upload_image() {
         refresh_picservice_token();
     }
     
+    console.log('---now start to upload img---');
     console.log(token);
     console.log(expired);
-    
-    $.ajax({    //发送token
-        url: pic_url + "ajax.php?action=" + 'picservice.send_token',
-        type: 'post',
-        data: {token: token ,expired: expired},
-        success: function (data) {
-            console.debug(data);
 
-            //data = eval("(" + data + ")");
-            //var token = data.token;
-            //var expired = data.expired;
-            //console.debug(data);
-            //console.debug(expired);
-            
-        } 
+    $.ajax({    //上传图片
+        url: pic_url + "ajax.php?action=" + 'picservice.upload_image',
+        type: 'post',
+        data: {token: token ,img_src: img_src},
+        success: function (data) {
+            console.log(data);
+            functionname(data);
+        }
     });
-    
 }
 
 

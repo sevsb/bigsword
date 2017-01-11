@@ -19,38 +19,24 @@ $(document).ready(function() {
         
         var reader = new FileReader();
         reader.onload = function(e){
+            
             var img_src = e.target.result;
-            
-            var now_time = Date.parse(new Date()) / 1000;
-            if (now_time > expired) {
-                console.log('now to refresh token');
-                refresh_picservice_token();
-            }
-            
-            console.log(token);
-            console.log(expired);
-            
-            $.ajax({    //上传图片
-                url: pic_url + "ajax.php?action=" + 'picservice.upload_image',
-                type: 'post',
-                data: {token: token ,img_src: img_src},
-                success: function (data) {
-                    data = eval("(" + data + ")");
-                    console.debug(data);
-                    if (data.ret == 'token authorise failed') {
-                        alert(data.ret);
+            upload_image(img_src,function (data) {
+                data = eval("(" + data + ")");
+                console.debug(data);
+
+                if (data.status == 'success') {
+                    var img_drone = "<img src='" + img_src +"' filename=" + data.info + ">";
+                    $('.previews').append(img_drone);
+                    return;
+                }
+                if (data.status == 'fail') {
+                    if (data.info == 'token_fail') {
                         refresh_picservice_token();
-                        return;
                     }
-                    
-                    if (data.status == 'success') {
-                        var img_drone = "<img src='" + img_src +"' filename=" + data.info + ">";
-                        $('.previews').append(img_drone);
-                        
-                    } else if (data.status == 'fail') {
-                        alert(data.info);
-                    }
-                } 
+                    alert(data.info);
+                    return;
+                }
             });
         }
         reader.readAsDataURL(file);
