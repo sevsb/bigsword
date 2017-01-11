@@ -47,7 +47,7 @@
         $pics = $item['pic'];
         $filenames = explode(',',$pics);
         foreach ($filenames as $filename) {
-           echo "<img src='http://127.0.0.1/picservice/?picservice/show&filename=$filename&token=$token'>";
+           echo "<img src='". PICSERVICE_URL . "?picservice/show&filename=$filename&token=$token'>";
         }
         ?>
         
