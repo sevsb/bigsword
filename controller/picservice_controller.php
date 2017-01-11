@@ -45,14 +45,16 @@ class picservice_controller {
                 logging::e("fileget",PICSERVICE_URL . "/ajax.php?action=picservice.request_token&code=$code&host=$host");
                 $ret = file_get_contents(PICSERVICE_URL . "/ajax.php?action=picservice.request_token&code=$code&host=$host");
                 $ret = json_decode($ret);
-                if ($ret == 'fail') {
-                    echo "token 校验失败！";
+                logging::e("fileget ret :", $ret);
+                if ($ret->ret == 'failed') {
+                    echo "picservice_token 校验失败！";
                     return;
                 }
                 $token = $ret->token;
                 $expired = $ret->expired;
                 $sa_ret = picservice::save_token($token, $expired);
                 if ($sa_ret){
+                    $tourl = urlencode($tourl);
                     $url = "?picservice/auth_token_go&act=auth&tourl=$tourl";
                     logging::e("LINK TO", $url);
                     header("Location: " . $url);

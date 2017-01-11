@@ -72,25 +72,26 @@ function refresh_picservice_token() {
                 type: 'post',
                 data: {code: code ,host: url_path},
                 success: function (data) {
+                    data = eval("(" + data + ")");
                     console.debug(data);
-                    if(data == 'fail') {
+                    if(data.ret == 'failed') {
                         alert('token获取失败！');
                         return;
                     }
-                    data = eval("(" + data + ")");
+                    
                     token = data.token;
                     expired = data.expired;
                     //console.debug(data);
                     //console.debug(expired);
                     
-                        $.ajax({    //存入token
-                            url: "ajax.php?action=" + 'picservice.save_token',
-                            type: 'post',
-                            data: {token: token ,expired: expired},
-                            success: function (data) {
-                                console.debug(data);
-                            }
-                        });
+                    $.ajax({    //存入token
+                        url: "ajax.php?action=" + 'picservice.save_token',
+                        type: 'post',
+                        data: {token: token ,expired: expired},
+                        success: function (data) {
+                            console.debug(data);
+                        }
+                    });
                 }
             });
         }
