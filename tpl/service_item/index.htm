@@ -14,8 +14,9 @@
     </tr>
     <?php
     foreach ($items as $item) {
-        //var_dump($item);    
+        var_dump($item);    
         $tourl = "?service_item/detail_show&id=" . $item['id'];
+        $tourl = urlencode($tourl);
         ?>
             <tr>
             <td><?php echo  $item['id'];?></td>

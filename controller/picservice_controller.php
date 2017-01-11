@@ -19,11 +19,13 @@ class picservice_controller {
         header("Access-Control-Allow-Origin: " . PICSERVICE_IP );
         $act = get_request("act");
         $tourl = get_request("tourl");
-
+        logging::e("tourl", $tourl);
         if ($act == 'auth') {
             $token = picservice::get_token();
             $token = $token['token'];
+            $tourl = urlencode($tourl);
             $url = PICSERVICE_URL . "?picservice/auth_token". "&token=$token&tourl=$tourl";
+            logging::e("LINK TO", $url);
             header("Location: " .$url);
             return;
         }
@@ -31,6 +33,7 @@ class picservice_controller {
         if ($act == 'authret') {
             $ret = get_request("ret");
             if ($ret == 'success') {
+                logging::e("tourl", $tourl);
                 header("Location: " .$tourl);
             } else if($ret == 'fail'){
                 logging::e("Auth token fail", "now refresh token from code & host");
