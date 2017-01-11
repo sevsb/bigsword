@@ -73,7 +73,10 @@ function refresh_picservice_token() {
                 data: {code: code ,host: url_path},
                 success: function (data) {
                     console.debug(data);
-
+                    if(data == 'fail') {
+                        alert('token获取失败！');
+                        return;
+                    }
                     data = eval("(" + data + ")");
                     token = data.token;
                     expired = data.expired;

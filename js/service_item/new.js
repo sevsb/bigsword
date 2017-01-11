@@ -52,8 +52,6 @@ $(document).ready(function() {
                     }
                 } 
             });
-            
-            
         }
         reader.readAsDataURL(file);
         return true;
