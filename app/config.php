@@ -26,6 +26,8 @@ defined('UPLOAD_URL') or define('UPLOAD_URL', rtrim(INSTANCE_URL, "/") . '/uploa
 defined('THUMBNAIL_DIR') or define('THUMBNAIL_DIR', ROOT_PATH . '/upload/thumbnails');
 defined('THUMBNAIL_URL') or define('THUMBNAIL_URL', rtrim(INSTANCE_URL, "/") . '/upload/thumbnails');
 defined('UPLOAD_LIMIT') or define('UPLOAD_LIMIT', 10 * 1024 * 1024);
+defined('PICSERVICE_IP') or define('PICSERVICE_IP', "http://180.76.160.113");
+defined('PICSERVICE_URL') or define('PICSERVICE_URL', "http://180.76.160.113/picservice/");
 
 
 // security
