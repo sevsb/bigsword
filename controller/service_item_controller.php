@@ -10,7 +10,7 @@ class service_item_controller {
         $tpl->display("service_item/index");
     }
     
-    public function detail_action() {
+    public function detail_show_action() {
         $tpl = new tpl("main/header", "main/footer");
         $id = get_request('id');
         $item = service_item::get_item_detail($id);

@@ -28,6 +28,10 @@ defined('THUMBNAIL_URL') or define('THUMBNAIL_URL', rtrim(INSTANCE_URL, "/") . '
 defined('UPLOAD_LIMIT') or define('UPLOAD_LIMIT', 10 * 1024 * 1024);
 defined('PICSERVICE_IP') or define('PICSERVICE_IP', "http://180.76.160.113");
 defined('PICSERVICE_URL') or define('PICSERVICE_URL', "http://180.76.160.113/picservice/");
+//defined('PICSERVICE_IP') or define('PICSERVICE_IP', "http://127.0.0.1");
+//defined('PICSERVICE_URL') or define('PICSERVICE_URL', "http://127.0.0.1/picservice/");
+
+
 
 
 // security

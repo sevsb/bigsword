@@ -15,10 +15,45 @@ class picservice_controller {
         return $ret;
     }
     
-    public function auth_token_action () {
+    public function auth_token_go_action () {
         header("Access-Control-Allow-Origin: " . PICSERVICE_IP );
-        $token = picservice::get_token();
-        header("Location: PICSERVICE_URL");
+        $act = get_request("act");
+        $tourl = get_request("tourl");
+
+        if ($act == 'auth') {
+            $token = picservice::get_token();
+            $token = $token['token'];
+            $url = PICSERVICE_URL . "?picservice/auth_token". "&token=$token&tourl=$tourl";
+            header("Location: " .$url);
+            return;
+        }
+        
+        if ($act == 'authret') {
+            $ret = get_request("ret");
+            if ($ret == 'success') {
+                header("Location: " .$tourl);
+            } else if($ret == 'fail'){
+                logging::e("Auth token fail", "now refresh token from code & host");
+                $code = picservice::get_code();
+                $code = $code["value"];
+                $host = $_SERVER['REQUEST_SCHEME'] . "://". $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+                $host = explode('?',$host);
+                $host = $host[0];
+                logging::e("fileget",PICSERVICE_URL . "/ajax.php?action=picservice.request_token&code=$code&host=$host");
+                $ret = file_get_contents(PICSERVICE_URL . "/ajax.php?action=picservice.request_token&code=$code&host=$host");
+                $ret = json_decode($ret);
+                $token = $ret->token;
+                $expired = $ret->expired;
+                $sa_ret = picservice::save_token($token, $expired);
+                if ($sa_ret){
+                    $url = "?picservice/auth_token_go&act=auth&tourl=$tourl";
+                    logging::e("LINK TO", $url);
+                    header("Location: " . $url);
+                    return;
+                }
+                return;
+            }
+        }
     }
     
     public function get_token_ajax() {
