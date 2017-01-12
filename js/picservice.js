@@ -1,4 +1,4 @@
-pic_url = "http://180.76.160.113/picservice/";
+//pic_url = "http://127.0.0.1/picservice/";
 
 function check_picservice_token() {
     console.log('check_picservice_token!');
