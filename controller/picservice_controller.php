@@ -15,6 +15,10 @@ class picservice_controller {
         return $ret;
     }
     
+    public function get_pic_url_ajax() {
+        return PICSERVICE_URL;
+    }
+    
     public function auth_token_go_action () {
         header("Access-Control-Allow-Origin: " . PICSERVICE_IP );
         $act = get_request("act");
