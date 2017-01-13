@@ -5,6 +5,9 @@ $(document).ready(function() {
         $("#upload_input").click();
     });
     
+    $(document).on("click",'.del_me',function(){	
+        $(this).parents('.img_pre').remove();
+    });
     $('.item-btn').click(function (){
         $(this).toggleClass('selected');
     });
@@ -30,7 +33,7 @@ $(document).ready(function() {
                 console.debug(data);
 
                 if (data.status == 'success') {
-                    var img_drone = "<img src='" + img_src +"' filename=" + data.info + ">";
+                    var img_drone = "<div class='img_pre'><img src='" + img_src +"' filename=" + data.info + "><div class='del_me btn btn-danger center-block'>删除</div></div>";
                     $('.previews').append(img_drone);
                     return;
                 }

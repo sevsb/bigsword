@@ -137,3 +137,10 @@ img.user-face {
     
 }
 
+.img_pre {
+    border: 1px solid #eee;
+    padding: 5px;
+    width: 110px;
+    display: inline-block;
+    margin-right: 10px;
+}
