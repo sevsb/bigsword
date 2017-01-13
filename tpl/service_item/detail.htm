@@ -46,8 +46,13 @@
         <?php 
         $pics = $item['pic'];
         $filenames = explode(',',$pics);
+        $url = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+        $url = explode('?', $url);
+        $url = $url[0];
+        $url = urlencode($url);
+        //echo $url;
         foreach ($filenames as $filename) {
-           echo "<img src='". PICSERVICE_URL . "?picservice/show&filename=$filename&token=$token'>";
+           echo "<img src='". PICSERVICE_URL . "?picservice/show&filename=$filename&token=$token&redirecturl=$url'>";
         }
         ?>
         

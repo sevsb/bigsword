@@ -15,6 +15,35 @@ class picservice_controller {
         return array("ret" => "success", "info" =>$ret);
     }
     
+    public function request_token_action() {
+        $filename = get_request("filename");
+        $ret = picservice::get_code();
+        $code = $ret['value'];
+        $url = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+        $url = explode('?', $url);
+        $host = $url[0];
+        $host = urlencode($host);
+        $ret = file_get_contents(PICSERVICE_URL . "ajax.php?action=picservice.request_token&host=$host&code=$code");
+        $ret = json_decode($ret);
+        if($ret->ret == 'fail'){
+            logging::e("TOKEN", "token request failed: reason:" . $ret->reason);
+            return;
+        }else if ($ret->ret == 'success') {
+            $expired = $ret->expired;
+            $token = $ret->token;
+            $ret = picservice::save_token($token, $expired);
+            if (!$ret) {
+                logging::e("TOKEN", "token save failed:" . $ret);
+                return false;
+            }else {
+                $url = PICSERVICE_URL . "?picservice/show&filename=$filename&token=$token&redirecturl=$host";
+                header("Location:" . $url);
+            }
+        }
+
+        //return array("ret" => "success", "info" =>$ret);
+    }
+    
     public function get_pic_url_ajax() {
         return array("ret" => "success", "info" =>PICSERVICE_URL);
     }
