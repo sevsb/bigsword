@@ -3,8 +3,14 @@ include_once(dirname(__FILE__) . "/config.php");
 
 class picservice {
         
-    public static function show($filename, $token, $thumb = 0){
-        return PICSERVICE_URL . "?picservice/show&filename=$filename&token=$token&thumb=$thumb";
+    public static function show($filename, $thumb = 0){
+        $token = picservice::get_token();
+        $token = $token["token"];
+        $url = "http" . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+        $url = explode('?', $url);
+        $host = $url[0];
+        $host = urlencode($host);
+        return PICSERVICE_URL . "?picservice/show&filename=$filename&token=$token&thumb=$thumb&redirecturl=$host";
     }
     
     public function __construct($data) {

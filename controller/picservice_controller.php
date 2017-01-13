@@ -17,9 +17,10 @@ class picservice_controller {
     
     public function request_token_action() {
         $filename = get_request("filename");
+        $thumb = get_request("thumb");
         $ret = picservice::get_code();
         $code = $ret['value'];
-        $url = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+        $url = "http" . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
         $url = explode('?', $url);
         $host = $url[0];
         $host = urlencode($host);
@@ -36,7 +37,7 @@ class picservice_controller {
                 logging::e("TOKEN", "token save failed:" . $ret);
                 return false;
             }else {
-                $url = PICSERVICE_URL . "?picservice/show&filename=$filename&token=$token&redirecturl=$host";
+                $url = PICSERVICE_URL . "?picservice/show&filename=$filename&token=$token&redirecturl=$host&thumb=$thumb";
                 header("Location:" . $url);
             }
         }
