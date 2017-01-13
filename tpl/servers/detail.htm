@@ -46,7 +46,7 @@
         $pics = $server['pic'];
         $filenames = explode(',',$pics);
         foreach ($filenames as $filename) {
-           echo "<img src='". PICSERVICE_URL . "?picservice/show&filename=$filename&token=$token'>";
+           echo "<a target='_blank' href='". picservice::show($filename, $token, 0) . "'><img src='". picservice::show($filename, $token) . "'></a>";
         }
         ?>
         

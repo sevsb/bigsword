@@ -2,6 +2,10 @@
 include_once(dirname(__FILE__) . "/config.php");
 
 class picservice {
+        
+    public static function show($filename, $token, $thumb = 0){
+        return PICSERVICE_URL . "?picservice/show&filename=$filename&token=$token&thumb=$thumb";
+    }
     
     public function __construct($data) {
         $this->summary = $data;

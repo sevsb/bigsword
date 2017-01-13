@@ -50,7 +50,7 @@
         $filenames = explode(',',$pics);
         foreach ($filenames as $filename) {
         //<div class='img_pre'><img src='" + img_src +"' filename=" + data.info + "><div class='del_me btn btn-danger center-block'>删除</div></div>
-           echo "<div class='img_pre'><img filename='$filename' src='". PICSERVICE_URL . "?picservice/show&filename=$filename&token=$token'><div class='del_me btn btn-danger center-block'>删除</div></div>";
+           echo "<div class='img_pre'><img filename='$filename' src='". picservice::show($filename, $token) . "'><div class='del_me btn btn-danger center-block'>删除</div></div>";
         }
         ?>
         </div>
