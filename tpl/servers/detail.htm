@@ -1,50 +1,49 @@
 <div id="page-wrapper">
     <div>
-        <h3 class="page_title">服务项详情</h3>
+        <h3 class="page_title">技师详情</h3>
     </div>
-    
+    <?php
+    //var_dump($server);
+    $skills = explode(",", $server['skill']);
+    //var_dump($token);
+    ?>
     <div class="form-horizontal" style="margin-top: 24px ;border-bottom: 2px solid #eee;" >
         <div class="form-group">
-            <label for="qtitle" class="col-sm-2 control-label">服务名称</label>
+            <label for="qtitle" class="col-sm-2 control-label">姓名</label>
             <div class="col-sm-10">
                 <input type='text' id="title" style="height: 32px; width: 80%; padding: 6px 12px;"
-                value='<?php echo $item['title']; ?>' readonly>
+                value='<?php echo $server['name']; ?>' readonly>
             </div>
         </div>
        <div class="form-group">
             <label for="qcomment" class="col-sm-2 control-label">详细介绍</label>
              <div class="col-sm-10">
-                <input type='text' id="content" style="height: 32px; width: 80%; padding: 6px 12px;"
-                value='<?php echo $item['content']; ?>' readonly>
+                <textarea type='text' id="content" rows='10' style="width: 80%; padding: 6px 12px;"
+                value='<?php echo $server['content']; ?>' readonly></textarea>
+                <input class='area_content hide' value='<?php echo $server['content']; ?>' >
             </div>
         </div>        
         <div class="form-group">
-            <label for="qcomment" class="col-sm-2 control-label">服务时间</label>
+            <label for="qcomment" class="col-sm-2 control-label">技能</label>
              <div class="col-sm-10">
-                <input type='text' id="time" style="height: 32px; width: 80%; padding: 6px 12px;"
-                value='<?php echo $item['service_time']; ?>' readonly>
-            </div>
-        </div>
-        
-        <div class="form-group">
-            <label for="qcomment" class="col-sm-2 control-label">前后间隔时间</label>
-             <div class="col-sm-10">
-                <input type='text' id="interval" style="height: 32px; width: 80%; padding: 6px 12px;"
-                value='<?php echo $item['interval_time']; ?>' readonly>
-            </div>
-        </div>
-        
-        <div class="form-group">
-            <label for="qcomment" class="col-sm-2 control-label">价格</label>
-             <div class="col-sm-10">
-                <input type='text' id="price" style="height: 32px; width: 80%; padding: 6px 12px;"
-                value='<?php echo $item['price']; ?>' readonly>
+                <?php
+                //var_dump($items);
+                //var_dump($skills);
+                foreach ($items as $item) {
+                    if(!in_array($item['id'], $skills)) {
+                        continue;
+                    }
+                ?>
+                    <div class='btn btn-default item-btn selected' id="<?php echo $item["id"];?>"><?php echo $item['title']; ?></div>
+                <?php
+                }
+                ?>
             </div>
         </div>
         
         <div class='previews'>
         <?php 
-        $pics = $item['pic'];
+        $pics = $server['pic'];
         $filenames = explode(',',$pics);
         foreach ($filenames as $filename) {
            echo "<img src='". PICSERVICE_URL . "?picservice/show&filename=$filename&token=$token'>";

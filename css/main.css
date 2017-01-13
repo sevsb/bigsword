@@ -121,6 +121,19 @@ img.user-face {
     padding-top: 20px;
 }
 
+/* new */
+.previews img {
+    width: 100px;
+    padding: 5px;
+}
 
+.previews {
+    padding: 30px;
+}
 
+.selected{
+    color:white;
+    background-color:red;
+    
+}
 

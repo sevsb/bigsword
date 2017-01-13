@@ -56,6 +56,7 @@ class db_init extends database {
         //serve
         //$this->create_table(TABLE_SERVICE_ITEMS, array('title' => "TEXT",'content' => "TEXT",'price' => "TEXT",'service_time' => "TEXT",'interval' => "TEXT",'pic' => "TEXT"));
         $this->create_table(TABLE_SERVICE_ITEMS,  array("title" => "TEXT", "content" => "TEXT", "price" => "TEXT", "service_time" => "TEXT", "interval_time" => "TEXT",  "pic" => "TEXT" ));
+        $this->create_table(TABLE_SERVERS,  array("name" => "TEXT", "level" => "TEXT", "content" => "TEXT", "skill" => "TEXT", "status" => "TEXT",  "pic" => "TEXT" ));
         
         
         
