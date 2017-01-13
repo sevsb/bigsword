@@ -51,6 +51,11 @@
         ?>
         
         </div>
+        
+        <div class=''>
+            <a href='?servers/modify&id=<?php echo $id;?>'><div class='btn btn-primary'>编辑</div></a>
+            <div class='btn btn-danger del-btn' id="<?php echo $id;?>" data-toggle="modal" data-target="#del-modal">删除</div>
+        </div><br><br><br><br>
     </div>
     
 </div>
@@ -58,3 +63,20 @@
 <div class=''></div>
 <div class=''></div>
 
+<div class="modal fade" id="del-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">删除确认</h4>
+      </div>
+      <div class="modal-body">
+        <p>确认要删除此项？</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-danger do_del">删除</button>
+      </div>
+    </div>
+  </div>
+</div>

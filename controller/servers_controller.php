@@ -16,6 +16,7 @@ class servers_controller {
         $server = servers::get_server_detail($id);
         $service_items = service_item::get_all_items();
         $token = picservice::get_token();
+        $tpl->set('id', $id);
         $tpl->set('items', $service_items);
         $tpl->set('server', $server);
         $tpl->set('token', $token["token"]);
