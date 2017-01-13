@@ -1,0 +1,64 @@
+<div id="page-wrapper">
+    <div>
+        <h3 class="page_title">编辑技师</h3>
+        <input class='hide serverid' value="<?php echo $serverid;?>">
+    </div>
+    <?php
+    $skills = explode(",", $server['skill']);
+    ?>
+    <div class="form-horizontal" style="margin-top: 24px ;border-bottom: 2px solid #eee;" >
+        <div class="form-group">
+            <label for="qtitle" class="col-sm-2 control-label">姓名</label>
+            <div class="col-sm-10">
+                <input type='text' id="name" style="height: 32px; width: 80%; padding: 6px 12px;"
+                value='<?php echo $server['name']; ?>'>
+            </div>
+        </div>
+       <div class="form-group">
+            <label for="qcomment" class="col-sm-2 control-label">详细介绍</label>
+             <div class="col-sm-10">
+                <textarea type='text' id="content" rows='10' style="width: 80%; padding: 6px 12px;"
+                value='<?php echo $server['content']; ?>'></textarea>
+                <input class='area_content hide' value='<?php echo $server['content']; ?>' >
+            </div>
+        </div>        
+        <div class="form-group">
+            <label for="qcomment" class="col-sm-2 control-label">技能</label>
+             <div class="col-sm-10">
+                <?php
+                foreach ($items as $item) {
+                ?>
+                    <div class='btn btn-default item-btn <?php echo !in_array($item['id'], $skills) ? '' : 'selected';?>'
+                    id="<?php echo $item["id"];?>"><?php echo $item['title']; ?></div>
+                <?php
+                }
+                ?>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="qcomment" class="col-sm-2 control-label">上传图片</label>
+             <div class="col-sm-10">
+                <button class='btn btn-default upload_btn'>添加图片</button>
+                <input type='file' class='hidden' id="upload_input" style="height: 32px; width: 80%; padding: 6px 12px;">
+            </div>
+        </div>
+        
+        <div class='previews'>
+        <?php 
+        $pics = $server['pic'];
+        $filenames = explode(',',$pics);
+        foreach ($filenames as $filename) {
+        //<div class='img_pre'><img src='" + img_src +"' filename=" + data.info + "><div class='del_me btn btn-danger center-block'>删除</div></div>
+           echo "<div class='img_pre'><img filename='$filename' src='". PICSERVICE_URL . "?picservice/show&filename=$filename&token=$token'><div class='del_me btn btn-danger center-block'>删除</div></div>";
+        }
+        ?>
+        </div>
+        <div class='btn btn-success addquestion' style="margin: 24px; display: block;">保存修改</div>
+    </div>
+    
+</div>
+<div class=''></div>
+<div class=''></div>
+<div class=''></div>
+

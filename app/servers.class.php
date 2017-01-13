@@ -12,6 +12,11 @@ class servers {
         return $ret;
     }
     
+    public static function modify($id, $name, $content, $skills, $filename_list) {
+        $ret = db_servers::inst()->modify($id, $name, $content, $skills, $filename_list);
+        return $ret;
+    }
+    
     public static function del($id) {
         $ret = db_servers::inst()->del($id);
         return $ret;

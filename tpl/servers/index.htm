@@ -17,7 +17,10 @@
             <td><?php echo $server['id'];?></td>
             <td><a href='<?php echo $tourl;?>'><?php echo  $server['name'];?></a></td>
             <td><?php echo $server['content'];?></td>
-            <td><button class='btn btn-danger del-btn' id="<?php echo $server['id'];?>" data-toggle="modal" data-target="#del-modal">删除</button></td>
+            <td>
+                <button class='btn btn-danger del-btn' id="<?php echo $server['id'];?>" data-toggle="modal" data-target="#del-modal">删除</button>
+                <a href='?servers/modify&id=<?php echo $server['id'];?>'><button class='btn btn-primary' id="<?php echo $server['id'];?>">编辑</button></a>
+                </td>
             </tr>
         <?php
     }

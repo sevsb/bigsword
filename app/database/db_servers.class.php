@@ -26,6 +26,10 @@ class db_servers extends database {
         return $this->insert(TABLE_SERVERS, array("name" => $name, "content" => $content, "skill" => $skills, "pic" => $filename_list));
     }
     
+    public function modify($id, $name, $content, $skills, $filename_list) {
+        return $this->update(TABLE_SERVERS, array("name" => $name, "content" => $content, "skill" => $skills, "pic" => $filename_list), "id = '$id'");
+    }
+    
     public function del($id) {
         return $this->delete(TABLE_SERVERS, "id = '$id'");
     }
