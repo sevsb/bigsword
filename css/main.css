@@ -132,8 +132,8 @@ img.user-face {
 }
 
 .selected{
-    color:white;
-    background-color:red;
+    color:white !important;
+    background-color:red !important;
     
 }
 
