@@ -12,6 +12,11 @@ class servers {
         return $ret;
     }
     
+    public static function del($id) {
+        $ret = db_servers::inst()->del($id);
+        return $ret;
+    }
+    
     public static function get_all_servers() {
         return db_servers::inst()->get_all_servers();
     }

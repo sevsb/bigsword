@@ -13,11 +13,11 @@
     foreach ($servers as $server) {
         $tourl = "?servers/detail_show&id=" . $server['id'];
         ?>
-            <tr>
+            <tr id="server_<?php echo $server['id'];?>">
             <td><?php echo $server['id'];?></td>
             <td><a href='<?php echo $tourl;?>'><?php echo  $server['name'];?></a></td>
             <td><?php echo $server['content'];?></td>
-            <td><button class='btn'>删除</button></td>
+            <td><button class='btn btn-danger del-btn' id="<?php echo $server['id'];?>" data-toggle="modal" data-target="#del-modal">删除</button></td>
             </tr>
         <?php
     }
@@ -29,3 +29,20 @@
 <div class=''></div>
 <div class=''></div>
 
+<div class="modal fade" id="del-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">删除确认</h4>
+      </div>
+      <div class="modal-body">
+        <p>确认要删除此项？</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-danger do_del">删除</button>
+      </div>
+    </div>
+  </div>
+</div>

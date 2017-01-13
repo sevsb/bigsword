@@ -40,6 +40,12 @@ class servers_controller {
         $ret = servers::add($name, $content, $skills, $filename_list);
         return $ret ? 'success' : 'fail';
     }
+    
+    public function delete_ajax() {
+        $id = get_request('id');
+        $ret = servers::del($id);
+        return $ret ? 'success' : 'fail';
+    }
 
 
 }
