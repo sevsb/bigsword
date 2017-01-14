@@ -25,7 +25,15 @@ class db_service_item extends database {
     public function add($title, $content, $time, $interval, $price, $filename_list) {
         return $this->insert(TABLE_SERVICE_ITEMS, array("title" => $title, "content" => $content, "service_time" => $time, "interval_time" => $interval, "price" => $price, "pic" => $filename_list ));
     }
+
+    public function modify($id, $title, $content, $time, $interval, $price, $filename_list) {
+        return $this->update(TABLE_SERVICE_ITEMS, array("title" => $title, "content" => $content, "service_time" => $time, "interval_time" => $interval, "price" => $price, "pic" => $filename_list), "id = '$id'");
+    }
     
+    public function del($id) {
+        return $this->delete(TABLE_SERVICE_ITEMS, "id = '$id'");
+    }
+
     public function get_all_items() {
         return $this->get_all_table(TABLE_SERVICE_ITEMS);
     }

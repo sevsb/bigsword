@@ -15,16 +15,32 @@ class service_item_controller {
         $id = get_request('id');
         $item = service_item::get_item_detail($id);
         $token = picservice::get_token();
+        $tpl->set('id', $id);
         $tpl->set('item', $item);
         $tpl->set('token', $token["token"]);
         $tpl->display("service_item/detail");
+    }
+
+    public function modify_action() {
+        $tpl = new tpl("main/header", "main/footer");
+        $id = get_request('id');
+        $item = service_item::get_item_detail($id);
+        $token = picservice::get_token();
+        $tpl->set('id', $id);
+        $tpl->set('item', $item);
+        $tpl->set('item_title', $item['title']);
+        $tpl->set('item_content', $item['content']);
+        $tpl->set('item_time', $item['service_time']);
+        $tpl->set('item_interval', $item['interval_time']);
+        $tpl->set('item_price', $item['price']);
+        $tpl->set('token', $token["token"]);
+        $tpl->display("service_item/modify");
     }
     
     public function new_action() {
         $tpl = new tpl("main/header", "main/footer");
         $tpl->display("service_item/new");
     }
-
 
     public function add_ajax() {
         $title = get_request('title');
@@ -38,6 +54,24 @@ class service_item_controller {
         return $ret ? 'success' : 'fail';
     }
 
+    public function modify_ajax() {
+        $id = get_request('id');
+        $title = get_request('title');
+        $content = get_request('content');
+        $time = get_request('time');
+        $interval = get_request('interval');
+        $price = get_request('price');
+        $filename_list = get_request('filename_list');
+        $filename_list = implode($filename_list, ',');
+        $ret = service_item::modify($id, $title, $content, $time, $interval, $price, $filename_list);
+        return $ret ? 'success' : 'fail';
+    }
+    
+    public function delete_ajax() {
+        $id = get_request('id');
+        $ret = service_item::del($id);
+        return $ret ? 'success' : 'fail';
+    }
 
 }
 

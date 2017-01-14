@@ -8,10 +8,10 @@ $(document).ready(function() {
     
     $(".do_del").click(function (){
         $('#del-modal').modal('hide');
-        __ajax("servers.delete",{id:del_id},function (data){
+        __ajax("service_item.delete",{id:del_id},function (data){
             console.log(data);
             if (data.ret = 'success') {
-                $('#server_' + del_id).remove();
+                $('#item_' + del_id).remove();
             }else {
                 alert('删除失败');
             }
