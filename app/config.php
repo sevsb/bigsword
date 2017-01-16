@@ -62,6 +62,8 @@ defined('MAIL_SUBJECT_PREFIX') or define('MAIL_SUBJECT_PREFIX', '');
 defined('TABLE_SERVICE_ITEMS') or define('TABLE_SERVICE_ITEMS', MYSQL_PREFIX . "service_items");
 //servers
 defined('TABLE_SERVERS') or define('TABLE_SERVERS', MYSQL_PREFIX . "servers");
+//duty
+defined('TABLE_DUTY') or define('TABLE_DUTY', MYSQL_PREFIX . "duty");
 
 
 
