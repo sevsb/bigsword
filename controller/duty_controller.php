@@ -43,6 +43,12 @@ class duty_controller {
         $tpl->display("servers/new");
     }
 
+    public function calendar_action() {
+        $tpl = new tpl("main/header", "main/footer");
+        $service_items = service_item::get_all_items();
+        $tpl->set('items', $service_items);
+        $tpl->display("duty/calendar");
+    }
 
     public function add_ajax() {
         $name = get_request('name');
