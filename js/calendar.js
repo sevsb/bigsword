@@ -2,27 +2,11 @@ var date = new Date();
 var chooseDate = new Array();
 var chooseDays = new Array();
 
-$(document).ready(function() {
-
-    updateCalendar(date);
-
-    $('#last_month').on('click', function() {
-        date.setMonth(date.getMonth() - 1);
-        updateCalendar(date);
-    });
-
-    $('#next_month').on('click', function() {
-        date.setMonth(date.getMonth() + 1);
-        updateCalendar(date);
-    });
-
-})
-
 function clickDay(element) {
-    if($(element).children('div').attr('class') == 'day_unchoose') {
-        $(element).children('div').attr('class', 'day_choose');
+    if($(element).attr('class') == 'day_unchoose') {
+        $(element).attr('class', 'day_choose');
     } else {
-        $(element).children('div').attr('class', 'day_unchoose');
+        $(element).attr('class', 'day_unchoose');
     }
 }
 
@@ -43,7 +27,9 @@ function drawCalendarBody(year, month) {
     var mouthDays = new Date(year, month + 1, 0).getDate();
     var countCol = 0;
     var html = '';
-
+    console.log(startDay);
+    console.log(endDay);
+    console.log(mouthDays);
     html += '<tr>';
     for (var i = 0; i < startDay; i++) {
         html += '<td></td>';
@@ -51,8 +37,8 @@ function drawCalendarBody(year, month) {
     }
 
     for (var dayNumber = 1; dayNumber <= mouthDays; dayNumber++) {
-        html += '<td class="calendar_day" day="' + dayNumber + '" onclick="clickDay(this);">';
-        html += '<div class="day_unchoose">' + dayNumber + '</div>';
+        html += '<td class="calendar_day" day="' + dayNumber + '">';
+        html += '<div class="">' + dayNumber + '</div>';
         html += '</td>';
         countCol++;
         if (countCol == 7) {

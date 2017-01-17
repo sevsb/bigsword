@@ -12,3 +12,30 @@ input {
 .vacation_elf, .overtime_elf {
     margin-top: 3px;
 }
+
+#calendar {
+    text-align: center;
+    width: 300px;
+}
+
+.day_unchoose {
+    background: #ffffff;
+    color: #666666;
+}
+
+.calendar_day, #next_month, #last_month {
+    cursor: pointer;
+}
+
+.day_choose {
+    background-color: #337ab7;
+    color: #cccccc;
+}
+
+.event_div, .calendar_div {
+    display: inline-block;
+}
+
+.event_div {
+    margin-left: 30px;
+}
