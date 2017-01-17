@@ -21,7 +21,6 @@ $(document).ready(function() {
 function clickDay(element) {
     if($(element).children('div').attr('class') == 'day_unchoose') {
         $(element).children('div').attr('class', 'day_choose');
-        chooseDays.push()
     } else {
         $(element).children('div').attr('class', 'day_unchoose');
     }
@@ -33,16 +32,7 @@ function updateCalendar(date) {
     var month = date.getMonth();
     $('#year').html(year);
     $('#month').html(month + 1);
-    drawCalendarBody(year, month + 1);
-
-}
-function updateCalendar(date) {
-
-    var year = date.getFullYear();
-    var month = date.getMonth();
-    $('#year').html(year);
-    $('#month').html(month + 1);
-    drawCalendarBody(year, month + 1);
+    drawCalendarBody(year, month);
 
 }
 
