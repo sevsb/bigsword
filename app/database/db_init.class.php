@@ -52,24 +52,17 @@ class db_init extends database {
         $this->create_table(TABLE_USERSETTINGS,  array("userid" => "INT", "name" => "TEXT", "value" => "TEXT"));
         $this->create_table(TABLE_USER_GROUPS,  array("name" => "TEXT", "access" => "TEXT"));
 
-        
-        //serve
+        // serve
         //$this->create_table(TABLE_SERVICE_ITEMS, array('title' => "TEXT",'content' => "TEXT",'price' => "TEXT",'service_time' => "TEXT",'interval' => "TEXT",'pic' => "TEXT"));
         $this->create_table(TABLE_SERVICE_ITEMS,  array("title" => "TEXT", "content" => "TEXT", "price" => "TEXT", "service_time" => "TEXT", "interval_time" => "TEXT",  "pic" => "TEXT" ));
         $this->create_table(TABLE_SERVERS,  array("name" => "TEXT", "level" => "TEXT", "content" => "TEXT", "skill" => "TEXT", "status" => "TEXT",  "pic" => "TEXT" ));
         
-        //duty
-        $this->create_table(TABLE_DUTY,  array("serverid" => "TEXT", "type" => "TEXT", "rule" => "TEXT", "vacation_count" => "TEXT", "vacation" => "TEXT",  "overtime" => "TEXT" ));
+        // duty
+        $this->create_table(TABLE_DUTY,  array("serverid" => "TEXT", "type" => "TEXT", "rule" => "TEXT", "vacation_count" => "TEXT", "vacation" => "TEXT",  "overtime" => "TEXT"));
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
+        // customers
+        $this->create_table(TABLE_CUSTOMERS,  array("name" => "TEXT", "tel" => "TEXT"));
 
     }
+
 };
