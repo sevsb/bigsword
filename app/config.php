@@ -34,8 +34,6 @@ defined('PICSERVICE_URL') or define('PICSERVICE_URL', "http://180.76.160.113/pic
 //defined('PICSERVICE_URL') or define('PICSERVICE_URL', "http://127.0.0.1/picservice/");
 
 
-
-
 // security
 defined('ALLOW_ROOT') or define('ALLOW_ROOT', true);
 
@@ -60,19 +58,9 @@ defined('MAIL_SUBJECT_PREFIX') or define('MAIL_SUBJECT_PREFIX', '');
 
 // service_items
 defined('TABLE_SERVICE_ITEMS') or define('TABLE_SERVICE_ITEMS', MYSQL_PREFIX . "service_items");
-//servers
+// servers
 defined('TABLE_SERVERS') or define('TABLE_SERVERS', MYSQL_PREFIX . "servers");
-//duty
+// duty
 defined('TABLE_DUTY') or define('TABLE_DUTY', MYSQL_PREFIX . "duty");
-
-
-
-
-
-
-
-
-
-
-
-
+// customers
+defined('TABLE_CUSTOMERS') or define('TABLE_CUSTOMERS', MYSQL_PREFIX . "customers");
