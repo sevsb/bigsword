@@ -45,8 +45,10 @@
                 <label for="qcomment" class="">起始时间&nbsp&nbsp</label><input type='text' id="datepicker" style="height: 32px; width: 20%; padding: 6px 12px;"value=''>
             </div>
         </div>
-
-        <div class='calendar_panel'>
+        
+        <div class="form-group">
+            <label for="qcomment" class="col-sm-2 control-label">单日设置</label>
+        <div class='calendar_panel col-sm-10'>
         <div class='calendar_div' >
             <table class="table table-bordered table-condensed table-condensed" id="calendar" border="1">
                 <thead id="calendar_head">
@@ -58,7 +60,7 @@
                     </td>
                     <td id="next_month">></td>
                 </tr>
-                <tr>
+                <tr class='weektr'>
                     <td>日</td>
                     <td>一</td>
                     <td>二</td>
@@ -73,8 +75,23 @@
             </table>
         </div>
         <div class='event_div'>
+            <div>所选日期：</div>
             <div class='new_event_div'>
-                <input class=''><button class='new_event_btn btn btn-default'>添加事件</button>
+                <div class="dropdown" style='display:inline-block;'>
+                  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown">
+                    请选择类型
+                    <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu2">
+                    <li class='sel_item' role="presentation"><a role="menuitem" tabindex="-1" >正常休息</a></li>
+                    <li class='sel_item' role="presentation"><a role="menuitem" tabindex="-1" >病假</a></li>
+                    <li class='sel_item'  role="presentation"><a role="menuitem" tabindex="-1" >年假</a></li>
+                    <li class='sel_item'  role="presentation"><a role="menuitem" tabindex="-1" >事假</a></li>
+                    <li class='sel_item'  role="presentation"><a role="menuitem" tabindex="-1" >存休</a></li>
+                    <li class='sel_item'  role="presentation"><a role="menuitem" tabindex="-1" >加班</a></li>
+                  </ul>
+                </div>
+                <input class=''><button class='new_event_btn btn btn-default'>设置事件</button>
             </div>
             <div class='event_list_div'>
                 <div class='event_count'></div>
@@ -82,6 +99,7 @@
                 
                 </div>
             </div>
+        </div>
         </div>
         </div>
         
@@ -92,7 +110,8 @@
     </div>
     
 </div>
-<div class=''></div>
+<div class=''>
+</div>
 <div class=''></div>
 <div class=''></div>
 

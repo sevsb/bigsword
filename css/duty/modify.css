@@ -18,6 +18,16 @@ input {
     width: 300px;
 }
 
+#calendar .weektr {
+    background-color: #eee;
+}
+
+.calendar_day  div {
+    line-height: 22px;
+}
+.calendar_panel {
+    
+}
 .day_unchoose {
     background: #ffffff;
     color: #666666;
@@ -38,4 +48,5 @@ input {
 
 .event_div {
     margin-left: 30px;
+    vertical-align:top;
 }
