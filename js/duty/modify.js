@@ -46,6 +46,9 @@ $(document).ready(function() {
     $(document).on("click",".calendar_day",function(){
         day = $(this).attr("day");
         selected_day = year + "-" + month + "-" + day;
+        type_text = '请选择类型';
+        content = '';
+        sel_item_btn = 0;
         
         $('.calendar_day').removeClass('btn-primary');
         $(this).addClass('btn-primary');
@@ -74,9 +77,10 @@ $(document).ready(function() {
             if(type == -2) {
                 type_text = '加班';
             }
-            $('.sel_item_btn').html(type_text + "&nbsp<span class='caret'></span>");
-            $('.event_content').text(content);
+
         }
+        $('.sel_item_btn').html(type_text + "&nbsp<span class='caret'></span>");
+        $('.event_content').text(content);
     });
 
     $('#last_month').on('click', function() {
@@ -123,6 +127,13 @@ $(document).ready(function() {
             return;
         }
         __ajax('duty.make_event',{serverid: serverid, date: selected_day ,type: sel_item_btn ,content: content},true);
+    });
+    
+    $('.cancel_event_btn').click(function (){
+        if (selected_day == '') {
+            return;
+        }
+        __ajax('duty.cancel_event',{serverid: serverid, date: selected_day},true);
     });
     
 });

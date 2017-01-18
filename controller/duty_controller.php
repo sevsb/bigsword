@@ -73,6 +73,23 @@ class duty_controller {
         return $ret ? 'success' : 'fail';
     }
     
+    public function cancel_event_ajax() {
+        $id = get_request('serverid');
+        $date = get_request('date');
+        logging::e("CANCELEVENT", "date : $date");
+        
+        $vacations = duty::get_one_vacation($id);
+        logging::e("MAKEEVENT", "now vacations : $vacations");
+        
+        $vacations = json_decode($vacations);
+        unset($vacations->$date);
+        $vacations = json_encode($vacations);
+
+        logging::e("MAKEEVENT", "update vacations : $vacations");
+        $ret = duty::save_event($id, $vacations);
+        return $ret ? 'success' : 'fail';
+    }
+    
     public function get_duty_ajax() {
         $id = get_request('id');
         $ret = duty::get_one_duty($id);
