@@ -34,7 +34,7 @@
                         continue;
                     }
                 ?>
-                    <div class='btn btn-default item-btn selected' id="<?php echo $item["id"];?>"><?php echo $item['title']; ?></div>
+                    <a target='_blank' href='?service_item/detail_show&id=<?php echo $item["id"];?>'><div class='btn btn-default item-btn selected' id="<?php echo $item["id"];?>"><?php echo $item['title']; ?></div></a>
                 <?php
                 }
                 ?>
@@ -53,6 +53,7 @@
         </div>
         
         <div class=''>
+            <a href='?duty/modify&id=<?php echo $id;?>'><div class='btn btn-success'>排班</div></a>
             <a href='?servers/modify&id=<?php echo $id;?>'><div class='btn btn-primary'>编辑</div></a>
             <div class='btn btn-danger del-btn' id="<?php echo $id;?>" data-toggle="modal" data-target="#del-modal">删除</div>
         </div><br><br><br><br>

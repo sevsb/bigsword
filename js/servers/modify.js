@@ -73,7 +73,7 @@ $(document).ready(function() {
         console.log("content:" + content);
         console.log(skills);
         console.log(filename_list);
-        
+        //return;
         if (name == '' || content == '' ) {
             alert('请将内容填写完整');
             return;
