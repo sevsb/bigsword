@@ -30,6 +30,10 @@ class db_duty extends database {
         return $this->update(TABLE_DUTY, array("type" => $type, "rule" => $rule), "serverid = '$id'");
     }
     
+    public function save_event($id, $vacation) {
+        return $this->update(TABLE_DUTY, array("vacation" => $vacation), "serverid = '$id'");
+    }
+    
 
     public function get_one_duty($id) {
         return $this->get_one_table(TABLE_DUTY, "serverid = '$id'");

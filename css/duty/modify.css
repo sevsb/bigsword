@@ -25,6 +25,10 @@ input {
 .calendar_day  div {
     line-height: 22px;
 }
+
+.calendar_day {
+    position: relative;
+}
 .calendar_panel {
     
 }

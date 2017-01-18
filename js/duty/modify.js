@@ -1,16 +1,16 @@
 $(document).ready(function() {
-    
 // ------------js init ---------------------------
-    check_picservice_token();
+    serverid = $('.save-btn').attr("id");
     type_id = 1;
+    sel_item_btn = 0;
+    selected_day = '';
+    check_picservice_token();
     $('.duty_type').each(function () {
         if($(this).hasClass("btn-primary")) {
             type_id = $(this).attr("id");
         }
     });
-    
     updateCalendar(date);
-    
     $( "#datepicker" ).datepicker();
     $( "#datepicker" ).datepicker( "option", "dateFormat", 'yy-mm-dd' );
     starttime = $( "#datepicker" ).attr("starttime");
@@ -40,14 +40,43 @@ $(document).ready(function() {
     $(document).on("click",".sel_item",function(){
         var item_text = $(this).text();
         $(this).parents('.dropdown').find('.dropdown-toggle').html(item_text + "&nbsp<span class='caret'></span>");
+        sel_item_btn = $(this).attr("id");
     });
     
     $(document).on("click",".calendar_day",function(){
+        day = $(this).attr("day");
+        selected_day = year + "-" + month + "-" + day;
+        
         $('.calendar_day').removeClass('btn-primary');
         $(this).addClass('btn-primary');
-        day = $(this).attr("day");
-        console.log(year + "." + month + "." + day);
         $('.choosed_date').html(year + "年" + month+1 + "月" + day + "日");
+        
+        if (vacations[selected_day] != null) {
+            var this_vacation = vacations[selected_day];
+            var content = this_vacation.content
+            var type = this_vacation.type
+            sel_item_btn = type;
+            if(type == 1) {
+                type_text = '正常休息';
+            }
+            if(type == 2) {
+                type_text = '病假';
+            }
+            if(type == 3) {
+                type_text = '年假';
+            }
+            if(type == 4) {
+                type_text = '事假';
+            }
+            if(type == -1) {
+                type_text = '存休';
+            }
+            if(type == -2) {
+                type_text = '加班';
+            }
+            $('.sel_item_btn').html(type_text + "&nbsp<span class='caret'></span>");
+            $('.event_content').text(content);
+        }
     });
 
     $('#last_month').on('click', function() {
@@ -71,7 +100,6 @@ $(document).ready(function() {
                 rule_weekdays.push(w);
             }
         });
-
         var serverid = $(this).attr("id");
         var worktime = $('#worktime').val();
         var resttime = $('#resttime').val();
@@ -80,15 +108,22 @@ $(document).ready(function() {
         rule_workrest.worktime = worktime;
         rule_workrest.resttime = resttime;
         rule_workrest.starttime = starttime;
-        
         type_id == 1 ? ruledetail = rule_weekdays : ruledetail = rule_workrest;
-        console.log('serverid : ' + serverid);
-        console.log('type_id : ' + type_id);
-        console.log(ruledetail);
-        
         __ajax('duty.setrule',{serverid: serverid, type: type_id ,rule: ruledetail},true);
     });
     
+    $('.new_event_btn').click(function (){
+        var content = $('.event_content').val();
+        if (sel_item_btn == 0) {
+            alert("请选择类型");
+            return;
+        }
+        if (selected_day == '') {
+            alert("请选择日期");
+            return;
+        }
+        __ajax('duty.make_event',{serverid: serverid, date: selected_day ,type: sel_item_btn ,content: content},true);
+    });
     
 });
 

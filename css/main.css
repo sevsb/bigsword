@@ -127,6 +127,19 @@ img.user-face {
     padding: 5px;
 }
 
+.notice  {
+    
+    width:10px;
+    height:10px;
+    color:#fff;
+    text-align:center;
+    background-color:#f00;
+    border-radius:50%;
+    position:absolute;
+    right: 0px;
+    top: 0px;
+}
+
 .previews {
     padding: 30px;
 }

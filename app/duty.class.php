@@ -12,9 +12,19 @@ class duty {
         return $ret;
     }
     
+    public static function save_event($id, $vacation) {
+        $ret = db_duty::inst()->save_event($id, $vacation);
+        return $ret;
+    }
+    
     public static function get_one_duty($id) {
         $ret = db_duty::inst()->get_one_duty($id);
         return $ret;
+    }
+    
+    public static function get_one_vacation($id) {
+        $ret = db_duty::inst()->get_one_duty($id);
+        return $ret["vacation"];
     }
 
     
