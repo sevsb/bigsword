@@ -2,18 +2,10 @@ var date = new Date();
 var chooseDate = new Array();
 var chooseDays = new Array();
 
-function clickDay(element) {
-    if($(element).attr('class') == 'day_unchoose') {
-        $(element).attr('class', 'day_choose');
-    } else {
-        $(element).attr('class', 'day_unchoose');
-    }
-}
-
 function updateCalendar(date) {
 
-    var year = date.getFullYear();
-    var month = date.getMonth();
+    year = date.getFullYear();
+    month = date.getMonth();
     $('#year').html(year);
     $('#month').html(month + 1);
     drawCalendarBody(year, month);
@@ -27,9 +19,9 @@ function drawCalendarBody(year, month) {
     var mouthDays = new Date(year, month + 1, 0).getDate();
     var countCol = 0;
     var html = '';
-    console.log(startDay);
-    console.log(endDay);
-    console.log(mouthDays);
+    //console.log(startDay);
+    //console.log(endDay);
+    //console.log(mouthDays);
     html += '<tr>';
     for (var i = 0; i < startDay; i++) {
         html += '<td></td>';

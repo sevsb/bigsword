@@ -1,6 +1,6 @@
 <div id="page-wrapper">
     <div>
-        <h3 class="page_title">设置技师考勤</h3>
+        <h3 class="page_title">设置技师排班</h3>
     </div>
     <?php
     //var_dump($server);
@@ -25,24 +25,24 @@
         </div>
         
         <div class="form-group duty_rule_div" id='1'>
-            <label for="qcomment" class="col-sm-2 control-label">周几休息</label>
+            <label for="qcomment" class="col-sm-2 control-label">休息时间</label>
              <div class="col-sm-10">
-                <div class='btn btn-default rule-w' id="1">周一</div>
-                <div class='btn btn-default rule-w' id="2">周二</div>
-                <div class='btn btn-default rule-w' id="3">周三</div>
-                <div class='btn btn-default rule-w' id="4">周四</div>
-                <div class='btn btn-default rule-w' id="5">周五</div>
-                <div class='btn btn-default rule-w' id="6">周六</div>
-                <div class='btn btn-default rule-w' id="7">周日</div>
+                <div class='btn btn-default rule-w' id="0">周一</div>
+                <div class='btn btn-default rule-w' id="1">周二</div>
+                <div class='btn btn-default rule-w' id="2">周三</div>
+                <div class='btn btn-default rule-w' id="3">周四</div>
+                <div class='btn btn-default rule-w' id="4">周五</div>
+                <div class='btn btn-default rule-w' id="5">周六</div>
+                <div class='btn btn-default rule-w' id="6">周日</div>
             </div>
         </div>
         
         <div class="form-group hide duty_rule_div" id='2'>
             <label for="qcomment" class="col-sm-2 control-label">值班设置</label>
             <div class="col-sm-10">
-                <label for="qcomment" class="">上&nbsp&nbsp</label><input type='text' id="title" style="height: 32px; width: 20%; padding: 6px 12px;"value=''>
-                <label for="qcomment" class="">歇&nbsp&nbsp</label><input type='text' id="title" style="height: 32px; width: 20%; padding: 6px 12px;"value=''>
-                <label for="qcomment" class="">起始时间&nbsp&nbsp</label><input type='text' id="datepicker" style="height: 32px; width: 20%; padding: 6px 12px;"value=''>
+                <label for="qcomment" class="worktime">上&nbsp&nbsp</label><input type='text' id="worktime" style="height: 32px; width: 20%; padding: 6px 12px;"value=''>
+                <label for="qcomment" class="resttime">歇&nbsp&nbsp</label><input type='text' id="resttime" style="height: 32px; width: 20%; padding: 6px 12px;"value=''>
+                <label for="qcomment" class="starttime">起始时间&nbsp&nbsp</label><input type='text' id="datepicker" style="height: 32px; width: 20%; padding: 6px 12px;"value=''>
             </div>
         </div>
         
@@ -75,7 +75,7 @@
             </table>
         </div>
         <div class='event_div'>
-            <div>所选日期：</div>
+            <div class='choose_data_div'>所选日期：<span class='choosed_date'></span></div>
             <div class='new_event_div'>
                 <div class="dropdown" style='display:inline-block;'>
                   <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown">
@@ -83,21 +83,21 @@
                     <span class="caret"></span>
                   </button>
                   <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu2">
-                    <li class='sel_item' role="presentation"><a role="menuitem" tabindex="-1" >正常休息</a></li>
-                    <li class='sel_item' role="presentation"><a role="menuitem" tabindex="-1" >病假</a></li>
-                    <li class='sel_item'  role="presentation"><a role="menuitem" tabindex="-1" >年假</a></li>
-                    <li class='sel_item'  role="presentation"><a role="menuitem" tabindex="-1" >事假</a></li>
-                    <li class='sel_item'  role="presentation"><a role="menuitem" tabindex="-1" >存休</a></li>
-                    <li class='sel_item'  role="presentation"><a role="menuitem" tabindex="-1" >加班</a></li>
+                    <li class='sel_item' role="presentation" id='0'><a role="menuitem" tabindex="-1" >正常休息</a></li>
+                    <li class='sel_item' role="presentation" id='1'><a role="menuitem" tabindex="-1" >病假</a></li>
+                    <li class='sel_item' role="presentation" id='2'><a role="menuitem" tabindex="-1" >年假</a></li>
+                    <li class='sel_item' role="presentation" id='3'><a role="menuitem" tabindex="-1" >事假</a></li>
+                    <li class='sel_item' role="presentation" id='-1'><a role="menuitem" tabindex="-1" >存休</a></li>
+                    <li class='sel_item' role="presentation" id='-2'><a role="menuitem" tabindex="-1" >加班</a></li>
                   </ul>
                 </div>
-                <input class=''><button class='new_event_btn btn btn-default'>设置事件</button>
+                <div><textarea rows='5' class='event_content'></textarea></div>
+                <button class='new_event_btn btn btn-default'>设置事件</button>
+                <button class='cancel_event_btn btn btn-danger'>撤消事件</button>
             </div>
             <div class='event_list_div'>
                 <div class='event_count'></div>
-                <div class='event_list'>
-                
-                </div>
+                <div class='event_list'></div>
             </div>
         </div>
         </div>
