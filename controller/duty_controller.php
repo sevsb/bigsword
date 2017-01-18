@@ -28,10 +28,12 @@ class duty_controller {
         $id = get_request('id');
         $server = servers::get_server_detail($id);
         $service_items = service_item::get_all_items();
+        $duty = duty::get_one_duty($id);
         $token = picservice::get_token();
         $tpl->set('id', $id);
         $tpl->set('items', $service_items);
         $tpl->set('server', $server);
+        $tpl->set('duty', $duty);
         $tpl->set('token', $token["token"]);
         $tpl->display("duty/modify");
     }
@@ -50,14 +52,17 @@ class duty_controller {
         $tpl->display("duty/calendar");
     }
 
-    public function add_ajax() {
-        $name = get_request('name');
-        $content = get_request('content');
-        $skills = get_request('skills');
-        $filename_list = get_request('filename_list');
-        $filename_list = implode($filename_list, ',');
-        $skills = implode($skills, ',');
-        $ret = servers::add($name, $content, $skills, $filename_list);
+    public function setrule_ajax() {
+        $id = get_request('serverid');
+        $type = get_request('type');
+        $rule = get_request('rule');
+        $rule = implode(',', $rule);
+        
+        logging::e("REQUEST", "id : $id");
+        logging::e("REQUEST", "type : $type");
+        logging::e("REQUEST", "rule : $rule");
+        
+        $ret = duty::setrule($id, $type, $rule);
         return $ret ? 'success' : 'fail';
     }
     

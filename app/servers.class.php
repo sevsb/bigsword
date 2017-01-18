@@ -9,6 +9,8 @@ class servers {
     
     public static function add($name, $content, $skills, $filename_list) {
         $ret = db_servers::inst()->add($name, $content, $skills, $filename_list);
+        $newid = db_servers::inst()->last_insert_id();
+        $ret = db_duty::inst()->add($newid);
         return $ret;
     }
     

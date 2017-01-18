@@ -1,13 +1,23 @@
 $(document).ready(function() {
-    check_picservice_token();
     
+// ------------js init ---------------------------
+    check_picservice_token();
     type_id = 1;
+    $('.duty_type').each(function () {
+        if($(this).hasClass("btn-primary")) {
+            type_id = $(this).attr("id");
+        }
+    });
     
     updateCalendar(date);
     
     $( "#datepicker" ).datepicker();
-    
-    
+    $( "#datepicker" ).datepicker( "option", "dateFormat", 'yy-mm-dd' );
+    starttime = $( "#datepicker" ).attr("starttime");
+    $('#datepicker').val(starttime); 
+
+// ------------js 效果 ---------------------------
+
     $('.duty_type').click(function (){
         type_id = $(this).attr('id');
         $(this).addClass('btn-primary');
@@ -20,7 +30,7 @@ $(document).ready(function() {
                 $(this).addClass("hide");
             }
         });
-        console.log('type_id:' + type_id);
+        //console.log('now_choosed_type_id:' + type_id);
     });
     
     $(".rule-w").click(function (){
@@ -50,26 +60,33 @@ $(document).ready(function() {
         updateCalendar(date);
     });
 
+    
+// ------------js 提交 ---------------------------
+
     $('.save-btn').click(function (){
-
         var rule_weekdays = [];
-
         $('.rule-w').each(function (){
             if($(this).hasClass('btn-primary')){
                 var w = $(this).attr('id');
                 rule_weekdays.push(w);
             }
         });
-        
+
+        var serverid = $(this).attr("id");
         var worktime = $('#worktime').val();
         var resttime = $('#resttime').val();
         var starttime = $('#datepicker').val();
+        var rule_workrest = new Object();
+        rule_workrest.worktime = worktime;
+        rule_workrest.resttime = resttime;
+        rule_workrest.starttime = starttime;
         
+        type_id == 1 ? ruledetail = rule_weekdays : ruledetail = rule_workrest;
+        console.log('serverid : ' + serverid);
         console.log('type_id : ' + type_id);
-        console.log('rule-w : ' + rule_weekdays);
-        console.log('worktime : ' + worktime);
-        console.log('resttime : ' + resttime);
-        console.log('starttime : ' + starttime);
+        console.log(ruledetail);
+        
+        __ajax('duty.setrule',{serverid: serverid, type: type_id ,rule: ruledetail},true);
     });
     
     

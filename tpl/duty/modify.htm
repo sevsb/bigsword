@@ -5,7 +5,27 @@
     <?php
     //var_dump($server);
     $skills = explode(",", $server['skill']);
-    //var_dump($token);
+    //var_dump($duty);
+    $type = $duty['type'];
+    $rule = $duty['rule'];
+    $type_cho = [];
+    $type_div_cho[1] = 'hide';
+    $type_div_cho[2] = 'hide';
+    $type_cho[$type] = 'btn-primary';
+    $type_div_cho[$type] = '';
+    $rule_w = [];
+    if ($type == 1) {
+        $rule = explode(",", $rule);
+        foreach ($rule as $r) {
+            $rule_w[$r] = 'btn-primary';
+        }
+    }
+    if ($type == 2) {
+        $rule = explode(",", $rule);
+        $worktime = $rule[0];
+        $resttime = $rule[1];
+        $starttime = $rule[2];
+    }
     ?>
     <div class="form-horizontal" style="margin-top: 24px ;border-bottom: 2px solid #eee;" >
         <div class="form-group">
@@ -19,30 +39,30 @@
         <div class="form-group">
             <label for="qcomment" class="col-sm-2 control-label">考勤类型选择</label>
              <div class="col-sm-10">
-                <div class='btn btn-default duty_type btn-primary' id="1">每周休息</div>
-                <div class='btn btn-default duty_type' id="2">上几歇几（值班值）</div>
+                <div class='btn btn-default duty_type <?php echo $type_cho[1]; ?>' id="1">每周休息</div>
+                <div class='btn btn-default duty_type <?php echo $type_cho[2]; ?>' id="2">上几歇几（值班值）</div>
             </div>
         </div>
         
-        <div class="form-group duty_rule_div" id='1'>
+        <div class="form-group duty_rule_div <?php echo $type_div_cho[1]; ?>" id='1'>
             <label for="qcomment" class="col-sm-2 control-label">休息时间</label>
              <div class="col-sm-10">
-                <div class='btn btn-default rule-w' id="0">周一</div>
-                <div class='btn btn-default rule-w' id="1">周二</div>
-                <div class='btn btn-default rule-w' id="2">周三</div>
-                <div class='btn btn-default rule-w' id="3">周四</div>
-                <div class='btn btn-default rule-w' id="4">周五</div>
-                <div class='btn btn-default rule-w' id="5">周六</div>
-                <div class='btn btn-default rule-w' id="6">周日</div>
+                <div class='btn btn-default rule-w <?php echo $rule_w[0]; ?>' id="0">周一</div>
+                <div class='btn btn-default rule-w <?php echo $rule_w[1]; ?>' id="1">周二</div>
+                <div class='btn btn-default rule-w <?php echo $rule_w[2]; ?>' id="2">周三</div>
+                <div class='btn btn-default rule-w <?php echo $rule_w[3]; ?>' id="3">周四</div>
+                <div class='btn btn-default rule-w <?php echo $rule_w[4]; ?>' id="4">周五</div>
+                <div class='btn btn-default rule-w <?php echo $rule_w[5]; ?>' id="5">周六</div>
+                <div class='btn btn-default rule-w <?php echo $rule_w[6]; ?>' id="6">周日</div>
             </div>
         </div>
         
-        <div class="form-group hide duty_rule_div" id='2'>
+        <div class="form-group duty_rule_div <?php echo $type_div_cho[2]; ?>" id='2'>
             <label for="qcomment" class="col-sm-2 control-label">值班设置</label>
             <div class="col-sm-10">
-                <label for="qcomment" class="worktime">上&nbsp&nbsp</label><input type='text' id="worktime" style="height: 32px; width: 20%; padding: 6px 12px;"value=''>
-                <label for="qcomment" class="resttime">歇&nbsp&nbsp</label><input type='text' id="resttime" style="height: 32px; width: 20%; padding: 6px 12px;"value=''>
-                <label for="qcomment" class="starttime">起始时间&nbsp&nbsp</label><input type='text' id="datepicker" style="height: 32px; width: 20%; padding: 6px 12px;"value=''>
+                <label for="qcomment" class="worktime">上&nbsp&nbsp</label><input type='number' min='0' id="worktime" style="height: 32px; width: 20%; padding: 6px 12px;" value='<?php echo $worktime; ?>'>
+                <label for="qcomment" class="resttime">歇&nbsp&nbsp</label><input type='number' min='0' id="resttime" style="height: 32px; width: 20%; padding: 6px 12px;" value='<?php echo $resttime; ?>'>
+                <label for="qcomment" class="starttime">起始时间&nbsp&nbsp</label><input type='text' id="datepicker" starttime='<?php echo $starttime; ?>' style="height: 32px; width: 20%; padding: 6px 12px;" value='<?php echo $starttime; ?>'>
             </div>
         </div>
         
