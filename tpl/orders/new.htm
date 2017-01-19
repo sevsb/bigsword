@@ -1,0 +1,129 @@
+<div id="page-wrapper">
+    <div class='order_head'>
+    <?php //var_dump($servers);?>
+    </div>
+    <div class='order_body'>
+        <div class='order_item_div service_item_div'>
+            <div class='order_item_title'>
+                服务项目总数：<span class='text-danger'><?php echo $servers_count;?></span> 个
+                <div class='switch_btn'>切换</div>
+            </div>
+            <div class='order_item_body'>
+                <?php 
+                foreach ($items as $item) {
+                $title = $item["title"];
+                $content = $item["content"];
+                $price = $item["price"];
+                $service_time = $item["service_time"];
+                $interval_time = $item["interval_time"];
+                $pics = $item["pic"];
+                $pics = explode(',', $pics);
+                $preview = $pics[0];
+                //var_dump($preview);
+                ?>
+                <div class='item_show'>
+                    <div class='item_preview'>
+                        <img src='<?php echo picservice::show($preview);?>'>
+                    </div>
+                    <div class='item_detail'>
+                        <div class='item_title'>标题：<?php echo $title;?></div>
+                        <div class='item_price'>价格：<?php echo $price;?></div>
+                        <div class='item_time'>时间：<?php echo $service_time + $interval_time * 2;?></div>
+                    </div>
+                </div>
+                <?php
+                }
+                ?>
+            </div>
+        </div>
+        
+        <div class='order_item_div servers_div'>
+            <div class='order_item_title'>
+                技师总数：<span class='text-danger'><?php echo $items_count;?></span> 个
+            </div>
+            <div class='order_item_body'>
+                <?php 
+                foreach ($servers as $server) {
+                $name = $server["name"];
+                $content = $server["content"];
+                $pics = $server["pic"];
+                $pics = explode(',', $pics);
+                $preview = $pics[0];
+                //var_dump($preview);
+                ?>
+                <div class='item_show'>
+                    <div class='item_preview'>
+                        <img src='<?php echo picservice::show($preview);?>'>
+                    </div>
+                    <div class='item_detail'>
+                        <div class='item_title'>姓名：<?php echo $name;?></div>
+                        <div class='item_price'>介绍：<?php echo $content;?></div>
+                    </div>
+                </div>
+                <?php
+                }
+                ?>
+            </div>
+        </div>
+        
+        <div class='order_item_div time_div'>
+            <div class='order_item_title'>
+                选择时间
+            </div>
+            <div class='order_item_body'>
+                <div class='time_select'>
+                    <table class='table table-bordered table-condensed'>
+                        <tr class='text-right'>
+                            <td></td>
+                            <td>0 分</td>
+                            <td>10 分</td>
+                            <td>20 分</td>
+                            <td>30 分</td>
+                            <td>40 分</td>
+                            <td>50 分</td>
+                        </tr>
+                        <?php
+                            $tr_time = '';
+                            for ($i = 9; $i < 18; $i++) {
+                                $tr_time .= "<tr>";
+                                $tr_time .= "   <td class='text-right'>$i 时</td>";
+                                $tr_time .= "   <td></td>";
+                                $tr_time .= "   <td></td>";
+                                $tr_time .= "   <td></td>";
+                                $tr_time .= "   <td></td>";
+                                $tr_time .= "   <td></td>";
+                                $tr_time .= "   <td></td>"; 
+                                $tr_time .= "</tr>";
+                            }
+                            echo $tr_time;
+                        ?>
+                    </table>
+                
+                
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class='order_foot'>
+        <div class='result'>
+            <div class='result_item no_select'>
+                <div class='result_intro'>请选择项目</div>
+                <div class='result_show'></div>
+            </div>
+            <div class='result_server no_select'>
+                <div class='result_intro'>请选择技师</div>
+                <div class='result_show'></div>
+            </div>
+            <div class='result_time no_select'>
+                <div class='result_intro'>请选择时间</div>
+                <div class='result_show'></div>
+            </div>
+            <div class='next_btn '>确认</div>
+        </div>
+    
+    </div>
+</div>
+<div class=''></div>
+<div class=''></div>
+<div class=''></div>
+

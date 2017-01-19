@@ -1,0 +1,135 @@
+.order_body {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #eee;
+}
+
+.order_item_div {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.service_item_div {
+    width: 25%;
+}
+.servers_div {
+    width: 30%;
+}
+
+.time_div {
+    width: 43%;
+}
+
+.order_item_body {
+    height: 400px;
+    overflow-y: auto;
+}
+
+.order_item_title {
+    height: 30px;
+    line-height: 25px;
+    color: #333;
+    font-size: 20px;
+    margin-bottom: 5px;
+    padding: 0 0 5px;
+    border-bottom: 1px solid #d5d5d5;
+}
+
+.item_preview, .item_detail {
+    display: inline-block;
+}
+
+.item_detail {
+    vertical-align:top;
+}
+.item_show {
+    margin: 8px;
+}
+
+.item_title {
+
+    font-size: 15px;
+    height: 36px;
+    overflow: hidden;
+    color: #227de7;
+    margin-bottom: 4px;
+}
+.switch_btn {
+    float:right;
+    text-align: center;
+    cursor: pointer;
+    background: #22bbe7;
+    width: 65px;
+    height: 24px;
+    line-height: 24px;
+    font-size: 16px;
+    color: #fff;
+}
+.item_price{
+
+    font-size: 13px;
+    height: 21px;
+    line-height: 21px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-wrap: normal;
+    overflow: hidden;
+}
+
+.result {
+    padding: 10px;
+}
+
+.result > div {
+    display: inline-block;
+    margin-right: 15px;
+}
+
+.order_foot {
+    margin-top: 10px;
+    width: 100%;
+    border: 1px solid #eee;
+    margin-bottom: 20px;
+}
+
+.no_select {
+    background: url(../../images/img-frame.png) no-repeat;
+    background-position: 0 -125px;
+    width: 253px;
+    height: 61px;
+    font-size: 14px;
+    color: #227de7;
+}
+
+.time_select {
+    padding: 5px;
+}
+
+.time_select td {
+    width: 40px;
+}
+
+.result_intro {
+    padding: 10px 0 5px 10px;
+}
+
+.result_show {
+    padding: 0px 0 5px 10px;
+}
+
+.next_btn {
+    cursor: default;
+    vertical-align: top;
+    font-weight: 400;
+    border: 1px solid #ddd;
+    background: #f05356;
+    width: 160px;
+    height: 59px;
+    line-height: 59px;
+    color: #fff;
+    text-align: center;
+    font-size: 24px;
+    text-decoration: none;
+    font-family: "microsoft yahei";
+    border-radius: 3px;
+}

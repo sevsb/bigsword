@@ -1,0 +1,153 @@
+<div id="page-wrapper">
+    <div>
+        <h3 class="page_title">设置技师排班</h3>
+    </div>
+    <?php
+    //var_dump($server);
+    $skills = explode(",", $server['skill']);
+    //var_dump($duty);
+    $type = $duty['type'];
+    $rule = $duty['rule'];
+    $type_cho = [];
+    $type_div_cho[1] = 'hide';
+    $type_div_cho[2] = 'hide';
+    $type_cho[$type] = 'btn-primary';
+    $type_div_cho[$type] = '';
+    $rule_w = [];
+    if ($type == 1) {
+        $rule = explode(",", $rule);
+        foreach ($rule as $r) {
+            $rule_w[$r] = 'btn-primary';
+        }
+    }
+    if ($type == 2) {
+        $rule = explode(",", $rule);
+        $worktime = $rule[0];
+        $resttime = $rule[1];
+        $starttime = $rule[2];
+    }
+    ?>
+    <div class="form-horizontal" style="margin-top: 24px ;border-bottom: 2px solid #eee;" >
+        <div class="form-group">
+            <label for="qtitle" class="col-sm-2 control-label">姓名</label>
+            <div class="col-sm-10">
+                <input type='text' id="title" style="height: 32px; width: 80%; padding: 6px 12px;"
+                value='<?php echo $server['name']; ?>' readonly>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="qcomment" class="col-sm-2 control-label">考勤类型选择</label>
+             <div class="col-sm-10">
+                <div class='btn btn-default duty_type <?php echo $type_cho[1]; ?>' id="1">每周休息</div>
+                <div class='btn btn-default duty_type <?php echo $type_cho[2]; ?>' id="2">上几歇几（值班值）</div>
+            </div>
+        </div>
+        
+        <div class="form-group duty_rule_div <?php echo $type_div_cho[1]; ?>" id='1'>
+            <label for="qcomment" class="col-sm-2 control-label">休息时间</label>
+             <div class="col-sm-10">
+                <div class='btn btn-default rule-w <?php echo $rule_w[0]; ?>' id="0">周一</div>
+                <div class='btn btn-default rule-w <?php echo $rule_w[1]; ?>' id="1">周二</div>
+                <div class='btn btn-default rule-w <?php echo $rule_w[2]; ?>' id="2">周三</div>
+                <div class='btn btn-default rule-w <?php echo $rule_w[3]; ?>' id="3">周四</div>
+                <div class='btn btn-default rule-w <?php echo $rule_w[4]; ?>' id="4">周五</div>
+                <div class='btn btn-default rule-w <?php echo $rule_w[5]; ?>' id="5">周六</div>
+                <div class='btn btn-default rule-w <?php echo $rule_w[6]; ?>' id="6">周日</div>
+            </div>
+        </div>
+        
+        <div class="form-group duty_rule_div <?php echo $type_div_cho[2]; ?>" id='2'>
+            <label for="qcomment" class="col-sm-2 control-label">值班设置</label>
+            <div class="col-sm-10">
+                <label for="qcomment" class="worktime">上&nbsp&nbsp</label><input type='number' min='0' id="worktime" style="height: 32px; width: 20%; padding: 6px 12px;" value='<?php echo $worktime; ?>'>
+                <label for="qcomment" class="resttime">歇&nbsp&nbsp</label><input type='number' min='0' id="resttime" style="height: 32px; width: 20%; padding: 6px 12px;" value='<?php echo $resttime; ?>'>
+                <label for="qcomment" class="starttime">起始时间&nbsp&nbsp</label><input type='text' id="datepicker" starttime='<?php echo $starttime; ?>' style="height: 32px; width: 20%; padding: 6px 12px;" value='<?php echo $starttime; ?>'>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="qcomment" class="col-sm-2 control-label">单日设置</label>
+        <div class='calendar_panel col-sm-10'>
+        <div class='calendar_div' >
+            <table class="table table-bordered table-condensed table-condensed" id="calendar" border="1">
+                <thead id="calendar_head">
+                <tr>
+                    <td id="last_month"><</td>
+                    <td colspan="5">
+                        <span id="year"></span>年
+                        <span id="month"></span>月
+                    </td>
+                    <td id="next_month">></td>
+                </tr>
+                <tr class='weektr'>
+                    <td>日</td>
+                    <td>一</td>
+                    <td>二</td>
+                    <td>三</td>
+                    <td>四</td>
+                    <td>五</td>
+                    <td>六</td>
+                </tr>        
+                </thead>
+                <tbody id="calendar_body">
+                </tbody>
+            </table>
+        </div>
+        <div class='event_div'>
+            <div class='choose_data_div'>所选日期：<span class='choosed_date'></span></div>
+            <div class='new_event_div'>
+                <div class="dropdown" style='display:inline-block;'>
+                  <button class="btn btn-default dropdown-toggle sel_item_btn" type="button" id="dropdownMenu2" data-toggle="dropdown">
+                    请选择类型
+                    <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu2">
+                    <li class='sel_item' role="presentation" id='1'><a role="menuitem" tabindex="-1" >正常休息</a></li>
+                    <li class='sel_item' role="presentation" id='2'><a role="menuitem" tabindex="-1" >病假</a></li>
+                    <li class='sel_item' role="presentation" id='3'><a role="menuitem" tabindex="-1" >年假</a></li>
+                    <li class='sel_item' role="presentation" id='4'><a role="menuitem" tabindex="-1" >事假</a></li>
+                    <li class='sel_item' role="presentation" id='-1'><a role="menuitem" tabindex="-1" >存休</a></li>
+                    <li class='sel_item' role="presentation" id='-2'><a role="menuitem" tabindex="-1" >加班</a></li>
+                  </ul>
+                </div>
+                <div><textarea rows='5' class='event_content'></textarea></div>
+                <button class='new_event_btn btn btn-default'>设置事件</button>
+                <button class='cancel_event_btn btn btn-danger'>撤消事件</button>
+            </div>
+            <div class='event_list_div'>
+                <div class='event_count'></div>
+                <div class='event_list'></div>
+            </div>
+        </div>
+        </div>
+        </div>
+        
+        <div class=''>
+            <div class='btn btn-success save-btn center-block' id="<?php echo $id;?>" data-toggle="modal" data-target="#">保存修改</div>
+        </div><br><br><br><br>
+    </div>
+    
+</div>
+<div class=''>
+</div>
+<div class=''></div>
+<div class=''></div>
+
+<div class="modal fade" id="del-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">删除确认</h4>
+      </div>
+      <div class="modal-body">
+        <p>确认要删除此项？</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-danger do_del">删除</button>
+      </div>
+    </div>
+  </div>
+</div>

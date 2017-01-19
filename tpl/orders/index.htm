@@ -1,0 +1,50 @@
+<div id="page-wrapper">
+    <div>
+        <h3 class="page_title">服务项列表</h3>
+    </div>
+    <table class='table'>
+    <tr>
+        <td>编号</td>
+        <td>姓名</td>
+        <td>介绍</td>
+        <td>操作</td>
+    </tr>
+    <?php
+    foreach ($servers as $server) {
+        //$tourl = "?servers/detail_show&id=" . $server['id'];
+        ?>
+            <tr id="server_<?php echo $server['id'];?>">
+                <td><?php echo $server['id'];?></td>
+                <td><?php echo  $server['name'];?></td>
+                <td><?php echo $server['content'];?></td>
+                <td>
+                    <a href='?duty/modify&id=<?php echo $server['id'];?>'><button class='btn btn-primary' id="<?php echo $server['id'];?>">设置</button></a>
+                </td>
+            </tr>
+        <?php
+    }
+    ?>
+    
+    <table>
+</div>
+<div class=''></div>
+<div class=''></div>
+<div class=''></div>
+
+<div class="modal fade" id="del-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">删除确认</h4>
+      </div>
+      <div class="modal-body">
+        <p>确认要删除此项？</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-danger do_del">删除</button>
+      </div>
+    </div>
+  </div>
+</div>
