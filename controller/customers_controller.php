@@ -14,12 +14,8 @@ class customers_controller {
         $tpl = new tpl("main/header", "main/footer");
         $id = get_request('id');
         $customer = customers::get_customer_detail($id);
-        $service_items = service_item::get_all_items();
-        $token = picservice::get_token();
         $tpl->set('id', $id);
-        $tpl->set('items', $service_items);
         $tpl->set('customer', $customer);
-        $tpl->set('token', $token["token"]);
         $tpl->display("customers/detail");
     }
 
@@ -27,43 +23,28 @@ class customers_controller {
         $tpl = new tpl("main/header", "main/footer");
         $id = get_request('id');
         $customer = customers::get_customer_detail($id);
-        $service_items = service_item::get_all_items();
-        $token = picservice::get_token();
         $tpl->set('id', $id);
-        $tpl->set('items', $service_items);
         $tpl->set('customer', $customer);
-        $tpl->set('token', $token["token"]);
         $tpl->display("customers/modify");
     }
     
     public function new_action() {
         $tpl = new tpl("main/header", "main/footer");
-        $service_items = service_item::get_all_items();
-        $tpl->set('items', $service_items);
         $tpl->display("customers/new");
     }
 
-
     public function add_ajax() {
         $name = get_request('name');
-        $content = get_request('content');
-        $skills = get_request('skills');
-        $filename_list = get_request('filename_list');
-        $filename_list = implode($filename_list, ',');
-        $skills = implode($skills, ',');
-        $ret = customers::add($name, $content, $skills, $filename_list);
+        $tel = get_request('tel');
+        $ret = customers::add($name, $tel);
         return $ret ? 'success' : 'fail';
     }
     
     public function modify_ajax() {
         $id = get_request('id');
         $name = get_request('name');
-        $content = get_request('content');
-        $skills = get_request('skills');
-        $filename_list = get_request('filename_list');
-        $filename_list = implode($filename_list, ',');
-        $skills = implode($skills, ',');
-        $ret = customers::modify($id, $name, $content, $skills, $filename_list);
+        $tel = get_request('tel');
+        $ret = customers::modify($id, $name, $tel);
         return $ret ? 'success' : 'fail';
     }
     
@@ -72,7 +53,6 @@ class customers_controller {
         $ret = customers::del($id);
         return $ret ? 'success' : 'fail';
     }
-
 
 }
 

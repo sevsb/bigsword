@@ -10,9 +10,9 @@ $(document).ready(function() {
         $('#del-modal').modal('hide');
         __ajax("custormers.delete",{id:del_id},function (data){
             console.log(data);
-            if (data.ret = 'success') {
+            if(data.ret = 'success') {
                 $('#custormer_' + del_id).remove();
-            }else {
+            } else {
                 alert('删除失败');
             }
         })
