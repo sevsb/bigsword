@@ -109,7 +109,7 @@ class login_controller {
 
         $userid = get_session("user.id");
         if ($userid == null) {
-            return "fail|未登陆。";
+            return "fail|未登录。";
         }
 
         $user = db_user::inst()->get_one_user($userid);

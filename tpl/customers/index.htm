@@ -11,15 +11,15 @@
     </tr>
     <?php
     foreach ($customers as $customer) {
-        //$tourl = "?service_item/detail_show&id=" . $item['id'];
+        //$tourl = "?service_customer/detail_show&id=" . $customer['id'];
         ?>
-            <tr id="item_<?php echo $item['id'];?>">
+            <tr id="customer_<?php echo $customer['id'];?>">
                 <td><?php echo  $customer['id'];?></td>
-                <td><a href='<?php //echo $tourl;?>'><?php echo  $item['name'];?></a></td>
+                <td><!-- a href='<?php echo $tourl;?>' --><?php echo  $customer['name'];?></a></td>
                 <td><?php echo  $customer['tel'];?></td>
                 <td>
-                    <a href='?customers/modify&id=<?php echo $customers['id'];?>'><button class='btn btn-primary' id="<?php echo $customer['id'];?>">编辑</button></a>
-                    <button class='btn btn-danger del-btn' id="<?php echo $customers['id'];?>" data-toggle="modal" data-target="#del-modal">删除</button>
+                    <a href='?customers/modify&id=<?php echo $customer['id'];?>'><button class='btn btn-primary' id="<?php echo $customer['id'];?>">编辑</button></a>
+                    <button class='btn btn-danger del-btn' id="<?php echo $customer['id'];?>" data-toggle="modal" data-target="#del-modal">删除</button>
                 </td>
             </tr>
         <?php

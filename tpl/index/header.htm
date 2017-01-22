@@ -18,7 +18,7 @@
         <script src="[:app]/js/main.js"></script>
         <script src="[:app]/js/modify-on-click.js"></script>
 
-        <title> 登陆 </title>
+        <title> 登录 </title>
     </head>
     <body>
     <div class="header-wrapper clear">
@@ -26,7 +26,7 @@
             <img src="[:app]/images/favicon.ico" class="pull-left">
             <a href="<?php echo get_session("login.titleurl"); ?>" class="item pull-left"><?php echo get_session("login.title"); ?></a>
             <?php if (get_session("user.id") === null) { ?>
-            <a href="?login" class="item pull-right">登陆</a>
+            <a href="?login" class="item pull-right">登录</a>
             <a href="?login/register" class="item pull-right">注册</a>
             <?php } ?>
         </div>
