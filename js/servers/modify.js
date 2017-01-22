@@ -54,9 +54,9 @@ $(document).ready(function() {
     });
 
     $('.addquestion').click(function () {
+        var id = get_request('id');
         var name = $('#name').val();
         var content = $('#content').val();
-        var id = $('.serverid').val();
         var skills = [];
         $('.selected').each(function() {
             var skill = $(this).attr('id');
