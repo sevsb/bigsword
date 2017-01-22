@@ -22,6 +22,11 @@ class duty {
         return $ret;
     }
     
+    public static function get_all_duties() {
+        $ret = db_duty::inst()->get_all_duties();
+        return $ret;
+    }
+    
     public static function get_one_vacation($id) {
         $ret = db_duty::inst()->get_one_duty($id);
         return $ret["vacation"];

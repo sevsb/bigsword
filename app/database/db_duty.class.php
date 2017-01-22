@@ -38,6 +38,10 @@ class db_duty extends database {
     public function get_one_duty($id) {
         return $this->get_one_table(TABLE_DUTY, "serverid = '$id'");
     }
+    
+    public function get_all_duties() {
+        return $this->get_all_table(TABLE_DUTY);
+    }
 
 };
 

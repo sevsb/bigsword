@@ -41,7 +41,6 @@ class db_servers extends database {
     public function get_server_detail($id) {
         return $this->get_one_table(TABLE_SERVERS, "id = '$id'");
     }
-
 };
 
 

@@ -2,11 +2,27 @@
     <?php 
     $weekarray=array("日","一","二","三","四","五","六");
     $days = array(
-    "今天，" . date("m-d") . " (星期" . $weekarray[date("w")] . ")",
-    "明天，" . date("m-d",strtotime("+1 day")) . " (星期" . $weekarray[date("w", strtotime("+1 day"))] . ")",
-    "后天，" . date("m-d",strtotime("+2 day")) . " (星期" . $weekarray[date("w", strtotime("+2 day"))] . ")"
+        "今天，" . date("m-d") . " (星期" . $weekarray[date("w")] . ")",
+        "明天，" . date("m-d",strtotime("+1 day")) . " (星期" . $weekarray[date("w", strtotime("+1 day"))] . ")",
+        "后天，" . date("m-d",strtotime("+2 day")) . " (星期" . $weekarray[date("w", strtotime("+2 day"))] . ")",
+        "" . date("m-d",strtotime("+3 day")) . " (星期" . $weekarray[date("w", strtotime("+2 day"))] . ")",
+        "" . date("m-d",strtotime("+4 day")) . " (星期" . $weekarray[date("w", strtotime("+2 day"))] . ")"
     );
-    //var_dump($days);
+    $true_days = array(
+        mk_jsday(date("m-d")),
+        mk_jsday(date("m-d",strtotime("+1 day"))),
+        mk_jsday(date("m-d",strtotime("+2 day"))),
+        mk_jsday(date("m-d",strtotime("+3 day"))),
+        mk_jsday(date("m-d",strtotime("+4 day")))
+    );
+    function mk_jsday($day){
+        $day = explode('-', $day);
+        $day[0] = $day[0] - 1;
+        $day = implode('-', $day);
+        return $day;
+    }
+    var_dump($true_servers);
+    //var_dump($true_servers);
     ?>
     <div class='order_head'>
         <div class='order_time_choose'>
@@ -16,9 +32,11 @@
                 <span class="caret"></span>
               </button>
               <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                <li role="presentation"><a role="menuitem" tabindex="-1"><?php echo $days[0]; ?></a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1"><?php echo $days[1]; ?></a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1"><?php echo $days[2]; ?></a></li>
+                <li role="presentation" class='choose_date_li' date='<?php echo $true_days[0];?>'><a role="menuitem" tabindex="-1" ><?php echo $days[0]; ?></a></li>
+                <li role="presentation" class='choose_date_li' date='<?php echo $true_days[1];?>'><a role="menuitem" tabindex="-1"><?php echo $days[1]; ?></a></li>
+                <li role="presentation" class='choose_date_li' date='<?php echo $true_days[2];?>'><a role="menuitem" tabindex="-1" ><?php echo $days[2]; ?></a></li>
+                <li role="presentation" class='choose_date_li' date='<?php echo $true_days[3];?>'><a role="menuitem" tabindex="-1"><?php echo $days[3]; ?></a></li>
+                <li role="presentation" class='choose_date_li' date='<?php echo $true_days[4];?>'><a role="menuitem" tabindex="-1"><?php echo $days[4]; ?></a></li>
               </ul>
             </div>
         </div>
@@ -48,7 +66,7 @@
                         <img src='<?php echo picservice::show($preview);?>'>
                     </div>
                     <div class='item_detail'>
-                        <div class='item_title'>标题：<?php echo $title;?></div>
+                        <div class='item_title'><?php echo $title;?></div>
                         <div class='item_price'>价格：<?php echo $price;?></div>
                         <div class='item_time'>时间：<?php echo $service_time + $interval_time * 2;?></div>
                     </div>
@@ -65,24 +83,27 @@
             </div>
             <div class='order_item_body'>
                 <?php 
+                //var_dump($servers);
                 foreach ($servers as $server) {
-                $name = $server["name"];
-                $content = $server["content"];
-                $pics = $server["pic"];
-                $pics = explode(',', $pics);
-                $preview = $pics[0];
-                //var_dump($preview);
-                ?>
-                <div class='item_show'>
-                    <div class='item_preview'>
-                        <img src='<?php echo picservice::show($preview);?>'>
+                    $id = $server["id"];
+                    $name = $server["name"];
+                    $content = $server["content"];
+                    $pics = $server["pic"];
+                    $pics = explode(',', $pics);
+                    $preview = $pics[0];
+                    var_dump((int)date(m));
+                    var_dump(servers::is_workdate(date(Y) . "-" . intval((int)date(m) - 1) . "-" . date(d), $id));
+                    ?>
+                    <div class='item_show'>
+                        <div class='item_preview'>
+                            <img src='<?php echo picservice::show($preview);?>'>
+                        </div>
+                        <div class='item_detail'>
+                            <div class='item_title'><?php echo $name;?></div>
+                            <div class='item_price'>介绍：<?php echo $content;?></div>
+                        </div>
                     </div>
-                    <div class='item_detail'>
-                        <div class='item_title'>姓名：<?php echo $name;?></div>
-                        <div class='item_price'>介绍：<?php echo $content;?></div>
-                    </div>
-                </div>
-                <?php
+                    <?php
                 }
                 ?>
             </div>

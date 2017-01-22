@@ -14,15 +14,16 @@ class orders_controller {
         $tpl = new tpl("main/header", "main/footer");
         $service_items = service_item::get_all_items();
         $servers = servers::get_all_servers();
-        $duty = duty::get_one_duty($id);
+        $duties = duty::get_all_duties();
         $token = picservice::get_token();
+        
         $tpl->set('id', $id);
         $tpl->set('servers', $servers);
         $tpl->set('items', $service_items);
         $tpl->set('items_count', count($service_items));
         $tpl->set('servers_count', count($servers));
         $tpl->set('server', $server);
-        $tpl->set('duty', $duty);
+        $tpl->set('duties', $duties);
         $tpl->set('token', $token["token"]);
         $tpl->display("orders/new");
     }
