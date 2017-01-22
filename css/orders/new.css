@@ -133,3 +133,7 @@
     font-family: "microsoft yahei";
     border-radius: 3px;
 }
+
+.order_time_choose {
+    padding: 15px;
+}

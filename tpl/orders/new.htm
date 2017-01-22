@@ -1,7 +1,29 @@
 <div id="page-wrapper">
+    <?php 
+    $weekarray=array("日","一","二","三","四","五","六");
+    $days = array(
+    "今天，" . date("m-d") . " (星期" . $weekarray[date("w")] . ")",
+    "明天，" . date("m-d",strtotime("+1 day")) . " (星期" . $weekarray[date("w", strtotime("+1 day"))] . ")",
+    "后天，" . date("m-d",strtotime("+2 day")) . " (星期" . $weekarray[date("w", strtotime("+2 day"))] . ")"
+    );
+    //var_dump($days);
+    ?>
     <div class='order_head'>
-    <?php //var_dump($servers);?>
+        <div class='order_time_choose'>
+            <div class="dropdown">
+              <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+                <?php echo $days[0]; ?>
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                <li role="presentation"><a role="menuitem" tabindex="-1"><?php echo $days[0]; ?></a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1"><?php echo $days[1]; ?></a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1"><?php echo $days[2]; ?></a></li>
+              </ul>
+            </div>
+        </div>
     </div>
+    
     <div class='order_body'>
         <div class='order_item_div service_item_div'>
             <div class='order_item_title'>
