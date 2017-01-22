@@ -49,6 +49,7 @@ class customers_controller {
     }
     
     public function delete_ajax() {
+        logging::d("customers_controller", "delete_ajax()");
         $id = get_request('id');
         $ret = customers::del($id);
         return $ret ? 'success' : 'fail';
