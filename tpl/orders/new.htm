@@ -1,42 +1,36 @@
 <div id="page-wrapper">
     <?php 
+    $day = get_request('day',0);
     $weekarray=array("日","一","二","三","四","五","六");
     $days = array(
         "今天，" . date("m-d") . " (星期" . $weekarray[date("w")] . ")",
         "明天，" . date("m-d",strtotime("+1 day")) . " (星期" . $weekarray[date("w", strtotime("+1 day"))] . ")",
         "后天，" . date("m-d",strtotime("+2 day")) . " (星期" . $weekarray[date("w", strtotime("+2 day"))] . ")",
-        "" . date("m-d",strtotime("+3 day")) . " (星期" . $weekarray[date("w", strtotime("+2 day"))] . ")",
-        "" . date("m-d",strtotime("+4 day")) . " (星期" . $weekarray[date("w", strtotime("+2 day"))] . ")"
+        "" . date("m-d",strtotime("+3 day")) . " (星期" . $weekarray[date("w", strtotime("+3 day"))] . ")",
+        "" . date("m-d",strtotime("+4 day")) . " (星期" . $weekarray[date("w", strtotime("+4 day"))] . ")"
     );
     $true_days = array(
-        mk_jsday(date("m-d")),
-        mk_jsday(date("m-d",strtotime("+1 day"))),
-        mk_jsday(date("m-d",strtotime("+2 day"))),
-        mk_jsday(date("m-d",strtotime("+3 day"))),
-        mk_jsday(date("m-d",strtotime("+4 day")))
+        mk_jsday(date("Y-m-d")),
+        mk_jsday(date("Y-m-d",strtotime("+1 day"))),
+        mk_jsday(date("Y-m-d",strtotime("+2 day"))),
+        mk_jsday(date("Y-m-d",strtotime("+3 day"))),
+        mk_jsday(date("Y-m-d",strtotime("+4 day")))
     );
-    function mk_jsday($day){
-        $day = explode('-', $day);
-        $day[0] = $day[0] - 1;
-        $day = implode('-', $day);
-        return $day;
-    }
-    var_dump($true_servers);
-    //var_dump($true_servers);
+    $choose_date = date("Y-m-d",strtotime("+$day day"));
     ?>
     <div class='order_head'>
         <div class='order_time_choose'>
             <div class="dropdown">
               <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
-                <?php echo $days[0]; ?>
+                <?php echo $days[$day]; ?>
                 <span class="caret"></span>
               </button>
               <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                <li role="presentation" class='choose_date_li' date='<?php echo $true_days[0];?>'><a role="menuitem" tabindex="-1" ><?php echo $days[0]; ?></a></li>
-                <li role="presentation" class='choose_date_li' date='<?php echo $true_days[1];?>'><a role="menuitem" tabindex="-1"><?php echo $days[1]; ?></a></li>
-                <li role="presentation" class='choose_date_li' date='<?php echo $true_days[2];?>'><a role="menuitem" tabindex="-1" ><?php echo $days[2]; ?></a></li>
-                <li role="presentation" class='choose_date_li' date='<?php echo $true_days[3];?>'><a role="menuitem" tabindex="-1"><?php echo $days[3]; ?></a></li>
-                <li role="presentation" class='choose_date_li' date='<?php echo $true_days[4];?>'><a role="menuitem" tabindex="-1"><?php echo $days[4]; ?></a></li>
+                <li role="presentation" class='choose_date_li' date='<?php echo $true_days[0];?>'><a role="menuitem" tabindex="-1" href='?orders/new&day=0' ><?php echo $days[0]; ?></a></li>
+                <li role="presentation" class='choose_date_li' date='<?php echo $true_days[1];?>'><a role="menuitem" tabindex="-1" href='?orders/new&day=1' ><?php echo $days[1]; ?></a></li>
+                <li role="presentation" class='choose_date_li' date='<?php echo $true_days[2];?>'><a role="menuitem" tabindex="-1" href='?orders/new&day=2' ><?php echo $days[2]; ?></a></li>
+                <li role="presentation" class='choose_date_li' date='<?php echo $true_days[3];?>'><a role="menuitem" tabindex="-1" href='?orders/new&day=3' ><?php echo $days[3]; ?></a></li>
+                <li role="presentation" class='choose_date_li' date='<?php echo $true_days[4];?>'><a role="menuitem" tabindex="-1" href='?orders/new&day=4' ><?php echo $days[4]; ?></a></li>
               </ul>
             </div>
         </div>
@@ -91,10 +85,11 @@
                     $pics = $server["pic"];
                     $pics = explode(',', $pics);
                     $preview = $pics[0];
-                    var_dump((int)date(m));
-                    var_dump(servers::is_workdate(date(Y) . "-" . intval((int)date(m) - 1) . "-" . date(d), $id));
+
+                    $is_work = servers::is_workdate($choose_date, $id);
+                    $is_rest = $is_work['ret'] ? '' : 'is_rest';
                     ?>
-                    <div class='item_show'>
+                    <div class='item_show <?php echo $is_rest;?>'>
                         <div class='item_preview'>
                             <img src='<?php echo picservice::show($preview);?>'>
                         </div>

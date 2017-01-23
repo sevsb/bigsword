@@ -9,6 +9,13 @@
     vertical-align: top;
 }
 
+.is_rest{
+    background-color:#000000; 
+    opacity:0.5; 
+    -moz-opacity:0.5; 
+    filter:alpha(opacity=50);
+}
+
 .service_item_div {
     width: 25%;
 }
@@ -39,11 +46,17 @@
     display: inline-block;
 }
 
+.choose_date_li {
+    cursor: pointer;
+}
+
 .item_detail {
     vertical-align:top;
 }
 .item_show {
-    margin: 8px;
+    margin: 4px;
+    padding: 4px;
+    cursor: pointer;
 }
 
 .item_title {
