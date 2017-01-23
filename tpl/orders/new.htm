@@ -39,7 +39,7 @@
     <div class='order_body'>
         <div class='order_item_div service_item_div'>
             <div class='order_item_title'>
-                服务项目总数：<span class='text-danger'><?php echo $servers_count;?></span> 个
+                服务项目总数：<span class='text-danger'><?php echo $items_count;?></span> 个
                 <div class='switch_btn'>切换</div>
             </div>
             <div class='order_item_body'>
@@ -73,7 +73,7 @@
         
         <div class='order_item_div servers_div'>
             <div class='order_item_title'>
-                技师总数：<span class='text-danger'><?php echo $items_count;?></span> 个
+                技师总数：<span class='text-danger'><?php echo $servers_count;?></span> 个
             </div>
             <div class='order_item_body'>
                 <?php 
@@ -87,7 +87,7 @@
                     $preview = $pics[0];
 
                     $is_work = servers::is_workdate($choose_date, $id);
-                    $is_rest = $is_work['ret'] ? '' : 'is_rest';
+                    $is_rest = $is_work['ret'] ? '' : 'cannot_choose';
                     ?>
                     <div class='item_show <?php echo $is_rest;?>'>
                         <div class='item_preview'>
