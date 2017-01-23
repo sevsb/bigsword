@@ -119,6 +119,7 @@ img.user-face {
 .navbar-toggle {
   float: left;
   margin-left: 10px;
+  margin-right: 0px;
 }
 
 .navbar-top-links {
