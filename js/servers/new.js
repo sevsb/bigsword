@@ -50,7 +50,7 @@ $(document).ready(function() {
         return true;
     });
 
-    $('.addquestion').click(function () {
+    $('.sumbit_btn').click(function () {
         var name = $('#name').val();
         var content = $('#content').val();
         var skills = [];
