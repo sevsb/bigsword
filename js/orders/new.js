@@ -8,7 +8,13 @@ $(document).ready(function() {
         console.log(choose_date);
     }); */
     
-    
+    $(document).on("click",".item_show",function(){
+        if ($(this).hasClass('cannot_choose')) {
+            return;
+        }
+        $(this).parents('.order_item_body').find('.item_show').removeClass('selected');
+        $(this).addClass("selected");
+    }); 
     
 });
 
