@@ -179,8 +179,8 @@ img.user-face {
 
 .selected{
     color:white !important;
-    background-color:red !important;
-    
+    /*background-color:red !important;*/
+    background-color: #e6e6e6 !important;
 }
 
 .img_pre {
