@@ -35,7 +35,7 @@
                                     <?php
                                     foreach ($items as $item) {
                                     ?>
-                                        <button class='btn btn-default item-btn <?php echo !in_array($item['id'], $skills) ? '' : 'selected';?>'
+                                        <button class='btn btn-default item-btn <?php echo !in_array($item['id'], $skills) ? '' : 'btn-selected';?>'
                                         id="<?php echo $item["id"];?>"><?php echo $item['title']; ?></button>
                                     <?php
                                     }

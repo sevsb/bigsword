@@ -9,7 +9,7 @@ $(document).ready(function() {
         $(this).parents('.img_pre').remove();
     });
     $('.item-btn').click(function (){
-        $(this).toggleClass('selected');
+        $(this).toggleClass('btn-selected');
     });
 
     $("#upload_input").change(function() {
