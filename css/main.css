@@ -177,9 +177,13 @@ img.user-face {
     padding: 30px;
 }
 
+.btn-selected{
+    color:white !important;
+    background-color:red !important;
+}
+
 .selected{
     color:white !important;
-    /*background-color:red !important;*/
     background-color: #e6e6e6 !important;
 }
 

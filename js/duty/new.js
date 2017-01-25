@@ -54,7 +54,7 @@ $(document).ready(function() {
         var name = $('#name').val();
         var content = $('#content').val();
         var skills = [];
-        $('.selected').each(function() {
+        $('.btn-selected').each(function() {
             var skill = $(this).attr('id');
             skills.push(skill);
         });
