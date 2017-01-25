@@ -1,8 +1,5 @@
 $(document).ready(function() {
     check_picservice_token();
-
-    content = $('.area_content').val();
-    $('#content').html(content);
     
     $('.upload_btn').click(function (){
         $("#upload_input").click();
@@ -36,7 +33,7 @@ $(document).ready(function() {
                 console.debug(data);
 
                 if (data.status == 'success') {
-                    var img_drone = "<div class='img_pre'><img src='" + img_src +"' filename=" + data.info + "><div class='del_me btn btn-danger center-block'>删除</div></div>";
+                    var img_drone = "<div class='img_pre'><img src='" + img_src +"' filename=" + data.info + "><button class='del_me btn btn-danger center-block'>删除</button></div>";
                     $('.previews').append(img_drone);
                     return;
                 }
@@ -53,7 +50,7 @@ $(document).ready(function() {
         return true;
     });
 
-    $('.addquestion').click(function () {
+    $('.sumbit_btn').click(function () {
         var id = get_request('id');
         var name = $('#name').val();
         var content = $('#content').val();

@@ -33,7 +33,7 @@ $(document).ready(function() {
                 console.debug(data);
 
                 if (data.status == 'success') {
-                    var img_drone = "<div class='img_pre'><img src='" + img_src +"' filename=" + data.info + "><div class='del_me btn btn-danger center-block'>删除</div></div>";
+                    var img_drone = "<div class='img_pre'><img src='" + img_src +"' filename=" + data.info + "><button class='del_me btn btn-danger center-block'>删除</button></div>";
                     $('.previews').append(img_drone);
                     return;
                 }
