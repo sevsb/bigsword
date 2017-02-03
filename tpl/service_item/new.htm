@@ -1,53 +1,63 @@
 <div id="page-wrapper">
-    <div>
-        <h3 class="page_title">新增服务</h3>
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">新增服务</h1>
+        </div>
     </div>
-    <div class="form-horizontal" style="margin-top: 24px ;border-bottom: 2px solid #eee;" >
-        <div class="form-group">
-            <label for="qtitle" class="col-sm-2 control-label">服务名称</label>
-            <div class="col-sm-10">
-                <input type='text' id="title" style="height: 32px; width: 80%; padding: 6px 12px;">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    填写服务基本信息
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <form role="form">
+
+                                <div class="form-group">
+                                    <label>服务名称</label>
+                                    <input class="form-control" type='text' id="title">
+                                    <p class="help-block"></p>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>详细介绍</label>
+                                    <textarea class="form-control" type='text' rows='10' id="content"></textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>服务时间</label>
+                                    <textarea class="form-control" type='text' rows='10' id="time"></textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>前后间隔时间</label>
+                                    <textarea class="form-control" type='text' rows='10' id="interval"></textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>价格</label>
+                                    <textarea class="form-control" type='text' rows='10' id="price"></textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>上传图片</label>
+                                    <br>
+                                    <button class='btn btn-default upload_btn'>添加图片</button>
+                                    <input type='file' class='hidden' id="upload_input">
+                                </div>
+                                <div class='form-group previews'></div>
+
+                            </form>
+                            <div class='btn btn-success btn-block sumbit_btn'>新增服务</div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-       <div class="form-group">
-            <label for="qcomment" class="col-sm-2 control-label">详细介绍</label>
-             <div class="col-sm-10">
-                <input type='text' id="content" style="height: 32px; width: 80%; padding: 6px 12px;">
-            </div>
-        </div>        
-        <div class="form-group">
-            <label for="qcomment" class="col-sm-2 control-label">服务时间</label>
-             <div class="col-sm-10">
-                <input type='text' id="time" style="height: 32px; width: 80%; padding: 6px 12px;">
-            </div>
-        </div>
-        
-        <div class="form-group">
-            <label for="qcomment" class="col-sm-2 control-label">前后间隔时间</label>
-             <div class="col-sm-10">
-                <input type='text' id="interval" style="height: 32px; width: 80%; padding: 6px 12px;">
-            </div>
-        </div>
-        
-        <div class="form-group">
-            <label for="qcomment" class="col-sm-2 control-label">价格</label>
-             <div class="col-sm-10">
-                <input type='text' id="price" style="height: 32px; width: 80%; padding: 6px 12px;">
-            </div>
-        </div>
-        
-        <div class="form-group">
-            <label for="qcomment" class="col-sm-2 control-label">上传图片</label>
-             <div class="col-sm-10">
-                <button class='btn btn-default upload_btn'>添加图片</button>
-                <input type='file' class='hidden' id="upload_input" style="height: 32px; width: 80%; padding: 6px 12px;">
-            </div>
-        </div>
-        <div class='previews'></div>
     </div>
-    <div class='btn btn-success addquestion' style="margin: 24px; display: block;">新增服务</div>
 </div>
 <div class=''></div>
 <div class=''></div>
 <div class=''></div>
-

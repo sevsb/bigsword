@@ -16,10 +16,10 @@ $(document).ready(function() {
             alert("文件不是图像类型！");
             return false;
         }
-        
+
         var reader = new FileReader();
         reader.onload = function(e){
-            
+
             var img_src = e.target.result;
             upload_image(img_src,function (data) {
                 data = eval("(" + data + ")");
@@ -43,7 +43,7 @@ $(document).ready(function() {
         return true;
     });
 
-    $('.addquestion').click(function () {
+    $('.sumbit_btn').click(function () {
         var title = $('#title').val();
         var content = $('#content').val();
         var time = $('#time').val();
@@ -54,7 +54,7 @@ $(document).ready(function() {
             var filename = $(this).attr('filename');
             filename_list.push(filename);
         });
-        
+
         console.log("title:" + title);
         console.log("content:" + content);
         console.log("time:" + time);
@@ -67,14 +67,11 @@ $(document).ready(function() {
         }
         if (filename_list.length == 0) {
             alert('请上传图片');
-            return;   
+            return;
         }
-        
+
         __ajax("service_item.add", {title: title, content: content, time: time, interval: interval, price: price, filename_list: filename_list}, "?service_item/index");
 
     });
-    
-    
-    
-});
 
+});

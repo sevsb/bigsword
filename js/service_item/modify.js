@@ -1,11 +1,11 @@
 $(document).ready(function() {
     check_picservice_token();
-    
+
     $('.upload_btn').click(function (){
         $("#upload_input").click();
     });
-    
-    $(document).on("click",'.del_me',function(){	
+
+    $(document).on("click",'.del_me',function(){
         $(this).parents('.img_pre').remove();
     });
     $('.item-btn').click(function (){
@@ -23,10 +23,10 @@ $(document).ready(function() {
             alert("文件不是图像类型！");
             return false;
         }
-        
+
         var reader = new FileReader();
         reader.onload = function(e){
-            
+
             var img_src = e.target.result;
             upload_image(img_src,function (data) {
                 data = eval("(" + data + ")");
@@ -50,7 +50,7 @@ $(document).ready(function() {
         return true;
     });
 
-    $('.addquestion').click(function () {
+    $('.sumbit_btn').click(function () {
         var id = get_request('id');
         var title = $('#title').val();
         var content = $('#content').val();
@@ -76,11 +76,11 @@ $(document).ready(function() {
         }
         if (filename_list.length == 0) {
             alert('请上传图片');
-            return;   
+            return;
         }
-        
+
         __ajax("service_item.modify", {id: id, title: title, content: content, time: time, interval: interval, price: price, filename_list: filename_list}, "?service_item/index");
 
     });
-    
+
 });

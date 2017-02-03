@@ -28,11 +28,6 @@ class service_item_controller {
         $token = picservice::get_token();
         $tpl->set('id', $id);
         $tpl->set('item', $item);
-        $tpl->set('item_title', $item['title']);
-        $tpl->set('item_content', $item['content']);
-        $tpl->set('item_time', $item['service_time']);
-        $tpl->set('item_interval', $item['interval_time']);
-        $tpl->set('item_price', $item['price']);
         $tpl->set('token', $token["token"]);
         $tpl->display("service_item/modify");
     }
