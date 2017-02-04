@@ -73,5 +73,5 @@ function refresh_picservice_token() {
             });
         });
     });
-    
 }
+

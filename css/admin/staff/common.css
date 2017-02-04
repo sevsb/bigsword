@@ -1,0 +1,48 @@
+
+.staff-info-wrapper {
+    margin-left: 10px;
+    margin-bottom: 10px;
+    height: 204px;
+    min-width: 147px;
+}
+
+.staff-photo {
+    position: relative;
+    line-height: 204px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f0f0f0;
+}
+
+.staff-photo img {
+    max-width: 147px;
+    max-height: 204px;
+    text-align: center;
+    line-height: 204px;
+}
+
+.staff-photo-new {
+    position: relative;
+}
+
+.new-staff {
+    width: 147px;
+    height: 204px;
+    padding-top: 77px;
+    border: 2px solid #f47920;
+    border-radius: 8px;
+}
+
+.plus-wrapper {
+    width: 50px;
+    height: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    border-radius: 50px;
+    border: 2px solid #f47920;
+    line-height: 47px;
+    color: #f47920;
+    font-size: 20px;
+}
+

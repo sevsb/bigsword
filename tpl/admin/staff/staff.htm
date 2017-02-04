@@ -1,0 +1,18 @@
+<div id="page-wrapper">
+    <div class="clear">
+        <?php foreach ($staffs as $staff_id => $staff) { ?> 
+        <div class="pull-left staff-info-wrapper">
+            <div class="pull-left staff-photo">
+                <a href="?admin/staff/view&staff={:$staff_id}" class=""><img src='{:$staff->photo_thumbnail_url()}' /></a>
+            </div>
+        </div>
+        <?php } ?>
+        <div class="pull-left staff-info-wrapper">
+            <div class="pull-left staff-photo-new">
+                <a href="?admin/staff/new" class=""><div class="new-staff"><div class="plus-wrapper"><i class="fa fa-plus"></i></div></div></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+

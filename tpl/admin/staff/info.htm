@@ -1,0 +1,65 @@
+<script charset="utf-8" src="vendor/kindeditor/kindeditor-all.js"></script>
+<script charset="utf-8" src="vendor/kindeditor/lang/zh-CN.js"></script>
+<script charset="utf-8" src="vendor/kindeditor/plugins/code/prettify.js"></script>
+<!-- script charset="utf-8" src="js/base64.js"></script -->
+<link rel="stylesheet" href="vendor/kindeditor/plugins/code/prettify.css" />
+<link rel="stylesheet" href="vendor/kindeditor/themes/default/default.css" />
+
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">技师基本信息</div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <label>技师姓名</label>
+                                <input class="form-control" type='text' id="name" value="{:$staff->name()}" />
+                                <input type="hidden" id="staff_id" value="{:$staff->id()}" />
+                                <p class="help-block"></p>
+                            </div>
+                            <div class="form-group">
+                                <label>详细介绍</label>
+                                <textarea class="form-control" type='text' rows='10' id="content">{:$staff->content()}</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>技能选择</label>
+                                <br>
+                                <?php
+                                foreach ($items as $item) {
+                                ?>
+                                    <button class='btn btn-default item-btn' id="<?php echo $item["id"];?>"><?php echo $item['title']; ?></button>
+                                <?php
+                                }
+                                ?>
+
+                            </div>
+                            <div class="form-group">
+                                <label>上传照片</label>
+                                <br>
+                                <a href="#" class='btn btn-default upload_btn <?php echo $staff->is_valid() ? "hidden" : ""; ?>'>添加照片</a>
+                                <input type='file' class='hidden' id="upload_input">
+                                <div class="staff-info-wrapper">
+                                    <div class="pull-left staff-photo">
+                                        <a href="#" class="upload_btn1"><img id="photo" class="<?php echo $staff->is_valid() ? "" : "hidden"; ?>" src="{:$staff->photo_url()}" alt="" /></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='form-group previews'></div>
+                            <?php if ($staff->is_valid()) { ?>
+                            <div class='btn btn-danger btn-block submit_btn' action="admin.staff.update">保存</div>
+                            <?php } else { ?>
+                            <div class='btn btn-success btn-block submit_btn' action="admin.staff.add">新增</div>
+                            <?php } ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class=''></div>
+<div class=''></div>
+<div class=''></div>
+
