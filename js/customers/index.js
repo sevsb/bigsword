@@ -1,11 +1,13 @@
 $(document).ready(function() {
     check_picservice_token();
-    
+
+    $('#main_table').DataTable();
+
     $('.del-btn').click(function () {
         del_id = $(this).attr('id');
         console.log('del_id:' + del_id);
     });
-    
+
     $(".do_del").click(function () {
         $('#del-modal').modal('hide');
         __ajax("customers.delete", {id: del_id}, function (data){

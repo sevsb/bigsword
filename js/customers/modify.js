@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-    $('.addquestion').click(function () {
+    $('.sumbit_btn').click(function () {
         var id = get_request('id');
         var name = $('#name').val();
         var tel = $('#tel').val();
