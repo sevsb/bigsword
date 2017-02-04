@@ -1,5 +1,4 @@
 $(document).ready(function() {
-    // check_picservice_token();
 
     $('.upload_btn').click(function () {
         $("#upload_input").click();

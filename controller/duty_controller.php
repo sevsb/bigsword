@@ -14,7 +14,7 @@ class duty_controller {
         $tpl = new tpl("main/header", "main/footer");
         $id = get_request('id');
         $server = servers::get_server_detail($id);
-        $service_items = service_item::get_all_items();
+        $service_items = service::get_all_services();
         $duty = duty::get_one_duty($id);
         $token = picservice::get_token();
         $tpl->set('id', $id);
@@ -27,7 +27,7 @@ class duty_controller {
     
     public function calendar_action() {
         $tpl = new tpl("main/header", "main/footer");
-        $service_items = service_item::get_all_items();
+        $service_items = service::get_all_services();
         $tpl->set('items', $service_items);
         $tpl->display("duty/calendar");
     }

@@ -12,7 +12,7 @@ class orders_controller {
 
     public function new_action() {
         $tpl = new tpl("main/header", "main/footer");
-        $service_items = service_item::get_all_items();
+        $service_items = service::get_all_services();
         $servers = servers::get_all_servers();
         $duties = duty::get_all_duties();
         $token = picservice::get_token();
@@ -30,7 +30,7 @@ class orders_controller {
     
     public function calendar_action() {
         $tpl = new tpl("main/header", "main/footer");
-        $service_items = service_item::get_all_items();
+        $service_items = service::get_all_services();
         $tpl->set('items', $service_items);
         $tpl->display("duty/calendar");
     }

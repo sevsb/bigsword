@@ -1,45 +1,37 @@
 <?php
 include_once(dirname(__FILE__) . "/../../app/config.php");
 
-class staff_controller {
+class service_controller {
 
     public function index_action() {
-        $staffs = staff::load_all_staffs();
+        $services = service::load_all();
 
         $tpl = new tpl("admin/header", "admin/footer");
-        $tpl->set('staffs', $staffs);
-        $tpl->display("admin/staff/staff");
+        $tpl->set("services", $services);
+        $tpl->display("admin/service/index");
     }
-    
 
     public function new_action() {
-        $service_items = service::get_all_services();
-        $staff = staff::create_stub_staff();
-
+        $service = service::create_stub();
         $tpl = new tpl("admin/header", "admin/footer");
-        $tpl->set('items', $service_items);
-        $tpl->set("staff", $staff);
-        $tpl->display("admin/staff/info");
+        $tpl->set("service", $service);
+        $tpl->display("admin/service/info");
     }
 
     public function view_action() {
-        $staff_id = get_request_assert("staff");
-        $staff = staff::create($staff_id);
-        if ($staff == null) {
+        $service_id = get_request_assert("service");
+        $service = service::create($service_id);
+        if ($service == null) {
             fatal();
         }
-
-        $service_items = service::get_all_services();
         $tpl = new tpl("admin/header", "admin/footer");
-        $tpl->set('items', $service_items);
-        $tpl->set("staff", $staff);
-        $tpl->display("admin/staff/info");
+        $tpl->set("service", $service);
+        $tpl->display("admin/service/info");
     }
 
     public function add_ajax() {
-        $name = get_request_assert("name");
+        $title = get_request_assert("title");
         $content = get_request_assert("content");
-        $skills = get_request_assert("skills");
         $photo = get_request_assert("photo");
 
         $filename = null;
@@ -51,15 +43,14 @@ class staff_controller {
         }
         $filename = $ret;
 
-        $ret = db_staffs::inst()->add_staff($name, $content, $filename);
+        $ret = db_service::inst()->add_service($title, $content, $filename);
         return ($ret !== false) ? "success" : "fail|数据库操作失败，请稍后重试。";
     }
 
     public function update_ajax() {
-        $staff_id = get_request_assert("staff_id");
-        $name = get_request_assert("name");
+        $service_id = get_request_assert("service_id");
+        $title = get_request_assert("title");
         $content = get_request_assert("content");
-        $skills = get_request_assert("skills");
         $photo = get_request_assert("photo");
 
         $filename = null;
@@ -73,9 +64,10 @@ class staff_controller {
             $filename = $ret;
         }
 
-        $ret = db_staffs::inst()->update_staff($staff_id, $name, $content, $filename);
+        $ret = db_service::inst()->update_service($service_id, $title, $content, $filename);
         return ($ret !== false) ? "success" : "fail|数据库操作失败，请稍后重试。";
     }
+
 }
 
 

@@ -1,0 +1,47 @@
+
+<div id="page-wrapper">
+    <div class="clear">
+        <?php foreach ($services as $service_id => $service) { ?>
+        <div class="service-wrapper pull-left">
+            <a href="?admin/service/view&service={:$service_id}" class="">
+                <div class="pull-left service-photo" style='background-image: url({:$service->photo_thumbnail_url()});'>
+                    <!-- a href="?admin/service/view&service={:$service_id}" class=""><img src='{:$service->photo_thumbnail_url()}' /></a -->
+                </div>
+            </a>
+            <div class="pull-left">
+                <table class="table">
+                    <tr><td>{:$service->title()}</td></tr>
+                    <tr><td>{:$service->content()}</td></tr>
+                </table>
+            </div>
+        </div>
+        <?php } ?>
+        <div class="service-wrapper pull-left">
+            <div class="pull-left service-photo">
+                <a href="?admin/service/new" class=""><div class="new-service"><div class="plus-wrapper"><i class="fa fa-plus"></i></div></div></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class=''></div>
+<div class=''></div>
+<div class=''></div>
+
+<div class="modal fade" id="del-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title" id="myModalLabel">删除确认</h4>
+        </div>
+        <div class="modal-body">
+            <p>确认要删除此项？</p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            <button type="button" class="btn btn-danger do_del">删除</button>
+        </div>
+        </div>
+    </div>
+</div>

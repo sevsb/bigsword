@@ -14,7 +14,7 @@ class servers_controller {
         $tpl = new tpl("main/header", "main/footer");
         $id = get_request('id');
         $server = servers::get_server_detail($id);
-        $service_items = service_item::get_all_items();
+        $service_items = service::get_all_services();
         $token = picservice::get_token();
         $tpl->set('id', $id);
         $tpl->set('items', $service_items);
@@ -27,7 +27,7 @@ class servers_controller {
         $tpl = new tpl("main/header", "main/footer");
         $id = get_request('id');
         $server = servers::get_server_detail($id);
-        $service_items = service_item::get_all_items();
+        $service_items = service::get_all_services();
         $token = picservice::get_token();
         $tpl->set('serverid', $id);
         $tpl->set('items', $service_items);
@@ -38,7 +38,7 @@ class servers_controller {
     
     public function new_action() {
         $tpl = new tpl("main/header", "main/footer");
-        $service_items = service_item::get_all_items();
+        $service_items = service::get_all_services();
         $tpl->set('items', $service_items);
         $tpl->display("servers/new");
     }
