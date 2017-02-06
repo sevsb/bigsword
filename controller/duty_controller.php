@@ -4,14 +4,14 @@ include_once(dirname(__FILE__) . "/../app/config.php");
 class duty_controller {
 
     public function index_action() {
-        $tpl = new tpl("main/header", "main/footer");
+        $tpl = new tpl("admin/header", "admin/footer");
         $servers = servers::get_all_servers();
         $tpl->set('servers', $servers);
         $tpl->display("duty/index");
     }
 
     public function modify_action() {
-        $tpl = new tpl("main/header", "main/footer");
+        $tpl = new tpl("admin/header", "admin/footer");
         $id = get_request('id');
         $server = servers::get_server_detail($id);
         $service_items = service::get_all_services();
@@ -26,7 +26,7 @@ class duty_controller {
     }
     
     public function calendar_action() {
-        $tpl = new tpl("main/header", "main/footer");
+        $tpl = new tpl("admin/header", "admin/footer");
         $service_items = service::get_all_services();
         $tpl->set('items', $service_items);
         $tpl->display("duty/calendar");
