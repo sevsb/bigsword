@@ -18,6 +18,7 @@ function drawCalendarBody(year, month) {
         info = data.info;
         vacations = info.vacation;
         vacations = JSON.parse(vacations);
+        console.log(vacations);
         var startDay = new Date(year, month, 1).getDay();
         var endDay = new Date(year, month + 1, 0).getDay();
         var mouthDays = new Date(year, month + 1, 0).getDate();
@@ -33,11 +34,12 @@ function drawCalendarBody(year, month) {
         }
 
         for (var dayNumber = 1; dayNumber <= mouthDays; dayNumber++) {
-            thisday = year + "-" + month + "-" + dayNumber;
-            html += '<td class="calendar_day" thisday="' + thisday + '" day="' + dayNumber + '">';
+            thisday = year + "-" + (month + 1) + "-" + dayNumber + " 12:00:00";
+            timestamp = Date.parse(thisday) / 1000;
+            html += '<td class="calendar_day" thisday="' + thisday + '" day="' + dayNumber + '" timestamp="' + timestamp + '">';
             html += '<div class="">' + dayNumber + '</div>';
             for (var event_date in vacations) {
-                if (event_date == thisday) {
+                if (event_date == timestamp) {
                     html += '<div class="notice"></div>';
                 }
             }

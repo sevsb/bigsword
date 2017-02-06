@@ -44,7 +44,7 @@ class duty_controller {
     
     public function make_event_ajax() {
         $id = get_request('serverid');
-        $date = get_request('date');
+        $timestamp = get_request('timestamp');
         $type = get_request('type');
         $content = get_request('content');
 
@@ -54,7 +54,7 @@ class duty_controller {
         );
 
         logging::e("MAKEEVENT", "id : $id");
-        logging::e("MAKEEVENT", "date : $date");
+        logging::e("MAKEEVENT", "timestamp : $timestamp");
         logging::e("MAKEEVENT", "type : $type");
         logging::e("MAKEEVENT", "content : $content");
         logging::e("MAKEEVENT", "event : $event");
@@ -63,7 +63,7 @@ class duty_controller {
         logging::e("MAKEEVENT", "now vacations : $vacations");
         
         $vacations = json_decode($vacations);
-        $vacations->$date = $event;
+        $vacations->$timestamp = $event;
         $vacations = json_encode($vacations);
 
         logging::e("MAKEEVENT", "update vacations : $vacations");
@@ -73,14 +73,14 @@ class duty_controller {
     
     public function cancel_event_ajax() {
         $id = get_request('serverid');
-        $date = get_request('date');
-        logging::e("CANCELEVENT", "date : $date");
+        $timestamp = get_request('timestamp');
+        logging::e("CANCELEVENT", "timestamp : $timestamp");
         
         $vacations = duty::get_one_vacation($id);
         logging::e("MAKEEVENT", "now vacations : $vacations");
         
         $vacations = json_decode($vacations);
-        unset($vacations->$date);
+        unset($vacations->$timestamp);
         $vacations = json_encode($vacations);
 
         logging::e("MAKEEVENT", "update vacations : $vacations");

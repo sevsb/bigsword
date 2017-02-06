@@ -3,8 +3,8 @@ $(document).ready(function() {
     serverid = $('.save-btn').attr("id");
     type_id = 1;
     sel_item_btn = 0;
-    selected_day = '';
-    check_picservice_token();
+    timestamp = '';
+    //check_picservice_token();
     $('.duty_type').each(function () {
         if($(this).hasClass("btn-primary")) {
             type_id = $(this).attr("id");
@@ -45,7 +45,13 @@ $(document).ready(function() {
     
     $(document).on("click",".calendar_day",function(){
         day = $(this).attr("day");
-        selected_day = year + "-" + month + "-" + day;
+        timestamp = $(this).attr("timestamp");
+        var newDate = new Date();
+        newDate.setTime(timestamp * 1000);
+        var this_time = newDate.toLocaleDateString();
+        
+        console.log(timestamp);
+        console.log(this_time);
         type_text = '请选择类型';
         content = '';
         sel_item_btn = 0;
@@ -53,9 +59,10 @@ $(document).ready(function() {
         $('.calendar_day').removeClass('btn-primary');
         $(this).addClass('btn-primary');
         $('.choosed_date').html(year + "年" + month+1 + "月" + day + "日");
+        $('.choosed_date').html(this_time);
         
-        if (vacations[selected_day] != null) {
-            var this_vacation = vacations[selected_day];
+        if (vacations[timestamp] != null) {
+            var this_vacation = vacations[timestamp];
             var content = this_vacation.content
             var type = this_vacation.type
             sel_item_btn = type;
@@ -122,19 +129,23 @@ $(document).ready(function() {
             alert("请选择类型");
             return;
         }
-        if (selected_day == '') {
+        if (timestamp == '') {
             alert("请选择日期");
             return;
         }
-        __ajax('duty.make_event',{serverid: serverid, date: selected_day ,type: sel_item_btn ,content: content},true);
+        __ajax('duty.make_event',{serverid: serverid, timestamp: timestamp ,type: sel_item_btn ,content: content},true);
     });
     
     $('.cancel_event_btn').click(function (){
-        if (selected_day == '') {
+        if (timestamp == '') {
             return;
         }
-        __ajax('duty.cancel_event',{serverid: serverid, date: selected_day},true);
+        __ajax('duty.cancel_event',{serverid: serverid, timestamp: timestamp},true);
     });
     
 });
 
+function getDate(tm){
+    var tt=new Date(parseInt(tm) * 1000).toLocaleString() 
+    return tt; 
+} 
