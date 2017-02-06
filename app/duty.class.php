@@ -71,27 +71,19 @@ class duty {
     }
     
     public static function get_all_duties() {
-        $ret = db_duty::inst()->get_all_duties();
-        return $ret;
+        $duties = array();
+        $r = db_duty::inst()->get_all_duties();
+        foreach ($r as $dutyid => $duty) {
+            $duties[$dutyid] = new duty($duty);
+        }
+        return $duties;
     }
     
     public static function get_one_vacation($id) {
         $ret = db_duty::inst()->get_one_duty($id);
         return $ret["vacation"];
     }
-
-
 }
-
-
-
-
-
-
-
-
-
-
 
 function mk_jsday($date){
     $date = explode('-', $date);
@@ -100,12 +92,6 @@ function mk_jsday($date){
     $day = $date[2];
     return $year . "-" . $month . "-" . $day;
 }
-
-
-
-
-
-
 
 
 ?>

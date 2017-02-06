@@ -1,7 +1,7 @@
 <div id="page-wrapper">
-    <?php 
+    <?php
     $day = get_request('day',0);
-    $weekarray=array("日","一","二","三","四","五","六");
+    $weekarray = array("日","一","二","三","四","五","六");
     $days = array(
         "今天，" . date("m-d") . " (星期" . $weekarray[date("w")] . ")",
         "明天，" . date("m-d",strtotime("+1 day")) . " (星期" . $weekarray[date("w", strtotime("+1 day"))] . ")",
@@ -9,28 +9,33 @@
         "" . date("m-d",strtotime("+3 day")) . " (星期" . $weekarray[date("w", strtotime("+3 day"))] . ")",
         "" . date("m-d",strtotime("+4 day")) . " (星期" . $weekarray[date("w", strtotime("+4 day"))] . ")"
     );
-    $true_days = array(
-        mk_jsday(date("Y-m-d")),
-        mk_jsday(date("Y-m-d",strtotime("+1 day"))),
-        mk_jsday(date("Y-m-d",strtotime("+2 day"))),
-        mk_jsday(date("Y-m-d",strtotime("+3 day"))),
-        mk_jsday(date("Y-m-d",strtotime("+4 day")))
+    $timestamps = array(
+        strtotime(date("Y-m-d")),
+        strtotime(date("Y-m-d",strtotime("+1 day"))),
+        strtotime(date("Y-m-d",strtotime("+2 day"))),
+        strtotime(date("Y-m-d",strtotime("+3 day"))),
+        strtotime(date("Y-m-d",strtotime("+4 day")))
     );
+
+    $choose_timestamp = $timestamps[$day];
+
     $choose_date = date("Y-m-d",strtotime("+$day day"));
+    var_dump($timestamps);
+    var_dump($choose_timestamp);
     ?>
     <div class='order_head'>
         <div class='order_time_choose'>
             <div class="dropdown">
-              <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
-                <?php echo $days[$day]; ?>
+              <button timestamp='{:$timestamps[$day]}' class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+                {:$days[$day]}
                 <span class="caret"></span>
               </button>
               <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                <li role="presentation" class='choose_date_li' date='<?php echo $true_days[0];?>'><a role="menuitem" tabindex="-1" href='?orders/new&day=0' ><?php echo $days[0]; ?></a></li>
-                <li role="presentation" class='choose_date_li' date='<?php echo $true_days[1];?>'><a role="menuitem" tabindex="-1" href='?orders/new&day=1' ><?php echo $days[1]; ?></a></li>
-                <li role="presentation" class='choose_date_li' date='<?php echo $true_days[2];?>'><a role="menuitem" tabindex="-1" href='?orders/new&day=2' ><?php echo $days[2]; ?></a></li>
-                <li role="presentation" class='choose_date_li' date='<?php echo $true_days[3];?>'><a role="menuitem" tabindex="-1" href='?orders/new&day=3' ><?php echo $days[3]; ?></a></li>
-                <li role="presentation" class='choose_date_li' date='<?php echo $true_days[4];?>'><a role="menuitem" tabindex="-1" href='?orders/new&day=4' ><?php echo $days[4]; ?></a></li>
+                <li role="presentation" class='choose_date_li'><a role="menuitem" tabindex="-1" href='?orders/new&day=0' >{:$days[0]}</a></li>
+                <li role="presentation" class='choose_date_li'><a role="menuitem" tabindex="-1" href='?orders/new&day=1' >{:$days[1]}</a></li>
+                <li role="presentation" class='choose_date_li'><a role="menuitem" tabindex="-1" href='?orders/new&day=2' >{:$days[2]}</a></li>
+                <li role="presentation" class='choose_date_li'><a role="menuitem" tabindex="-1" href='?orders/new&day=3' >{:$days[3]}</a></li>
+                <li role="presentation" class='choose_date_li'><a role="menuitem" tabindex="-1" href='?orders/new&day=4' >{:$days[4]}</a></li>
               </ul>
             </div>
         </div>
@@ -39,63 +44,42 @@
     <div class='order_body'>
         <div class='order_item_div service_item_div'>
             <div class='order_item_title'>
-                服务项目总数：<span class='text-danger'><?php echo $items_count;?></span> 个
+                服务项目总数：<span class='text-danger'>{:$items_count}</span> 个
                 <div class='switch_btn'>切换</div>
             </div>
             <div class='order_item_body'>
-                <?php 
-                foreach ($items as $item) {
-                $title = $item["title"];
-                $content = $item["content"];
-                $price = $item["price"];
-                $service_time = $item["service_time"];
-                $interval_time = $item["interval_time"];
-                $pics = $item["pic"];
-                $pics = explode(',', $pics);
-                $preview = $pics[0];
-                //var_dump($preview);
-                ?>
+                <?php foreach ($items as $item) { ?>
                 <div class='item_show'>
                     <div class='item_preview'>
-                        <img src='<?php echo picservice::show($preview);?>'>
+                        <img src='{:$item->photo_thumbnail_url()}'>
                     </div>
                     <div class='item_detail'>
-                        <div class='item_title'><?php echo $title;?></div>
-                        <div class='item_price'>价格：<?php echo $price;?></div>
-                        <div class='item_time'>时间：<?php echo $service_time + $interval_time * 2;?></div>
+                        <div class='item_title'>{:$item->title()}</div>
+                        <div class='item_price'>价格：{:$item->price()}</div>
+                        <div class='item_time'>时间：{:$item->waste_time()}</div>
                     </div>
                 </div>
-                <?php
-                }
-                ?>
+                <?php } ?>
             </div>
         </div>
         
         <div class='order_item_div servers_div'>
             <div class='order_item_title'>
-                技师总数：<span class='text-danger'><?php echo $servers_count;?></span> 个
+                技师总数：<span class='text-danger'>{:$staffs_count}</span> 个
             </div>
             <div class='order_item_body'>
                 <?php 
-                //var_dump($servers);
-                foreach ($servers as $server) {
-                    $id = $server["id"];
-                    $name = $server["name"];
-                    $content = $server["content"];
-                    $pics = $server["pic"];
-                    $pics = explode(',', $pics);
-                    $preview = $pics[0];
-
-                    $is_work = servers::is_workdate($choose_date, $id);
+                foreach ($staffs as $staff) {
+                    $is_work = staff::is_workdate($choose_timestamp, $staff->id());
                     $is_rest = $is_work['ret'] ? '' : 'cannot_choose';
                     ?>
                     <div class='item_show <?php echo $is_rest;?>'>
                         <div class='item_preview'>
-                            <img src='<?php echo picservice::show($preview);?>'>
+                            <img src='{:$staff->photo_thumbnail_url(100,0)}'>
                         </div>
                         <div class='item_detail'>
-                            <div class='item_title'><?php echo $name;?></div>
-                            <div class='item_price'>介绍：<?php echo $content;?></div>
+                            <div class='item_title'>{:$staff->name()}</div>
+                            <div class='item_price'>介绍：{:$staff->content()}</div>
                         </div>
                     </div>
                     <?php
@@ -136,8 +120,6 @@
                             echo $tr_time;
                         ?>
                     </table>
-                
-                
                 </div>
             </div>
         </div>

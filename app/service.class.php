@@ -33,6 +33,14 @@ class service {
     public function content() {
         return $this->summary("content");
     }
+    
+    public function price() {
+        return $this->summary("price");
+    }
+    
+    public function waste_time() {
+        return $this->summary("service_time") + $this->summary("interval_time")* 2;
+    }
 
     public function id() {
         return (int)$this->summary("id", 0);

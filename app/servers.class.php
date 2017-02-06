@@ -75,30 +75,6 @@ class servers {
 
 
 
-function diffBetweenTwoDays ($day1, $day2){
-  $second1 = strtotime($day1);
-  $second2 = strtotime($day2);
-    
-  if ($second1 < $second2) {
-    $tmp = $second2;
-    $second2 = $second1;
-    $second1 = $tmp;
-  }
-  return ($second1 - $second2) / 86400;
-}
-
-function make_truedate($date){
-    $date = explode("-", $date);
-    $year = $date[0];
-    $month = $date[1] + 1;
-    $day = $date[2];
-    $true_day = $year . "-" . $month . "-" . $day;  //需要手动+1月份
-    return $true_day;
-}
-
-
-
-
 
 
 ?>

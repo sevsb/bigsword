@@ -34,7 +34,7 @@ function drawCalendarBody(year, month) {
         }
 
         for (var dayNumber = 1; dayNumber <= mouthDays; dayNumber++) {
-            thisday = year + "-" + (month + 1) + "-" + dayNumber + " 12:00:00";
+            thisday = year + "-" + (month + 1) + "-" + dayNumber ;
             timestamp = Date.parse(thisday) / 1000;
             html += '<td class="calendar_day" thisday="' + thisday + '" day="' + dayNumber + '" timestamp="' + timestamp + '">';
             html += '<div class="">' + dayNumber + '</div>';

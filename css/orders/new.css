@@ -46,6 +46,10 @@
     display: inline-block;
 }
 
+.item_preview  img{
+    width: 100px;
+}
+
 .choose_date_li {
     cursor: pointer;
 }
