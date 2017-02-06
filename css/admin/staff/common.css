@@ -19,6 +19,7 @@
     max-height: 204px;
     text-align: center;
     line-height: 204px;
+    border-radius: 8px;
 }
 
 .staff-photo-new {
