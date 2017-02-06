@@ -60,9 +60,9 @@
         <div class="form-group duty_rule_div <?php echo $type_div_cho[2]; ?>" id='2'>
             <label for="qcomment" class="col-sm-2 control-label">值班设置</label>
             <div class="col-sm-10">
-                <label for="qcomment" class="worktime">上&nbsp&nbsp</label><input type='number' min='0' id="worktime" style="height: 32px; width: 20%; padding: 6px 12px;" value='<?php echo $worktime; ?>'>
-                <label for="qcomment" class="resttime">歇&nbsp&nbsp</label><input type='number' min='0' id="resttime" style="height: 32px; width: 20%; padding: 6px 12px;" value='<?php echo $resttime; ?>'>
-                <label for="qcomment" class="starttime">起始时间&nbsp&nbsp</label><input type='text' id="datepicker" starttime='<?php echo $starttime; ?>' style="height: 32px; width: 20%; padding: 6px 12px;" value='<?php echo $starttime; ?>'>
+                <label for="qcomment" class="worktime">上&nbsp&nbsp</label><input class='text-center' type='number' min='0' id="worktime" style="height: 32px; width: 10%; padding: 6px 12px;" value='<?php echo $worktime; ?>'>
+                <label for="qcomment" class="resttime">天，歇&nbsp&nbsp</label><input class='text-center' type='number' min='0' id="resttime" style="height: 32px; width: 10%; padding: 6px 12px;" value='<?php echo $resttime; ?>'>
+                <label for="qcomment" class="starttime">天，起始时间&nbsp&nbsp</label><input class='text-center' type='text' id="datepicker" starttime='<?php echo $starttime; ?>' style="height: 32px; width: 20%; padding: 6px 12px;" value='<?php echo $starttime; ?>'>
             </div>
         </div>
         
@@ -112,8 +112,8 @@
                   </ul>
                 </div>
                 <div><textarea rows='5' class='event_content'></textarea></div>
-                <button class='new_event_btn btn btn-default'>设置事件</button>
-                <button class='cancel_event_btn btn btn-danger'>撤消事件</button>
+                <button class='new_event_btn btn btn-primary'>设置单独事件</button>
+                <button class='cancel_event_btn btn btn-danger'>撤消单独事件</button>
             </div>
             <div class='event_list_div'>
                 <div class='event_count'></div>
