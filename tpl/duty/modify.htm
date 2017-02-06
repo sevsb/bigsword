@@ -3,11 +3,11 @@
         <h3 class="page_title">设置技师排班</h3>
     </div>
     <?php
-    //var_dump($server);
-    $skills = explode(",", $server['skill']);
-    //var_dump($duty);
-    $type = $duty['type'];
-    $rule = $duty['rule'];
+    var_dump($duty);
+    var_dump($staff);
+
+    $type = $duty->type();
+    $rule = $duty->rule();
     $type_cho = [];
     $type_div_cho[1] = 'hide';
     $type_div_cho[2] = 'hide';
@@ -32,7 +32,7 @@
             <label for="qtitle" class="col-sm-2 control-label">姓名</label>
             <div class="col-sm-10">
                 <input type='text' id="title" style="height: 32px; width: 80%; padding: 6px 12px;"
-                value='<?php echo $server['name']; ?>' readonly>
+                value='{:$staff->name()}' readonly>
             </div>
         </div>
         

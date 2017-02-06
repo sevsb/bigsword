@@ -51,8 +51,10 @@ class staff_controller {
         }
         $filename = $ret;
 
-        $ret = db_staffs::inst()->add_staff($name, $content, $filename);
-        return ($ret !== false) ? "success" : "fail|数据库操作失败，请稍后重试。";
+        $ret1 = db_staffs::inst()->add_staff($name, $content, $filename);
+        $newid = db_staffs::inst()->last_insert_id();
+        $ret2 = db_duty::inst()->add($newid);
+        return (($ret1 && $ret2) !== false) ? "success" : "fail|数据库操作失败，请稍后重试。";
     }
 
     public function update_ajax() {

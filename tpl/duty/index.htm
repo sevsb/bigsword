@@ -10,22 +10,20 @@
         <td>操作</td>
     </tr>
     <?php
-    foreach ($servers as $server) {
-        //$tourl = "?servers/detail_show&id=" . $server['id'];
+    foreach ($staffs as $staff_id => $staff) {
         ?>
-            <tr id="server_<?php echo $server['id'];?>">
-                <td><?php echo $server['id'];?></td>
-                <td><?php echo  $server['name'];?></td>
-                <td><?php echo $server['content'];?></td>
+            <tr id="server_{:$staff_id}">
+                <td>{:$staff->id()}</td>
+                <td>{:$staff->name()}</td>
+                <td>{:$staff->content()}</td>
                 <td>
-                    <a href='?duty/modify&id=<?php echo $server['id'];?>'><button class='btn btn-primary' id="<?php echo $server['id'];?>">设置</button></a>
+                    <a href='?duty/modify&id={:$staff->id()}'><button class='btn btn-primary' id="{:$staff->id()}">设置</button></a>
                 </td>
             </tr>
         <?php
     }
     ?>
-    
-    <table>
+    </table>
 </div>
 <div class=''></div>
 <div class=''></div>

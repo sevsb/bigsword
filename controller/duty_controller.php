@@ -5,22 +5,20 @@ class duty_controller {
 
     public function index_action() {
         $tpl = new tpl("admin/header", "admin/footer");
-        $servers = servers::get_all_servers();
-        $tpl->set('servers', $servers);
+        $staffs = staff::load_all_staffs();
+        $tpl->set('staffs', $staffs);
         $tpl->display("duty/index");
     }
 
     public function modify_action() {
         $tpl = new tpl("admin/header", "admin/footer");
         $id = get_request('id');
-        $server = servers::get_server_detail($id);
-        $service_items = service::get_all_services();
-        $duty = duty::get_one_duty($id);
         $token = picservice::get_token();
+        $duty = duty::create($id);
+        $staff = staff::create($id);
         $tpl->set('id', $id);
-        $tpl->set('items', $service_items);
-        $tpl->set('server', $server);
         $tpl->set('duty', $duty);
+        $tpl->set('staff', $staff);
         $tpl->set('token', $token["token"]);
         $tpl->display("duty/modify");
     }

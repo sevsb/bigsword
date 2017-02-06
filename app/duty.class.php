@@ -3,9 +3,57 @@ include_once(dirname(__FILE__) . "/config.php");
 
 class duty {
     
+    private $summary = array();
+    
     public function __construct($data) {
         $this->summary = $data;
     }
+    
+    private function summary($key, $def = "") {
+        if (isset($this->summary[$key])) {
+            return $this->summary[$key];
+        }
+        return $def;
+    }
+
+
+    public function staff_id() {
+        return $this->summary("serverid");
+    }
+
+    public function type() {
+        return $this->summary("type");
+    }
+    
+    public function rule() {
+        return $this->summary("rule");
+    }
+    
+    public function vacations() {
+        return $this->summary("vacation");
+    }
+
+
+    public static function load_all() {
+        $s = array();
+        $r = db_duty::inst()->get_all_duties();
+        foreach ($r as $id => $duty) {
+            $s[$id] = new duty($duty);
+        }
+        return $s;
+    }
+
+    public static function create($id) {
+        $r = db_duty::inst()->get_one_duty($id);
+        if (empty($r)) {
+            return null;
+        }
+        return new duty($r);
+    }
+    
+    
+   /////////////////////////////////////////////////////// 
+    
     
     public static function setrule($id, $type, $rule) {
         $ret = db_duty::inst()->setrule($id, $type, $rule);
@@ -34,6 +82,15 @@ class duty {
 
 
 }
+
+
+
+
+
+
+
+
+
 
 
 function mk_jsday($date){
