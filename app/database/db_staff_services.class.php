@@ -22,6 +22,10 @@ class db_staff_services extends database {
         }
     }
     
+    public function load_all() {
+        return $this->get_all_table(TABLE_STAFF_SERVICES);
+    }
+    
     public function get_staff_services($staff_id) {
         $staff_id = (int)$staff_id;
         return $this->get_one_table(TABLE_STAFF_SERVICES, "staff_id = $staff_id");

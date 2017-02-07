@@ -18,7 +18,7 @@ $timestamps = array(
     strtotime(date("Y-m-d",strtotime("+4 day")))
 );
 $choose_timestamp = $timestamps[$day];
-//var_dump($timestamps);
+//var_dump($staff_services);
 //var_dump($choose_timestamp);
 
 echo '<script type="text/javascript">var timestamps = ' . json_encode($timestamps) . '; console.debug(timestamps);</script>' . "\n";
@@ -26,6 +26,7 @@ echo '<script type="text/javascript">var choose_timestamp = ' . json_encode($cho
 echo '<script type="text/javascript">var duties = ' . json_encode($duties) . '; console.debug(duties);</script>' . "\n";
 echo '<script type="text/javascript">var staffs = ' . json_encode($staffs) . '; console.debug(staffs);</script>' . "\n";
 echo '<script type="text/javascript">var items = ' . json_encode($items) . '; console.debug(items);</script>' . "\n";
+echo '<script type="text/javascript">var staff_services = ' . json_encode($staff_services) . '; console.debug(staff_services);</script>' . "\n";
 
 ?>
     <div class='order_head'>
@@ -79,7 +80,7 @@ echo '<script type="text/javascript">var items = ' . json_encode($items) . '; co
                     $is_work = staff::is_workdate($choose_timestamp, $staff->id());
                     $is_rest = $is_work['ret'] ? '' : 'cannot_choose';
                     ?>
-                    <div class='item_show <?php echo $is_rest;?>'>
+                    <div class='item_show <?php echo $is_rest;?>' id='{:$staff->id()}'>
                         <div class='item_preview'>
                             <img src='{:$staff->photo_thumbnail_url(100,0)}'>
                         </div>

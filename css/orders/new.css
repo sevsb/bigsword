@@ -15,7 +15,12 @@
     -moz-opacity:0.5; 
     filter:alpha(opacity=50);
 }
-
+.disability {
+    background-color: red; 
+    opacity:0.5; 
+    -moz-opacity:0.5; 
+    filter:alpha(opacity=50);
+}
 .service_item_div {
     width: 25%;
 }

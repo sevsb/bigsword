@@ -21,14 +21,30 @@ $(document).ready(function() {
         item_id = $(this).find('.item_id').html();
         console.log(item_id);
         
-        //console.log(staffs);
-        var disability_group = [];
-        for (staff_id in staffs) {
-            
-            var staff = staffs[staff_id];
-            var summary = staff.summary;
-            console.log(summary);
+        var ability_group = [];
+        for (staff_id in staff_services) {
+            var skills = staff_services[staff_id].service_id;
+            skills = skills.split(",");
+            //var summary = staff.summary;
+            sk_length = skills.length;
+            for (var i = 0 ; i < sk_length ; i++) {
+                if(skills[i] == item_id){
+                    ability_group.push(staff_id);
+                }
+            }
         }
+        console.log(ability_group);
+        $('.servers_div').find('.item_show').each(function(){
+            var staff_id = $(this).attr('id');
+            ab_length = ability_group.length;
+            for (var i = 0; i < ab_length; i++) {
+                if (ability_group[i] == staff_id){
+                    $(this).removeClass('disability');
+                }else {
+                    $(this).addClass('disability');
+                }
+            }
+        });
     });
     
     
