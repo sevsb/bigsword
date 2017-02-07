@@ -16,9 +16,7 @@ class orders_controller {
         $staffs = staff::load_all_staffs();
         $duties = duty::get_all_duties();
         $token = picservice::get_token();
-        
         $tpl->set('id', $id);
-        
         $tpl->set('items', $service_items);
         $tpl->set('staffs', $staffs);
         $tpl->set('items_count', count($service_items));

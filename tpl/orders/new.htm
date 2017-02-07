@@ -1,28 +1,33 @@
 <div id="page-wrapper">
-    <?php
-    $day = get_request('day',0);
-    $weekarray = array("日","一","二","三","四","五","六");
-    $days = array(
-        "今天，" . date("m-d") . " (星期" . $weekarray[date("w")] . ")",
-        "明天，" . date("m-d",strtotime("+1 day")) . " (星期" . $weekarray[date("w", strtotime("+1 day"))] . ")",
-        "后天，" . date("m-d",strtotime("+2 day")) . " (星期" . $weekarray[date("w", strtotime("+2 day"))] . ")",
-        "" . date("m-d",strtotime("+3 day")) . " (星期" . $weekarray[date("w", strtotime("+3 day"))] . ")",
-        "" . date("m-d",strtotime("+4 day")) . " (星期" . $weekarray[date("w", strtotime("+4 day"))] . ")"
-    );
-    $timestamps = array(
-        strtotime(date("Y-m-d")),
-        strtotime(date("Y-m-d",strtotime("+1 day"))),
-        strtotime(date("Y-m-d",strtotime("+2 day"))),
-        strtotime(date("Y-m-d",strtotime("+3 day"))),
-        strtotime(date("Y-m-d",strtotime("+4 day")))
-    );
+<?php
+ 
+$day = get_request('day',0);
+$weekarray = array("日","一","二","三","四","五","六");
+$days = array(
+    "今天，" . date("m-d") . " (星期" . $weekarray[date("w")] . ")",
+    "明天，" . date("m-d",strtotime("+1 day")) . " (星期" . $weekarray[date("w", strtotime("+1 day"))] . ")",
+    "后天，" . date("m-d",strtotime("+2 day")) . " (星期" . $weekarray[date("w", strtotime("+2 day"))] . ")",
+    "" . date("m-d",strtotime("+3 day")) . " (星期" . $weekarray[date("w", strtotime("+3 day"))] . ")",
+    "" . date("m-d",strtotime("+4 day")) . " (星期" . $weekarray[date("w", strtotime("+4 day"))] . ")"
+);
+$timestamps = array(
+    strtotime(date("Y-m-d")),
+    strtotime(date("Y-m-d",strtotime("+1 day"))),
+    strtotime(date("Y-m-d",strtotime("+2 day"))),
+    strtotime(date("Y-m-d",strtotime("+3 day"))),
+    strtotime(date("Y-m-d",strtotime("+4 day")))
+);
+$choose_timestamp = $timestamps[$day];
+//var_dump($timestamps);
+//var_dump($choose_timestamp);
 
-    $choose_timestamp = $timestamps[$day];
+echo '<script type="text/javascript">var timestamps = ' . json_encode($timestamps) . '; console.debug(timestamps);</script>' . "\n";
+echo '<script type="text/javascript">var choose_timestamp = ' . json_encode($choose_timestamp) . '; console.debug(choose_timestamp);</script>' . "\n";
+echo '<script type="text/javascript">var duties = ' . json_encode($duties) . '; console.debug(duties);</script>' . "\n";
+echo '<script type="text/javascript">var staffs = ' . json_encode($staffs) . '; console.debug(staffs);</script>' . "\n";
+echo '<script type="text/javascript">var items = ' . json_encode($items) . '; console.debug(items);</script>' . "\n";
 
-    $choose_date = date("Y-m-d",strtotime("+$day day"));
-    var_dump($timestamps);
-    var_dump($choose_timestamp);
-    ?>
+?>
     <div class='order_head'>
         <div class='order_time_choose'>
             <div class="dropdown">
@@ -54,6 +59,7 @@
                         <img src='{:$item->photo_thumbnail_url()}'>
                     </div>
                     <div class='item_detail'>
+                        <div class='item_id hide'>{:$item->id()}</div>
                         <div class='item_title'>{:$item->title()}</div>
                         <div class='item_price'>价格：{:$item->price()}</div>
                         <div class='item_time'>时间：{:$item->waste_time()}</div>
