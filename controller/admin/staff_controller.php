@@ -28,11 +28,12 @@ class staff_controller {
         if ($staff == null) {
             fatal();
         }
-
+        $staff_services = db_staff_services::inst()->get_staff_services($staff_id);
         $service_items = service::get_all_services();
         $tpl = new tpl("admin/header", "admin/footer");
         $tpl->set('items', $service_items);
         $tpl->set("staff", $staff);
+        $tpl->set("staff_services", $staff_services["service_id"]);
         $tpl->display("admin/staff/info");
     }
 
@@ -41,7 +42,7 @@ class staff_controller {
         $content = get_request_assert("content");
         $skills = get_request_assert("skills");
         $photo = get_request_assert("photo");
-
+        $skills = implode(',', $skills);
         $filename = null;
         $ret = uploadImageViaFileReader($photo, function($filename) {
             return $filename;
@@ -54,7 +55,8 @@ class staff_controller {
         $ret1 = db_staffs::inst()->add_staff($name, $content, $filename);
         $newid = db_staffs::inst()->last_insert_id();
         $ret2 = db_duty::inst()->add($newid);
-        return (($ret1 && $ret2) !== false) ? "success" : "fail|数据库操作失败，请稍后重试。";
+        $ret3 = db_staff_services::inst()->add_staff_service($newid, $skills);
+        return (($ret1 && $ret2 && $ret3) !== false) ? "success" : "fail|数据库操作失败，请稍后重试。";
     }
 
     public function update_ajax() {
@@ -63,7 +65,7 @@ class staff_controller {
         $content = get_request_assert("content");
         $skills = get_request_assert("skills");
         $photo = get_request_assert("photo");
-
+        $skills = implode(',', $skills);
         $filename = null;
         if (strncmp($photo, "http", 4) != 0) {
             $ret = uploadImageViaFileReader($photo, function($filename) {
@@ -76,7 +78,8 @@ class staff_controller {
         }
 
         $ret = db_staffs::inst()->update_staff($staff_id, $name, $content, $filename);
-        return ($ret !== false) ? "success" : "fail|数据库操作失败，请稍后重试。";
+        $ret1 = db_staff_services::inst()-> update_staff_service($staff_id, $skills);
+        return (($ret && $ret1) !== false) ? "success" : "fail|数据库操作失败，请稍后重试。";
     }
 }
 

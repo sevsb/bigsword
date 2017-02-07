@@ -27,9 +27,14 @@
                                 <label>技能选择</label>
                                 <br>
                                 <?php
+                                $staff_services = explode(',', $staff_services);
                                 foreach ($items as $item) {
+                                    $ability = '';
+                                    if(in_array($item["id"], $staff_services)) {
+                                        $ability = 'btn-selected';
+                                    }
                                 ?>
-                                    <button class='btn btn-default item-btn' id="<?php echo $item["id"];?>"><?php echo $item['title']; ?></button>
+                                    <button class='btn btn-default item-btn {:$ability}' id="<?php echo $item["id"];?>"><?php echo $item['title']; ?></button>
                                 <?php
                                 }
                                 ?>

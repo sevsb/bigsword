@@ -12,6 +12,7 @@ include_once(dirname(__FILE__) . "/database/db_service.class.php");
 include_once(dirname(__FILE__) . "/database/db_servers.class.php");
 include_once(dirname(__FILE__) . "/database/db_duty.class.php");
 include_once(dirname(__FILE__) . "/database/db_staffs.class.php");
+include_once(dirname(__FILE__) . "/database/db_staff_services.class.php");
 include_once(dirname(__FILE__) . "/database/db_customers.class.php");
 include_once(dirname(__FILE__) . "/user.class.php");
 include_once(dirname(__FILE__) . "/upload.php");
@@ -68,6 +69,7 @@ defined('TABLE_SERVICES') or define('TABLE_SERVICES', MYSQL_PREFIX . "services")
 defined('TABLE_SERVERS') or define('TABLE_SERVERS', MYSQL_PREFIX . "servers");
 
 defined('TABLE_STAFFS') or define('TABLE_STAFFS', MYSQL_PREFIX . "staffs");
+defined('TABLE_STAFF_SERVICES') or define('TABLE_STAFF_SERVICES', MYSQL_PREFIX . "staff_services");
 // duty
 defined('TABLE_DUTY') or define('TABLE_DUTY', MYSQL_PREFIX . "duty");
 // customers
