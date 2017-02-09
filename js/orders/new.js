@@ -24,12 +24,12 @@ $(document).ready(function() {
         var ability_group = [];
         for (staff_id in staff_services) {
             var skills = staff_services[staff_id].service_id;
+            var stf_id = staff_services[staff_id].staff_id;
             skills = skills.split(",");
-            //var summary = staff.summary;
             sk_length = skills.length;
             for (var i = 0 ; i < sk_length ; i++) {
                 if(skills[i] == item_id){
-                    ability_group.push(staff_id);
+                    ability_group.push(stf_id);
                 }
             }
         }

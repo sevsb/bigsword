@@ -10,7 +10,7 @@
 }
 
 .cannot_choose{
-    background-color:#000000; 
+    background-color:#000000 !important; 
     opacity:0.5; 
     -moz-opacity:0.5; 
     filter:alpha(opacity=50);
