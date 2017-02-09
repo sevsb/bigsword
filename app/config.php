@@ -72,5 +72,6 @@ defined('TABLE_STAFFS') or define('TABLE_STAFFS', MYSQL_PREFIX . "staffs");
 defined('TABLE_STAFF_SERVICES') or define('TABLE_STAFF_SERVICES', MYSQL_PREFIX . "staff_services");
 // duty
 defined('TABLE_DUTY') or define('TABLE_DUTY', MYSQL_PREFIX . "duty");
+defined('TABLE_ORDERS') or define('TABLE_ORDERS', MYSQL_PREFIX . "orders");
 // customers
 defined('TABLE_CUSTOMERS') or define('TABLE_CUSTOMERS', MYSQL_PREFIX . "customers");
