@@ -15,6 +15,7 @@ $(document).ready(function() {
     
     $('.service_item_div').find('.item_show').click( function() {
         item_id = $(this).find('.item_id').html();
+        item_title = $(this).find('.item_title').html();
         console.log(item_id);
         var ability_group = [];
         for (staff_id in staff_services) {
@@ -29,6 +30,7 @@ $(document).ready(function() {
             }
         }
         console.log(ability_group); //筛选出会此技能的组。
+        
         $('.servers_div').find('.item_show').each(function(){
             var staff_id = $(this).attr('id');
             ab_length = ability_group.length;
@@ -40,11 +42,15 @@ $(document).ready(function() {
                 }
             }
         });
+        
+        $(".result_item").find(".result_intro").html('选中的项目是：');
+        $('.result_item').find('.result_show').html(item_title);
     });
     
     
     $('.servers_div').find('.item_show').click( function() {
         var staff_id = $(this).attr("id");
+        var staff_name = $(this).find(".item_title").html();
         console.log(staff_id);
         var staff_skills = null;
         for (id in staff_services) {
@@ -71,7 +77,8 @@ $(document).ready(function() {
             }
         });
         
-        
+        $(".result_server").find(".result_intro").html('选中的技师是：');
+        $('.result_server').find('.result_show').html(staff_name);
         
         
     });
