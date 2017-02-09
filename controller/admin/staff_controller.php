@@ -67,14 +67,19 @@ class staff_controller {
         $photo = get_request_assert("photo");
         $skills = implode(',', $skills);
         $filename = null;
-        if (strncmp($photo, "http", 4) != 0) {
+        
+        if (substr($photo, 0, 5) == "data:") {
             $ret = uploadImageViaFileReader($photo, function($filename) {
                 return $filename;
             });
+            logging::e("uploadImage-ret", $ret);
             if (strncmp($ret, "fail|", 5) == 0) {
                 return $ret;
             }
             $filename = $ret;
+        }else {
+            $filename = explode('/', $photo);
+            $filename = end($filename);
         }
 
         $ret = db_staffs::inst()->update_staff($staff_id, $name, $content, $filename);
