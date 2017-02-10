@@ -14,7 +14,7 @@ function updateCalendar(date) {
 
 function drawCalendarBody(year, month) {
 
-    __ajax("duty.get_duty", {id: serverid}, function (data) {
+    __ajax("duty.get_duty", {id: staff_id}, function (data) {
         info = data.info;
         vacations = info.vacation;
         vacations = JSON.parse(vacations);

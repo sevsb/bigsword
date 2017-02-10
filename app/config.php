@@ -9,7 +9,6 @@ include_once(dirname(__FILE__) . "/database/db_user.class.php");
 include_once(dirname(__FILE__) . "/database/db_settings.class.php");
 include_once(dirname(__FILE__) . "/database/db_picservice.class.php");
 include_once(dirname(__FILE__) . "/database/db_service.class.php");
-include_once(dirname(__FILE__) . "/database/db_servers.class.php");
 include_once(dirname(__FILE__) . "/database/db_duty.class.php");
 include_once(dirname(__FILE__) . "/database/db_staffs.class.php");
 include_once(dirname(__FILE__) . "/database/db_staff_services.class.php");
@@ -22,7 +21,6 @@ include_once(dirname(__FILE__) . "/mailer.class.php");
 include_once(dirname(__FILE__) . "/settings.class.php");
 include_once(dirname(__FILE__) . "/picservice.class.php");
 include_once(dirname(__FILE__) . "/service.class.php");
-include_once(dirname(__FILE__) . "/servers.class.php");
 include_once(dirname(__FILE__) . "/staff.class.php");
 include_once(dirname(__FILE__) . "/duty.class.php");
 include_once(dirname(__FILE__) . "/customers.class.php");
@@ -67,13 +65,14 @@ defined('MAIL_SUBJECT_PREFIX') or define('MAIL_SUBJECT_PREFIX', '');
 
 // service
 defined('TABLE_SERVICES') or define('TABLE_SERVICES', MYSQL_PREFIX . "services");
-// servers
-defined('TABLE_SERVERS') or define('TABLE_SERVERS', MYSQL_PREFIX . "servers");
 
+// staffs
 defined('TABLE_STAFFS') or define('TABLE_STAFFS', MYSQL_PREFIX . "staffs");
 defined('TABLE_STAFF_SERVICES') or define('TABLE_STAFF_SERVICES', MYSQL_PREFIX . "staff_services");
+
 // duty
 defined('TABLE_DUTY') or define('TABLE_DUTY', MYSQL_PREFIX . "duty");
 defined('TABLE_ORDERS') or define('TABLE_ORDERS', MYSQL_PREFIX . "orders");
+
 // customers
 defined('TABLE_CUSTOMERS') or define('TABLE_CUSTOMERS', MYSQL_PREFIX . "customers");

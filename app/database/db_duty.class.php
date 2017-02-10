@@ -23,20 +23,20 @@ class db_duty extends database {
     }
 
     public function add($id) {
-        return $this->insert(TABLE_DUTY, array("serverid" => $id));
+        return $this->insert(TABLE_DUTY, array("staff_id" => $id));
     }
     
     public function setrule($id, $type, $rule) {
-        return $this->update(TABLE_DUTY, array("type" => $type, "rule" => $rule), "serverid = '$id'");
+        return $this->update(TABLE_DUTY, array("type" => $type, "rule" => $rule), "staff_id = '$id'");
     }
     
     public function save_event($id, $vacation) {
-        return $this->update(TABLE_DUTY, array("vacation" => $vacation), "serverid = '$id'");
+        return $this->update(TABLE_DUTY, array("vacation" => $vacation), "staff_id = '$id'");
     }
     
 
     public function get_one_duty($id) {
-        return $this->get_one_table(TABLE_DUTY, "serverid = '$id'");
+        return $this->get_one_table(TABLE_DUTY, "staff_id = '$id'");
     }
     
     public function get_all_duties() {

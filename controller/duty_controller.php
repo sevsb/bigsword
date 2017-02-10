@@ -31,7 +31,7 @@ class duty_controller {
     }
 
     public function setrule_ajax() {
-        $id = get_request('serverid');
+        $id = get_request('staff_id');
         $type = get_request('type');
         $rule = get_request('rule');
         $rule = implode(',', $rule);
@@ -43,7 +43,7 @@ class duty_controller {
     }
     
     public function make_event_ajax() {
-        $id = get_request('serverid');
+        $id = get_request('staff_id');
         $timestamp = get_request('timestamp');
         $type = get_request('type');
         $content = get_request('content');
@@ -72,7 +72,7 @@ class duty_controller {
     }
     
     public function cancel_event_ajax() {
-        $id = get_request('serverid');
+        $id = get_request('staff_id');
         $timestamp = get_request('timestamp');
         logging::e("CANCELEVENT", "timestamp : $timestamp");
         

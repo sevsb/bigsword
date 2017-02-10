@@ -18,7 +18,7 @@ class duty {
 
 
     public function staff_id() {
-        return $this->summary("serverid");
+        return $this->summary("staff_id");
     }
 
     public function type() {

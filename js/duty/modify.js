@@ -1,6 +1,6 @@
 $(document).ready(function() {
 // ------------js init ---------------------------
-    serverid = $('.save-btn').attr("id");
+    staff_id = $('.save-btn').attr("id");
     type_id = 1;
     sel_item_btn = 0;
     timestamp = '';
@@ -111,7 +111,7 @@ $(document).ready(function() {
                 rule_weekdays.push(w);
             }
         });
-        var serverid = $(this).attr("id");
+        var staff_id = $(this).attr("id");
         var worktime = $('#worktime').val();
         var resttime = $('#resttime').val();
         var starttime = $('#datepicker').val();
@@ -120,7 +120,7 @@ $(document).ready(function() {
         rule_workrest.resttime = resttime;
         rule_workrest.starttime = starttime;
         type_id == 1 ? ruledetail = rule_weekdays : ruledetail = rule_workrest;
-        __ajax('duty.setrule',{serverid: serverid, type: type_id ,rule: ruledetail},true);
+        __ajax('duty.setrule',{staff_id: staff_id, type: type_id ,rule: ruledetail},true);
     });
     
     $('.new_event_btn').click(function (){
@@ -133,14 +133,14 @@ $(document).ready(function() {
             alert("请选择日期");
             return;
         }
-        __ajax('duty.make_event',{serverid: serverid, timestamp: timestamp ,type: sel_item_btn ,content: content},true);
+        __ajax('duty.make_event',{staff_id: staff_id, timestamp: timestamp ,type: sel_item_btn ,content: content},true);
     });
     
     $('.cancel_event_btn').click(function (){
         if (timestamp == '') {
             return;
         }
-        __ajax('duty.cancel_event',{serverid: serverid, timestamp: timestamp},true);
+        __ajax('duty.cancel_event',{staff_id: staff_id, timestamp: timestamp},true);
     });
     
 });

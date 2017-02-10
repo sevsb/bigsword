@@ -53,13 +53,14 @@ class db_init extends database {
         $this->create_table(TABLE_USER_GROUPS,  array("name" => "TEXT", "access" => "TEXT"));
 
         // serve
-        //$this->create_table(TABLE_SERVICE_ITEMS, array('title' => "TEXT",'content' => "TEXT",'price' => "TEXT",'service_time' => "TEXT",'interval' => "TEXT",'pic' => "TEXT"));
         $this->create_table(TABLE_SERVICE_ITEMS,  array("title" => "TEXT", "content" => "TEXT", "price" => "TEXT", "service_time" => "TEXT", "interval_time" => "TEXT",  "pic" => "TEXT" ));
-        $this->create_table(TABLE_SERVERS,  array("name" => "TEXT", "level" => "TEXT", "content" => "TEXT", "skill" => "TEXT", "status" => "TEXT",  "pic" => "TEXT" ));
+
+        // staff
+        $this->create_table(TABLE_STAFFS,  array("name" => "TEXT", "content" => "TEXT", "photo" => "TEXT", "status" => "TEXT"));
+        $this->create_table(TABLE_STAFF_SERVICES,  array("staff_id" => "TEXT", "service_id" => "TEXT"));
         
         // duty
-        $this->create_table(TABLE_DUTY,  array("serverid" => "TEXT", "type" => "TEXT", "rule" => "TEXT", "vacation_count" => "TEXT", "vacation" => "TEXT",  "overtime" => "TEXT"));
-
+        $this->create_table(TABLE_DUTY,  array("staff_id" => "TEXT", "type" => "TEXT", "rule" => "TEXT", "vacation_count" => "TEXT", "vacation" => "TEXT",  "overtime" => "TEXT"));
         
         // orders
         $this->create_table(TABLE_ORDERS,  array("staff_id" => "TEXT", "service_id" => "TEXT", "start_time" => "TEXT", "status" => "TEXT",  "content" => "TEXT"));

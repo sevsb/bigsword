@@ -26,6 +26,7 @@ class orders_controller {
         $duties = duty::get_all_duties();
         $token = picservice::get_token();
         $staff_services = db_staff_services::inst()->load_all();
+        $orders = order::load_all();
         $tpl->set('id', $id);
         $tpl->set('items', $service_items);
         $tpl->set('staffs', $staffs);
@@ -34,6 +35,8 @@ class orders_controller {
         $tpl->set('duties', $duties);
         $tpl->set('token', $token["token"]);
         $tpl->set('staff_services', $staff_services);
+        $tpl->set('service_items', $service_items);
+        $tpl->set('orders', $orders);
         $tpl->display("orders/new");
     }
     

@@ -63,11 +63,11 @@ class staff {
         return new staff();
     }
     
-    public static function is_workdate($timestamp, $serverid) {
+    public static function is_workdate($timestamp, $staff_id) {
         
         $date = date("Y-m-d ", $timestamp);
         
-        $duty = duty::create($serverid);
+        $duty = duty::create($staff_id);
         $type = $duty->type();
         $vacations = $duty->vacations();
         $rule = $duty->rule();
