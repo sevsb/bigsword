@@ -2,7 +2,7 @@
 include_once(dirname(__FILE__) . "/config.php");
 
 class staff {
-    private $summary = array();
+    public $summary = array();
 
     public function __construct($summary = array()) {
         $this->summary = $summary;
@@ -44,29 +44,29 @@ class staff {
 
     public static function load_all_staffs() {
         $staffs = array();
-        $r = db_staffs::inst()->get_all_staffs();
-        foreach ($r as $staffid => $staff) {
+        $ret = db_staffs::inst()->get_all_staffs();
+        foreach ($ret as $staffid => $staff) {
             $staffs[$staffid] = new staff($staff);
         }
         return $staffs;
     }
 
     public static function create($id) {
-        $r = db_staffs::inst()->get_staff($id);
-        if (empty($r)) {
+        $ret = db_staffs::inst()->get_staff($id);
+        if (empty($ret)) {
             return null;
         }
-        return new staff($r);
+        return new staff($ret);
     }
 
     public static function create_stub_staff() {
         return new staff();
     }
-    
+
     public static function is_workdate($timestamp, $staff_id) {
-        
+
         $date = date("Y-m-d ", $timestamp);
-        
+
         $duty = duty::create($staff_id);
         $type = $duty->type();
         $vacations = $duty->vacations();
@@ -84,7 +84,7 @@ class staff {
                 return array("ret" => true, "detail" => "$date 是工作日");
             }
         }
-        if ($type == 1) {   
+        if ($type == 1) {
             $rule = explode(',', $rule);
             $wkd = date('w',$timestamp);
             foreach ($rule as $restday) {
@@ -113,7 +113,7 @@ class staff {
 function diffBetweenTwoDays ($day1, $day2){
   $second1 = strtotime($day1);
   $second2 = strtotime($day2);
-    
+
   if ($second1 < $second2) {
     $tmp = $second2;
     $second2 = $second1;

@@ -16,8 +16,8 @@
     $rule_w = [];
     if ($type == 1) {
         $rule = explode(",", $rule);
-        foreach ($rule as $r) {
-            $rule_w[$r] = 'btn-primary';
+        foreach ($rule as $ret) {
+            $rule_w[$ret] = 'btn-primary';
         }
     }
     if ($type == 2) {
@@ -35,7 +35,7 @@
                 value='{:$staff->name()}' readonly>
             </div>
         </div>
-        
+
         <div class="form-group">
             <label for="qcomment" class="col-sm-2 control-label">考勤类型选择</label>
              <div class="col-sm-10">
@@ -43,7 +43,7 @@
                 <div class='btn btn-default duty_type <?php echo $type_cho[2]; ?>' id="2">上几歇几（值班值）</div>
             </div>
         </div>
-        
+
         <div class="form-group duty_rule_div <?php echo $type_div_cho[1]; ?>" id='1'>
             <label for="qcomment" class="col-sm-2 control-label">休息时间</label>
              <div class="col-sm-10">
@@ -56,7 +56,7 @@
                 <div class='btn btn-default rule-w <?php echo $rule_w[6]; ?>' id="6">周六</div>
             </div>
         </div>
-        
+
         <div class="form-group duty_rule_div <?php echo $type_div_cho[2]; ?>" id='2'>
             <label for="qcomment" class="col-sm-2 control-label">值班设置</label>
             <div class="col-sm-10">
@@ -65,7 +65,7 @@
                 <label for="qcomment" class="starttime">天，起始时间&nbsp&nbsp</label><input class='text-center' type='text' id="datepicker" starttime='<?php echo $starttime; ?>' style="height: 32px; width: 20%; padding: 6px 12px;" value='<?php echo $starttime; ?>'>
             </div>
         </div>
-        
+
         <div class="form-group">
             <label for="qcomment" class="col-sm-2 control-label">单日设置</label>
         <div class='calendar_panel col-sm-10'>
@@ -88,7 +88,7 @@
                     <td>四</td>
                     <td>五</td>
                     <td>六</td>
-                </tr>        
+                </tr>
                 </thead>
                 <tbody id="calendar_body">
                 </tbody>
@@ -122,12 +122,12 @@
         </div>
         </div>
         </div>
-        
+
         <div class=''>
             <div class='btn btn-success save-btn center-block' id="<?php echo $id;?>" data-toggle="modal" data-target="#">保存修改</div>
         </div><br><br><br><br>
     </div>
-    
+
 </div>
 <div class=''>
 </div>

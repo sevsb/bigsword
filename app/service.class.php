@@ -3,9 +3,9 @@ include_once(dirname(__FILE__) . "/config.php");
 
 class service {
 
-    private $summary = array();
+    public $summary = array();
 
-    public function __construct($data = array()) {
+    public function __construct($data) {
         $this->summary = $data;
     }
 
@@ -33,13 +33,13 @@ class service {
     public function content() {
         return $this->summary("content");
     }
-    
+
     public function price() {
         return $this->summary("price");
     }
-    
+
     public function waste_time() {
-        return $this->summary("service_time") + $this->summary("interval_time")* 2;
+        return $this->summary("service_time") + $this->summary("interval_time") * 2;
     }
 
     public function id() {
@@ -51,20 +51,20 @@ class service {
     }
 
     public static function load_all() {
-        $s = array();
-        $r = db_service::inst()->get_all_services();
-        foreach ($r as $id => $service) {
-            $s[$id] = new service($service);
+        $services = array();
+        $ret = db_service::inst()->get_all_services();
+        foreach ($ret as $id => $service) {
+            $services[$id] = new service($service);
         }
-        return $s;
+        return $services;
     }
 
     public static function create($id) {
-        $r = db_service::inst()->get_service($id);
-        if (empty($r)) {
+        $ret = db_service::inst()->get_service($id);
+        if (empty($ret)) {
             return null;
         }
-        return new service($r);
+        return new service($ret);
     }
 
     public static function create_stub() {

@@ -11,8 +11,8 @@ class user {
     public static function load_all_users($include_librarian = true) {
         $users = array();
 
-        $r = db_user::inst()->get_all_users();
-        foreach ($r as $uid => $user) {
+        $ret = db_user::inst()->get_all_users();
+        foreach ($ret as $uid => $user) {
             $users[$uid] = new user($user);
         }
         return $users;

@@ -2,13 +2,13 @@
 include_once(dirname(__FILE__) . "/config.php");
 
 class duty {
-    
-    private $summary = array();
-    
+
+    public $summary = array();
+
     public function __construct($data) {
         $this->summary = $data;
     }
-    
+
     private function summary($key, $def = "") {
         if (isset($this->summary[$key])) {
             return $this->summary[$key];
@@ -24,61 +24,61 @@ class duty {
     public function type() {
         return $this->summary("type");
     }
-    
+
     public function rule() {
         return $this->summary("rule");
     }
-    
+
     public function vacations() {
         return $this->summary("vacation");
     }
 
 
     public static function load_all() {
-        $s = array();
-        $r = db_duty::inst()->get_all_duties();
-        foreach ($r as $id => $duty) {
-            $s[$id] = new duty($duty);
+        $duties = array();
+        $ret = db_duty::inst()->get_all_duties();
+        foreach ($ret as $id => $duty) {
+            $duties [$id] = new duty($duty);
         }
-        return $s;
+        return $duties;
     }
 
     public static function create($id) {
-        $r = db_duty::inst()->get_one_duty($id);
-        if (empty($r)) {
+        $ret = db_duty::inst()->get_one_duty($id);
+        if (empty($ret)) {
             return null;
         }
-        return new duty($r);
+        return new duty($ret);
     }
-    
-    
-   /////////////////////////////////////////////////////// 
-    
-    
+
+
+   ///////////////////////////////////////////////////////
+
+
     public static function setrule($id, $type, $rule) {
         $ret = db_duty::inst()->setrule($id, $type, $rule);
         return $ret;
     }
-    
+
     public static function save_event($id, $vacation) {
         $ret = db_duty::inst()->save_event($id, $vacation);
         return $ret;
     }
-    
+
     public static function get_one_duty($id) {
         $ret = db_duty::inst()->get_one_duty($id);
         return $ret;
     }
-    
+
     public static function get_all_duties() {
         $duties = array();
-        $r = db_duty::inst()->get_all_duties();
-        foreach ($r as $dutyid => $duty) {
+        $ret = db_duty::inst()->get_all_duties();
+        foreach ($ret as $dutyid => $duty) {
             $duties[$dutyid] = new duty($duty);
         }
         return $duties;
     }
-    
+
     public static function get_one_vacation($id) {
         $ret = db_duty::inst()->get_one_duty($id);
         return $ret["vacation"];

@@ -16,8 +16,8 @@ class book {
 
     public static function load_all_books() {
         $books = array();
-        $r = db_book::inst()->get_all_books();
-        foreach ($r as $bookid => $book) {
+        $ret = db_book::inst()->get_all_books();
+        foreach ($ret as $bookid => $book) {
             $books[$bookid] = new book($book);
         }
         return $books;
@@ -109,7 +109,7 @@ class book {
     public function keeper() {
         if ($this->status() == db_book::STATUS_RETURNED) {
             return user::create_owner_user($this->owner());
-            // return array("id" => 0, "nick" => $this->owner(), "email" => " 图书所有者 ", "face" => "images/favicon.ico", 
+            // return array("id" => 0, "nick" => $this->owner(), "email" => " 图书所有者 ", "face" => "images/favicon.ico",
             //     "facethumbnail" => INSTANCE_URL . "/images/favicon.ico",
             //     "facethumbnailfull" => "http://{$SERVER["HTTP_HOST"]}/" . INSTANCE_URL . "/images/favicon.ico"
             // );
@@ -123,7 +123,7 @@ class book {
         //     $users[$id]["facethumbnailfull"] = "http://{$_SERVER["HTTP_HOST"]}/" . mkUploadThumbnail($users[$id]["face"], 100, 100);
         //     return $users[$id];
         // }
-        // return array("id" => 0, "nick" => "图书馆", "email" => settings::instance()->load("admin_email", ""), "face" => "images/favicon.ico", 
+        // return array("id" => 0, "nick" => "图书馆", "email" => settings::instance()->load("admin_email", ""), "face" => "images/favicon.ico",
         //     "facethumbnail" => INSTANCE_URL . "/images/favicon.ico",
         //     "facethumbnailfull" => "http://{$SERVER["HTTP_HOST"]}/" . INSTANCE_URL . "/images/favicon.ico"
         // );
@@ -137,13 +137,13 @@ class book {
         $users = user::load_all_users();
         $librarian = user::create_library_user();
 
-        $r = array();
+        $ret = array();
         foreach ($orders as $key => $o) {
-            $r [$key]= isset($users[$o["userid"]]) ? $users[$o["userid"]] : $librarian;
+            $ret [$key]= isset($users[$o["userid"]]) ? $users[$o["userid"]] : $librarian;
             // $face = $o["userface"];
             // $orders[$key]["userfacethumbnail"] = mkUploadThumbnail($face, 100, 100);
         }
-        return $r;
+        return $ret;
     }
 
     public function history() {
@@ -201,8 +201,8 @@ class book {
 
     public function is_watching() {
         $userid = get_session("user.id");
-        $r = db_watch::inst()->get_watchers($this->id());
-        foreach ($r as $w) {
+        $ret = db_watch::inst()->get_watchers($this->id());
+        foreach ($ret as $w) {
             if ($w["userid"] == $userid)
                 return true;
         }
@@ -210,7 +210,7 @@ class book {
     }
 
     public function watchers() {
-        $r = db_watch::inst()->get_watchers($this->id());
+        $ret = db_watch::inst()->get_watchers($this->id());
         $users = user::load_all_users();
 
         // $library_user = array("id" => 0, "nick" => "图书馆", "email" => settings::instance()->load("admin_email", ""), "face" => "images/favicon.ico", "facethumbnail" => INSTANCE_URL . "/images/favicon.ico");
@@ -221,7 +221,7 @@ class book {
         // }
 
         $watchers = array();
-        foreach ($r as $w) {
+        foreach ($ret as $w) {
             $watchers []= $users[$w["userid"]];
         }
         return $watchers;
