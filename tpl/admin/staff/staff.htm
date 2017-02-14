@@ -5,6 +5,9 @@
             <div class="pull-left staff-photo">
                 <a href="?admin/staff/view&staff={:$staff_id}" class=""><img src='{:$staff->photo_thumbnail_url()}' /></a>
             </div>
+            <div>
+                <a href="?duty/modify&id={:$staff_id}" class=""><div class='btn btn-success gotoduty'>排班</div></a>
+            </div>
         </div>
         <?php } ?>
         <div class="pull-left staff-info-wrapper">

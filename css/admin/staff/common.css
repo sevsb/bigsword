@@ -2,8 +2,12 @@
 .staff-info-wrapper {
     margin-left: 10px;
     margin-bottom: 10px;
-    height: 204px;
+    height: 238px;
     min-width: 147px;
+}
+
+.gotoduty {
+    width: 100%;
 }
 
 .staff-photo {
