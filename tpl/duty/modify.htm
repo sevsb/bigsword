@@ -3,7 +3,7 @@
         <h3 class="page_title" style='margin-left:30px;'>设置技师排班</h3>
     </div>
     <?php
-    var_dump($event_settings);
+    //var_dump($event_settings);
     //var_dump($staff);
 
     $type = $duty->type();
@@ -26,7 +26,10 @@
         $resttime = $rule[1];
         $starttime = $rule[2];
     }
+    
+    echo '<script type="text/javascript">var event_settings = ' . json_encode($event_settings, JSON_UNESCAPED_UNICODE) . '; console.debug(event_settings);</script>' . "\n";
     ?>
+    
     <div class="form-horizontal" style="margin-top: 24px ;border-bottom: 2px solid #eee;" >
     <hr>
         <div class="form-group">
@@ -114,12 +117,9 @@
                     <span class="caret"></span>
                   </button>
                   <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu2">
-                    <li class='sel_item' role="presentation" id='1'><a role="menuitem" tabindex="-1" >正常休息</a></li>
-                    <li class='sel_item' role="presentation" id='2'><a role="menuitem" tabindex="-1" >病假</a></li>
-                    <li class='sel_item' role="presentation" id='3'><a role="menuitem" tabindex="-1" >年假</a></li>
-                    <li class='sel_item' role="presentation" id='4'><a role="menuitem" tabindex="-1" >事假</a></li>
-                    <li class='sel_item' role="presentation" id='-1'><a role="menuitem" tabindex="-1" >存休</a></li>
-                    <li class='sel_item' role="presentation" id='-2'><a role="menuitem" tabindex="-1" >加班</a></li>
+                    <?php foreach ($event_settings as $evt_setting) { ?>
+                    <li class='sel_item' role="presentation" id='{:$evt_setting["id"]}' etype='{:$evt_setting["type"]}'><a role="menuitem" tabindex="-1" >{:$evt_setting["title"]} <span class='square' style='background-color: {:$evt_setting["color"]} !important;'><span></a></li>
+                    <?php } ?>
                   </ul>
                 </div>
                 <div><textarea rows='5' class='event_content'></textarea></div>

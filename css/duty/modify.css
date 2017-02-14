@@ -57,6 +57,11 @@ input {
     padding-right: 30px;
 }
 
+.btn-choosed {
+    background-color: #286090 !important;
+    color: white;
+}
+
 .sel_item {
     cursor: pointer;
 }
@@ -76,4 +81,10 @@ vertical-align:top;
     border:1px solid #ccc;
     border-radius: 4px;
     width: 350px;
+}
+
+.square {
+    width: 20px;
+    height:20px;
+    display: inline-block;
 }

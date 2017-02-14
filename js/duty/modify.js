@@ -56,8 +56,8 @@ $(document).ready(function() {
         content = '';
         sel_item_btn = 0;
         
-        $('.calendar_day').removeClass('btn-primary');
-        $(this).addClass('btn-primary');
+        $('.calendar_day').removeClass('btn-choosed');
+        $(this).addClass('btn-choosed');
         $('.choosed_date').html(year + "年" + month+1 + "月" + day + "日");
         $('.choosed_date').html(this_time);
         
@@ -66,24 +66,8 @@ $(document).ready(function() {
             var content = this_vacation.content
             var type = this_vacation.type
             sel_item_btn = type;
-            if(type == 1) {
-                type_text = '正常休息';
-            }
-            if(type == 2) {
-                type_text = '病假';
-            }
-            if(type == 3) {
-                type_text = '年假';
-            }
-            if(type == 4) {
-                type_text = '事假';
-            }
-            if(type == -1) {
-                type_text = '存休';
-            }
-            if(type == -2) {
-                type_text = '加班';
-            }
+            type_text = event_settings[type].title;
+            
 
         }
         $('.sel_item_btn').html(type_text + "&nbsp<span class='caret'></span>");

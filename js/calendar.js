@@ -36,13 +36,17 @@ function drawCalendarBody(year, month) {
         for (var dayNumber = 1; dayNumber <= mouthDays; dayNumber++) {
             thisday = year + "-" + (month + 1) + "-" + dayNumber ;
             timestamp = Date.parse(thisday) / 1000;
-            html += '<td class="calendar_day" thisday="' + thisday + '" day="' + dayNumber + '" timestamp="' + timestamp + '">';
-            html += '<div class="">' + dayNumber + '</div>';
+            bg_color = '';
             for (var event_date in vacations) {
                 if (event_date == timestamp) {
-                    html += '<div class="notice"></div>';
+                    var type = vacations[event_date].type;
+                    var bg_color = event_settings[type].color;
                 }
             }
+            
+            html += '<td style="background-color:' + bg_color + ' ;" class="calendar_day" thisday="' + thisday + '" day="' + dayNumber + '" timestamp="' + timestamp + '">';
+            html += '<div class="">' + dayNumber + '</div>';
+
             html += '</td>';
             countCol++;
             if (countCol == 7) {
