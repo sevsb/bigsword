@@ -14,11 +14,13 @@ class duty_controller {
         $tpl = new tpl("admin/header", "admin/footer");
         $id = get_request('id');
         $token = picservice::get_token();
+        $event_settings = settings::event_settings();
         $duty = duty::create($id);
         $staff = staff::create($id);
         $tpl->set('id', $id);
         $tpl->set('duty', $duty);
         $tpl->set('staff', $staff);
+        $tpl->set('event_settings', $event_settings);
         $tpl->set('token', $token["token"]);
         $tpl->display("duty/modify");
     }

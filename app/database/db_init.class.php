@@ -61,6 +61,7 @@ class db_init extends database {
         
         // duty
         $this->create_table(TABLE_DUTY,  array("staff_id" => "TEXT", "type" => "TEXT", "rule" => "TEXT", "vacation_count" => "TEXT", "vacation" => "TEXT",  "overtime" => "TEXT"));
+        $this->create_table(TABLE_EVENT_SETTINGS,  array("title" => "TEXT", "code" => "TEXT", "color" => "TEXT"));
         
         // orders
         $this->create_table(TABLE_ORDERS,  array("staff_id" => "TEXT", "service_id" => "TEXT", "start_time" => "TEXT", "status" => "TEXT",  "content" => "TEXT"));

@@ -41,6 +41,22 @@ class db_settings extends database {
             return ($ret !== false) ? $id : $ret;
         }
     }
+    
+//-------------------------EVENT-SETTINGS-----------------------------------
+        
+    public function load_event_settings() {
+        return $this->get_all_table(TABLE_EVENT_SETTINGS, "", "order by type");
+    }
+    
+    public function add_event_setting($title, $color, $type) {
+        return $this->insert(TABLE_EVENT_SETTINGS, array("title" => $title, "color" => $color, "type" => $type));
+    } 
+    
+    public function update_event_setting($id, $title, $color, $type) {
+        return $this->update(TABLE_EVENT_SETTINGS, array("title" => $title, "color" => $color, "type" => $type), "id = $id");
+    }
+
+    
 };
 
 
