@@ -40,9 +40,12 @@ function drawCalendarBody(year, month) {
             if (duty_type == 1) {
                 var d = new Date(timestamp * 1000);
                 var wd = d.getDay();
-                for (i in duty_rule ) {
-                    if(duty_rule[i] == wd){
-                        bg_color = '#ccc';
+                //console.log(duty_rule);
+                if(duty_rule.length > 0){
+                    for (i in duty_rule ) {
+                        if(parseInt(duty_rule[i]) === parseInt(wd)){
+                            bg_color = '#ccc';
+                        }
                     }
                 }
             } else if (duty_type == 2) {
