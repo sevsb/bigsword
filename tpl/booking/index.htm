@@ -34,17 +34,17 @@
                         <span class="date_caret caret"></span>
                     </button>
                     <ul class="dropdown-menu" role="menu" aria-labelledby="date_dropdownMenu">
-                        <li role="presentation" class="choose_date_li" date="{:$timestamps[0]}"><a href="##" role="menuitem">{:$days[0]}</a></li>
-                        <li role="presentation" class="choose_date_li" date="{:$timestamps[1]}"><a href="##" role="menuitem">{:$days[1]}</a></li>
-                        <li role="presentation" class="choose_date_li" date="{:$timestamps[2]}"><a href="##" role="menuitem">{:$days[2]}</a></li>
-                        <li role="presentation" class="choose_date_li" date="{:$timestamps[3]}"><a href="##" role="menuitem">{:$days[3]}</a></li>
-                        <li role="presentation" class="choose_date_li" date="{:$timestamps[4]}"><a href="##" role="menuitem">{:$days[4]}</a></li>
+                        <li role="presentation" class="choose_date_li" date="{:$timestamps[0]}"><a href="javascript:void(0);" role="menuitem">{:$days[0]}</a></li>
+                        <li role="presentation" class="choose_date_li" date="{:$timestamps[1]}"><a href="javascript:void(0);" role="menuitem">{:$days[1]}</a></li>
+                        <li role="presentation" class="choose_date_li" date="{:$timestamps[2]}"><a href="javascript:void(0);" role="menuitem">{:$days[2]}</a></li>
+                        <li role="presentation" class="choose_date_li" date="{:$timestamps[3]}"><a href="javascript:void(0);" role="menuitem">{:$days[3]}</a></li>
+                        <li role="presentation" class="choose_date_li" date="{:$timestamps[4]}"><a href="javascript:void(0);" role="menuitem">{:$days[4]}</a></li>
                     </ul>
                 </div>
             </div>
         </div>
         <div class="row order_body">
-            <div class="col-md-4" id="service_item_div">
+            <div class="col-sm-4" id="service_item_div">
                 <div class="order_item_div">
                     <div class="order_item_title">
                         服务总数：<span class="text-danger" id="service_item_number">0</span> 个
@@ -54,7 +54,7 @@
                         <?php foreach ($items as $item) { ?>
                             <div class='col-xs-12 item_show btn btn-default' id='service_item-{:$item->id()}' time='{:$item->waste_time()}'>
                                 <div class='col-xs-4 item_preview'>
-                                    <img src='{:$item->photo_thumbnail_url()}' width="86" height="120">
+                                    <img src='{:$item->photo_thumbnail_url()}' width="80" height="120">
                                 </div>
                                 <div class='col-xs-8 item_detail'>
                                     <div class='item_id hide'>{:$item->id()}</div>
@@ -71,7 +71,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4" id="staff_div">
+            <div class="col-sm-4" id="staff_div">
                 <div class="order_item_div">
                     <div class="order_item_title">
                         技师总数：<span class="text-danger" id="staff_number">0</span> 个
@@ -82,7 +82,7 @@
                         <?php foreach ($staffs as $staff) { ?>
                                 <div class='col-xs-12 item_show btn btn-default' id='staff-{:$staff->id()}'>
                                     <div class='col-xs-4 item_preview'>
-                                        <img src='{:$staff->photo_thumbnail_url(100,0)}' width="86" height="120">
+                                        <img src='{:$staff->photo_thumbnail_url(100,0)}' width="64" height="64">
                                     </div>
                                     <div class='col-xs-8 item_detail'>
                                         <div class='item_title'>{:$staff->name()}</div>
@@ -99,7 +99,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4" id="time_div">
+            <div class="col-sm-4" id="time_div">
                 <div class="order_item_div">
                     <div class="order_item_title">
                         选择时间

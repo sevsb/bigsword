@@ -50,7 +50,7 @@
 }
 
 img {
-    vertical-align: middle;
+    object-fit: contain;
 }
 
 .staff_null {
