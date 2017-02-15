@@ -25,6 +25,7 @@
         $worktime = $rule[0];
         $resttime = $rule[1];
         $starttime = $rule[2];
+        $starttime = date("Y-m-d", $starttime);
     }
     
     echo '<script type="text/javascript">var event_settings = ' . json_encode($event_settings, JSON_UNESCAPED_UNICODE) . '; console.debug(event_settings);</script>' . "\n";
