@@ -119,7 +119,7 @@
                   </button>
                   <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu2">
                     <?php foreach ($event_settings as $evt_setting) { ?>
-                    <li class='sel_item' role="presentation" id='{:$evt_setting["id"]}' etype='{:$evt_setting["type"]}'><a role="menuitem" tabindex="-1" >{:$evt_setting["title"]} <span class='square' style='background-color: {:$evt_setting["color"]} !important; float:right;'><span></a></li>
+                    <li class='sel_item' role="presentation" id='{:$evt_setting["id"]}' etype='{:$evt_setting["type"]}'><a role="menuitem" tabindex="-1" ><span class='square' style='background-color: {:$evt_setting["color"]} !important;margin-top: auto; margin-bottom: auto;'></span><span style="padding-left: 5px;">{:$evt_setting["title"]}</span></a></li>
                     <?php } ?>
                     <li role="separator" class="divider"></li>
                     <li class='sel_item' role="presentation" ><a href='?system/duty_event'>添加事件类型<span class='fa fa-plus-circle' style='padding-left:5px;'><span></a></li>
