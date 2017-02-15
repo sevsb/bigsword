@@ -45,11 +45,12 @@
 
 .item_preview {
     float: left;
-    margin-right: 8px;
     padding: 0;
 }
 
-img {
+img { 
+    width: 64px;
+    height: 64px;
     object-fit: contain;
 }
 
