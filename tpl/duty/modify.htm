@@ -1,6 +1,6 @@
 <div id="page-wrapper">
     <div>
-        <h3 class="page_title" style='margin-left:30px;'>设置技师排班</h3>
+        <h3 class="page_title" style='margin-left:30px;'>设置技师排班<a href='?admin/staff/view&staff={:$staff->id()}'><button class='btn-sm text-right btn btn-success' style='margin-left: 30px;'>编辑技师</button></a></h3>
     </div>
     <?php
     //var_dump($event_settings);
@@ -118,12 +118,13 @@
                   </button>
                   <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu2">
                     <?php foreach ($event_settings as $evt_setting) { ?>
-                    <li class='sel_item' role="presentation" id='{:$evt_setting["id"]}' etype='{:$evt_setting["type"]}'><a role="menuitem" tabindex="-1" >{:$evt_setting["title"]} <span class='square' style='background-color: {:$evt_setting["color"]} !important;'><span></a></li>
+                    <li class='sel_item' role="presentation" id='{:$evt_setting["id"]}' etype='{:$evt_setting["type"]}'><a role="menuitem" tabindex="-1" >{:$evt_setting["title"]} <span class='square' style='background-color: {:$evt_setting["color"]} !important; float:right;'><span></a></li>
                     <?php } ?>
+                    <li class='sel_item' role="presentation" ><a href='?system/duty_event'>添加事件类型<span class='fa fa-plus-circle' style='padding-left:5px;'><span></a></li>
                   </ul>
                 </div>
                 <div><textarea rows='5' class='event_content'></textarea></div>
-                <button class='new_event_btn btn btn-primary'>设置单独事件</button>
+                <button class='new_event_btn btn btn-success'>设置单独事件</button>
                 <button class='cancel_event_btn btn btn-danger'>撤消单独事件</button>
             </div>
             <div class='event_list_div'>
