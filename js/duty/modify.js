@@ -38,8 +38,9 @@ $(document).ready(function() {
     });
     
     $(document).on("click",".sel_item",function(){
-        var item_text = $(this).text();
-        $(this).parents('.dropdown').find('.dropdown-toggle').html(item_text + "&nbsp<span class='caret'></span>");
+        var item_text = $(this).html();
+        console.log(item_text);
+        $(this).parents('.dropdown').find('.dropdown-toggle').html(item_text + "");
         sel_item_btn = $(this).attr("id");
     });
     
