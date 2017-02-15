@@ -29,6 +29,8 @@
     }
     
     echo '<script type="text/javascript">var event_settings = ' . json_encode($event_settings, JSON_UNESCAPED_UNICODE) . '; console.debug(event_settings);</script>' . "\n";
+    echo '<script type="text/javascript">var duty_type = ' . json_encode($type, JSON_UNESCAPED_UNICODE) . '; console.debug(duty_type);</script>' . "\n";
+    echo '<script type="text/javascript">var duty_rule = ' . json_encode($rule, JSON_UNESCAPED_UNICODE) . '; console.debug(duty_rule);</script>' . "\n";
     ?>
     
     <div class="form-horizontal" style="margin-top: 24px ;border-bottom: 2px solid #eee;" >
@@ -46,6 +48,7 @@
              <div class="col-sm-10">
                 <div class='btn btn-default duty_type <?php echo $type_cho[1]; ?>' id="1">每周休息</div>
                 <div class='btn btn-default duty_type <?php echo $type_cho[2]; ?>' id="2">上几歇几（值班值）</div>
+                <div style="margin-top:5px;">注：休息的日子用<span style='background-color: #ccc;'>[灰色]</span>背景色展示</div>
             </div>
         </div>
 

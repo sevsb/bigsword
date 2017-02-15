@@ -100,7 +100,8 @@ $(document).ready(function() {
         var worktime = $('#worktime').val();
         var resttime = $('#resttime').val();
         var starttime = $('#datepicker').val();
-        starttime = Date.parse(starttime) / 1000;
+        starttime = Date.parse(starttime) / 1000 - 28800;
+        console.log(starttime);
         var rule_workrest = new Object();
         rule_workrest.worktime = worktime;
         rule_workrest.resttime = resttime;
