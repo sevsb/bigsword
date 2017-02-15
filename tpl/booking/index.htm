@@ -1,0 +1,164 @@
+    <?php
+        $day = get_request('day',0);
+        $weekarray = array("日","一","二","三","四","五","六");
+        $days = array(
+            "今天，" . date("m-d") . " (星期" . $weekarray[date("w")] . ")",
+            "明天，" . date("m-d",strtotime("+1 day")) . " (星期" . $weekarray[date("w", strtotime("+1 day"))] . ")",
+            "后天，" . date("m-d",strtotime("+2 day")) . " (星期" . $weekarray[date("w", strtotime("+2 day"))] . ")",
+            "" . date("m-d",strtotime("+3 day")) . " (星期" . $weekarray[date("w", strtotime("+3 day"))] . ")",
+            "" . date("m-d",strtotime("+4 day")) . " (星期" . $weekarray[date("w", strtotime("+4 day"))] . ")"
+        );
+        $timestamps = array(
+            strtotime(date("Y-m-d")),
+            strtotime(date("Y-m-d",strtotime("+1 day"))),
+            strtotime(date("Y-m-d",strtotime("+2 day"))),
+            strtotime(date("Y-m-d",strtotime("+3 day"))),
+            strtotime(date("Y-m-d",strtotime("+4 day")))
+        );
+    ?>
+
+    <script type="text/javascript">var timestamps = <?php echo json_encode($timestamps, JSON_UNESCAPED_UNICODE); ?>;</script>
+    <script type="text/javascript">var duties = <?php echo json_encode($duties, JSON_UNESCAPED_UNICODE); ?>;</script>
+    <script type="text/javascript">var staffs = <?php echo json_encode($staffs, JSON_UNESCAPED_UNICODE); ?>;</script>
+    <script type="text/javascript">var service_items = <?php echo json_encode($service_items, JSON_UNESCAPED_UNICODE); ?>;</script>
+    <script type="text/javascript">var staff_services = <?php echo json_encode($staff_services, JSON_UNESCAPED_UNICODE); ?>;</script>
+    <script type="text/javascript">var orders = <?php echo json_encode($orders, JSON_UNESCAPED_UNICODE); ?>;</script>
+
+    <div class="container-fluid">
+        <br><br><br>
+        <div class="row order_head">
+            <div class="col-xs-12 order_time_choose">
+                <div class="dropdown">
+                    <button class="btn btn-default dropdown-toggle" type="button" id="date_dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="date_show">{:$days[0]}</span>
+                        <span class="date_caret caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="date_dropdownMenu">
+                        <li role="presentation" class="choose_date_li" date="{:$timestamps[0]}"><a href="##" role="menuitem">{:$days[0]}</a></li>
+                        <li role="presentation" class="choose_date_li" date="{:$timestamps[1]}"><a href="##" role="menuitem">{:$days[1]}</a></li>
+                        <li role="presentation" class="choose_date_li" date="{:$timestamps[2]}"><a href="##" role="menuitem">{:$days[2]}</a></li>
+                        <li role="presentation" class="choose_date_li" date="{:$timestamps[3]}"><a href="##" role="menuitem">{:$days[3]}</a></li>
+                        <li role="presentation" class="choose_date_li" date="{:$timestamps[4]}"><a href="##" role="menuitem">{:$days[4]}</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row order_body">
+            <div class="col-sm-4" id="service_item_div">
+                <div class="order_item_div">
+                    <div class="order_item_title">
+                        服务总数：<span class="text-danger" id="service_item_number">0</span> 个
+                        <div class="btn btn-default switch_btn" id="service_item_switch_btn" style="display: inline-block;" data-toggle="popover" data-placement="top" data-html="true" data-content="没有想要的技师？<br>点我试试。">切换</div>
+                    </div>
+                    <div class="order_item_body" id="service_items_list">
+                        <?php foreach ($items as $item) { ?>
+                            <div class='col-xs-12 item_show btn btn-default' id='service_item-{:$item->id()}' time='{:$item->waste_time()}'>
+                                <div class='col-xs-4 item_preview'>
+                                    <img src='{:$item->photo_thumbnail_url()}'>
+                                </div>
+                                <div class='col-xs-8 item_detail'>
+                                    <div class='item_id hide'>{:$item->id()}</div>
+                                    <div class='item_title'>{:$item->title()}</div>
+                                    <div class='item_price'>价格：{:$item->price()}</div>
+                                    <div class='item_time'>时间：{:$item->waste_time()}</div>
+                                </div>
+                            </div>
+                        <?php } ?>
+                    </div>
+                    <div class="order_item_foot">
+                        <div class="result_intro">请选择服务</div>
+                        <div class="result_show"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4" id="staff_div">
+                <div class="order_item_div">
+                    <div class="order_item_title">
+                        技师总数：<span class="text-danger" id="staff_number">0</span> 个
+                        <div class="btn btn-default switch_btn" id="staff_switch_btn" style="display: none;" data-toggle="popover" data-placement="top" data-html="true" data-content="没有想要的服务？<br>点我试试。">切换</div>
+                    </div>
+                    <div class="order_item_body" id="staffs_list">
+
+                        <?php foreach ($staffs as $staff) { ?>
+                                <div class='col-xs-12 item_show btn btn-default' id='staff-{:$staff->id()}'>
+                                    <div class='col-xs-4 item_preview'>
+                                        <img src='{:$staff->photo_thumbnail_url(100,0)}'>
+                                    </div>
+                                    <div class='col-xs-8 item_detail'>
+                                        <div class='item_title'>{:$staff->name()}</div>
+                                        <div class='item_price'>介绍：{:$staff->content()}</div>
+                                    </div>
+                                </div>
+                            <?php
+                        }
+                        ?>
+                    </div>
+                    <div class="order_item_foot">
+                        <div class="result_intro">请选择技师</div>
+                        <div class="result_show"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4" id="time_div">
+                <div class="order_item_div">
+                    <div class="order_item_title">
+                        选择时间
+                    </div>
+                    <div class="order_item_body">
+                        <div class="staff_null" style="display: block">
+                            请先选择服务与技师。
+                        </div>
+                        <div class="time_select" style="display: none">
+                            <table class="table table-bordered table-condensed">
+                                <tr class="text-right">
+                                    <td></td>
+                                    <td>0 分</td>
+                                    <td>10 分</td>
+                                    <td>20 分</td>
+                                    <td>30 分</td>
+                                    <td>40 分</td>
+                                    <td>50 分</td>
+                                </tr>
+                                <?php
+                                    $tr_time = '';
+                                    for ($i = 9; $i < 18; $i++) {
+                                        $tr_time .= "<tr>";
+                                        $tr_time .= "   <td class='text-right'>$i 时</td>";
+                                        $tr_time .= "   <td class='time_block' id='$i-0'></td>";
+                                        $tr_time .= "   <td class='time_block' id='$i-10'></td>";
+                                        $tr_time .= "   <td class='time_block' id='$i-20'></td>";
+                                        $tr_time .= "   <td class='time_block' id='$i-30'></td>";
+                                        $tr_time .= "   <td class='time_block' id='$i-40'></td>";
+                                        $tr_time .= "   <td class='time_block' id='$i-50'></td>";
+                                        $tr_time .= "</tr>";
+                                    }
+                                    echo $tr_time;
+                                ?>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="order_item_foot">
+                        <!-- div class="result_intro">请选择时间</div>
+                        <div class="result_show"></div -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row order_foot">
+            <div class="col-md-12 order_rstep">
+                <div class="">
+                    <!-- div class="next_btn ">确认</div -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br><br><br>
+
+    <!-- div class="modal fade bs-example-modal-sm" role="dialog" aria-labelledby="time_alert">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+            不能选择此时间段！
+            </div>
+        </div>
+    </div -->
