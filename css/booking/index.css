@@ -43,11 +43,14 @@
     display: none;
 }
 
-img {
-    max-width: 64px;
+.item_preview {
+    float: left;
+    margin-right: 8px;
+    padding: 0;
+}
 
-    max-height: 128px;
-    min-height: 128px;
+img {
+    vertical-align: middle;
 }
 
 .staff_null {

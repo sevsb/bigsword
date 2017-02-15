@@ -54,7 +54,7 @@
                         <?php foreach ($items as $item) { ?>
                             <div class='col-xs-12 item_show btn btn-default' id='service_item-{:$item->id()}' time='{:$item->waste_time()}'>
                                 <div class='col-xs-4 item_preview'>
-                                    <img src='{:$item->photo_thumbnail_url()}'>
+                                    <img src='{:$item->photo_thumbnail_url()}' width="86" height="120">
                                 </div>
                                 <div class='col-xs-8 item_detail'>
                                     <div class='item_id hide'>{:$item->id()}</div>
@@ -82,7 +82,7 @@
                         <?php foreach ($staffs as $staff) { ?>
                                 <div class='col-xs-12 item_show btn btn-default' id='staff-{:$staff->id()}'>
                                     <div class='col-xs-4 item_preview'>
-                                        <img src='{:$staff->photo_thumbnail_url(100,0)}'>
+                                        <img src='{:$staff->photo_thumbnail_url(100,0)}' width="86" height="120">
                                     </div>
                                     <div class='col-xs-8 item_detail'>
                                         <div class='item_title'>{:$staff->name()}</div>
