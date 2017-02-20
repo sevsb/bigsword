@@ -43,9 +43,15 @@
     display: none;
 }
 
-.item_pic {
+.item_preview {
+    float: left;
+    padding: 0;
+}
+
+img { 
     width: 64px;
     height: 64px;
+    object-fit: contain;
 }
 
 .staff_null {
