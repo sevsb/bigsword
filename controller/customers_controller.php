@@ -4,14 +4,14 @@ include_once(dirname(__FILE__) . "/../app/config.php");
 class customers_controller {
 
     public function index_action() {
-        $tpl = new tpl("main/header", "main/footer");
+        $tpl = new tpl("admin/header", "admin/footer");
         $customers = customers::get_all_customers();
         $tpl->set('customers', $customers);
         $tpl->display("customers/index");
     }
     
     public function detail_show_action() {
-        $tpl = new tpl("main/header", "main/footer");
+        $tpl = new tpl("admin/header", "admin/footer");
         $id = get_request('id');
         $customer = customers::get_customer_detail($id);
         $tpl->set('id', $id);
@@ -20,7 +20,7 @@ class customers_controller {
     }
 
     public function modify_action() {
-        $tpl = new tpl("main/header", "main/footer");
+        $tpl = new tpl("admin/header", "admin/footer");
         $id = get_request('id');
         $customer = customers::get_customer_detail($id);
         $tpl->set('id', $id);
@@ -29,7 +29,7 @@ class customers_controller {
     }
     
     public function new_action() {
-        $tpl = new tpl("main/header", "main/footer");
+        $tpl = new tpl("admin/header", "admin/footer");
         $tpl->display("customers/new");
     }
 

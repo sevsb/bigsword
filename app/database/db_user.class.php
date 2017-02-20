@@ -57,6 +57,11 @@ class db_user extends database {
         $userid = (int)$userid;
         return $this->update(TABLE_USERS, array("password" => $password), "id = $userid");
     }
+    
+    public function update_detail($userid, $nick, $face) {
+        $userid = (int)$userid;
+        return $this->update(TABLE_USERS, array("nick" => $nick, "face" => $face), "id = $userid");
+    }
 
     public function update_login_token($userid, $token) {
         $userid = (int)$userid;

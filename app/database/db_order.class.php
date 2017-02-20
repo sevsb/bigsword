@@ -38,6 +38,6 @@ class db_order extends database {
         return $this->get_all_table(TABLE_ORDERS);
     }
 
-};
+}
 
 

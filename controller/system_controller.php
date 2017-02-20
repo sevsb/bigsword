@@ -10,6 +10,15 @@ class system_controller {
         $tpl->display("system/duty_event_setting");
     }
     
+    public function personal_config_action() {
+        $tpl = new tpl("admin/header", "admin/footer");
+        $userid = get_session('user.id');
+        $user = user::create($userid);
+        $tpl->set('userid', $userid);
+        $tpl->set('user', $user);
+        $tpl->display("system/personal_config");
+    }
+    
     public function new_event_setting_ajax() {
         $title = get_request('title');
         $color = get_request('color');
@@ -33,6 +42,32 @@ class system_controller {
             }
         }
         return 'success';
+    }
+    
+    public function update_config_ajax() {
+        $id = get_request('id');
+        $nick = get_request('nick');
+        $face = get_request('face');
+        $filename = null;
+        if (substr($face, 0, 5) == "data:") {
+            $ret = uploadImageViaFileReader($face, function($filename) {
+                return $filename;
+            });
+            logging::e("uploadImage-ret", $ret);
+            if (strncmp($ret, "fail|", 5) == 0) {
+                return $ret;
+            }
+            $filename = $ret;
+        }else {
+            $filename = explode('/', $face);
+            $filename = end($filename);
+        }
+        //logging::e('UPDATE_CONFIG', "$id");
+        //logging::e('UPDATE_CONFIG', "$filename");
+        //logging::e('UPDATE_CONFIG', "$nick");
+        $ret = db_user::inst()->update_detail($id, $nick, $filename);
+        $_SESSION["user.name"] = $nick;
+        return ($ret !== false) ? "success" : "fail|数据库操作失败，请稍后重试。";
     }
 
  
