@@ -66,23 +66,35 @@ $(document).ready(function() {
         $('.date_show').text($(this).text());
         hide_staff_on_vacation();
         $('#staff_number').text(count_staff());
-        if($('.item_show.active.on_vacation').length > 0) {
-            $('.item_show.active.on_vacation').removeClass('active');
-            $('#service_items_list').find('.item_show').removeClass('btn-primary');
-            $('#service_items_list').find('.item_show').removeClass('active');
-            $('#service_items_list').find('.item_show').removeClass('hide');
-            $('#staff_number').text(count_staff());
+        if($('#staffs_list').find('.item_show.active').is('.on_vacation') && switch_flag == STAFF_FIRST) {
             staff_id = -1;
             staff_selected = false;
+            $('#staffs_list').find('.item_show.btn-primary').removeClass('btn-primary');
+            $('#staffs_list').find('.item_show.active').removeClass('active');
+            toggle_staff_result();
             service_item_id = -1;
             service_item_selected = false;
             service_item_time = 0;
-            show_time_select();
+            $('#service_items_list').find('.item_show.btn-primary').removeClass('btn-primary');
+            $('#service_items_list').find('.item_show.active').removeClass('active');
+            $('#service_items_list').find('.item_show.hide').removeClass('hide');
+            $('#service_item_number').text(count_service_item());
+            toggle_service_item_result();
+            toggle_time_select();
+        } else if($('#staffs_list').find('.item_show.active').is('.on_vacation') && switch_flag == SERVICE_ITEM_FIRST) {
+            staff_id = -1;
+            staff_selected = false;
+            $('#staffs_list').find('.item_show.btn-primary').removeClass('btn-primary');
+            $('#staffs_list').find('.item_show.active').removeClass('active');
+            toggle_staff_result();
+            toggle_time_select();
+        } else {
+            
         }
     });
 
     $('.switch_btn').on('click', function() {
-        switch_flag = change_first();
+        change_first();
         if(switch_flag == SERVICE_ITEM_FIRST) {
             staff_id = -1;
             staff_selected = false;
@@ -91,7 +103,7 @@ $(document).ready(function() {
             service_item_selected = false;
             service_item_time = 0;
         }
-        show_time_select();
+        toggle_time_select();
     });
 
     $('.item_show').on('click', function() {
@@ -109,7 +121,7 @@ $(document).ready(function() {
 
             if(!staff_selected) {
                 if(switch_flag == STAFF_FIRST) {
-                    switch_flag = change_first();
+                    change_first();
                 }
 
                 service_item_timeout_id = window.setTimeout("$('#service_item_switch_btn').popover('show')", timeout_period);
@@ -128,8 +140,8 @@ $(document).ready(function() {
                 $('#staff_number').text(count_staff());
             }
 
-            $(this).parent().next().find('.result_intro').text('已选择服务');
-            $(this).parent().next().find('.result_show').text($(this).find('.item_title').text());
+            toggle_service_item_result();
+
         } else {
             window.clearTimeout(service_item_timeout_id);
             window.clearTimeout(staff_timeout_id);
@@ -139,7 +151,7 @@ $(document).ready(function() {
 
             if(!service_item_selected) {
                 if(switch_flag == SERVICE_ITEM_FIRST) {
-                    switch_flag = change_first();
+                    change_first();
                 }
 
                 staff_timeout_id = window.setTimeout("$('#staff_switch_btn').popover('show')", timeout_period);
@@ -160,15 +172,16 @@ $(document).ready(function() {
                 $('#service_item_number').text(count_service_item());
             }
 
-            $(this).parent().next().find('.result_intro').text('已选择技师');
-            $(this).parent().next().find('.result_show').text($(this).find('.item_title').text());
+            toggle_staff_result();
+
         }
         if(typeof($(this).attr('time')) != 'undefined') {
             service_item_time = $(this).attr('time');
         }
 
-        show_time_select();
+        toggle_time_select();
     });
+
     $('.time_block').mouseout(function() {
         var over_time = $(this).attr('id').split('-');
         var hour = Number(over_time[0]);
@@ -242,6 +255,7 @@ $(document).ready(function() {
         __ajax("orders.add", {staff_id: staff_id, service_id: service_item_id, start_time: service_item_start_time});
     });
 });
+
 function init_data() {
     for(i in staff_services) {
         staffs_list[staff_services[i]['staff_id']] = staff_services[i]['service_id'];
@@ -344,15 +358,35 @@ function hide_staff_on_vacation() {
     }
 }
 
-function reset_service_items_list() {
-    
+function toggle_staff_result() {
+    if(staff_selected) {
+        $('#staff_div').find('.result_waiting').hide();
+        $('#staff_div').find('.result_intro').show();
+        $('#staff_div').find('.result_show').show();
+        $('#staff_div').find('.result_show').text($('#staff_div').find('.item_show.active').attr('title'));
+    } else {
+        $('#staff_div').find('.result_waiting').show();
+        $('#staff_div').find('.result_intro').hide();
+        $('#staff_div').find('.result_show').hide();
+        $('#staff_div').find('.result_show').text('');
+    }
 }
 
-function reset_staffs_list() {
-    
+function toggle_service_item_result() {
+    if(service_item_selected) {
+        $('#service_item_div').find('.result_waiting').hide();
+        $('#service_item_div').find('.result_intro').show();
+        $('#service_item_div').find('.result_show').show();
+        $('#service_item_div').find('.result_show').text($('#service_item_div').find('.item_show.active').attr('title'));
+    } else {
+        $('#service_item_div').find('.result_waiting').show();
+        $('#service_item_div').find('.result_intro').hide();
+        $('#service_item_div').find('.result_show').hide();
+        $('#service_item_div').find('.result_show').text('');
+    }
 }
 
-function show_time_select() {
+function toggle_time_select() {
     if(service_item_selected && staff_selected) {
         $('.staff_null').hide();
         $('.time_select').show();
@@ -394,7 +428,8 @@ function change_first() {
         $('#service_item_number').text(count_service_item());
         $('#staff_number').text(count_staff());
 
-        return STAFF_FIRST;
+        toggle_service_item_result();
+        switch_flag =  STAFF_FIRST;
     } else {
         $('#service_item_div').animate({left: 0});
         $('#staff_div').animate({left: -0});
@@ -410,6 +445,7 @@ function change_first() {
         $('#service_item_number').text(count_service_item());
         $('#staff_number').text(count_staff());
 
-        return SERVICE_ITEM_FIRST;
+        toggle_staff_result();
+        switch_flag =  SERVICE_ITEM_FIRST;
     }
 }
