@@ -8,11 +8,13 @@ class orders_controller {
         $service_items = service::load_all();
         $staffs = staff::load_all_staffs();
         $duties = duty::get_all_duties();
+        $orders = order::load_all();
         $token = picservice::get_token();
         $staff_services = db_staff_services::inst()->load_all();
         $tpl->set('id', $id);
         $tpl->set('items', $service_items);
         $tpl->set('staffs', $staffs);
+        $tpl->set('orders', $orders);
         $tpl->set('duties', $duties);
         $tpl->set('token', $token["token"]);
         $tpl->set('staff_services', $staff_services);

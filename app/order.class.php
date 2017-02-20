@@ -19,6 +19,18 @@ class order {
     public function staff_id() {
         return $this->summary("staff_id");
     }
+    
+    public function customer_name() {
+        return $this->summary("customer_name");
+    }
+    
+    public function customer_tel() {
+        return $this->summary("customer_tel");
+    }
+    
+    public function id() {
+        return $this->summary("id");
+    }
 
     public function service_id() {
         return $this->summary("service_id");
@@ -30,6 +42,11 @@ class order {
 
     public function start_time() {
         return $this->summary("start_time");
+    }
+    
+    public function start_time_true() {
+        $time = $this->summary("start_time");
+        return date('Y-m-d H:i:s', $time);
     }
 
     public function content() {
