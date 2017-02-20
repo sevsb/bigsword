@@ -1,6 +1,7 @@
 <div id="page-wrapper">
     <div>
-        <h3 class="page_title">服务项列表</h3>
+        <h3 class="page_title" style='margin-left: 30px; display: inline-block;'>订单列表</h3>
+        <a href='?booking'target="_blank"><button style='float: right;margin-top: 15px;' class='btn btn-success'>新增订单</button></a>
     </div>
     <table class='table'>
     <tr>
@@ -14,7 +15,6 @@
     </tr>
     <?php
     //var_dump($orders);
-    //var_dump($staffs);
     foreach ($orders as $order) {
         $orderid = $order->id();
         $service_id = $order->service_id();
@@ -24,7 +24,6 @@
         $start_time_true = $order->start_time_true();
         $item_title = $items[$service_id]->title();
         $staff_name = $staffs[$staff_id]->name();
-        //$tourl = "?servers/detail_show&id=" . $server['id'];
         ?>
             <tr id="{:$orderid}">
                 <td>{:$orderid}</td>
