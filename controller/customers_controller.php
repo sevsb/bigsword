@@ -2,7 +2,9 @@
 include_once(dirname(__FILE__) . "/../app/config.php");
 
 class customers_controller {
-
+    public function preaction($action) {
+        login::assert();
+    }
     public function index_action() {
         $tpl = new tpl("admin/header", "admin/footer");
         $customers = customers::get_all_customers();

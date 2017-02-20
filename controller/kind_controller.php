@@ -5,6 +5,11 @@ include_once("app/login.php");
 include_once("app/database.php");
 
 class kind_controller {
+    
+    public function preaction($action) {
+        login::assert();
+    }
+    
     public function upload_ajax() {
         if (!isset($_FILES["imgFile"])) {
             return;

@@ -2,7 +2,9 @@
 include_once(dirname(__FILE__) . "/../../app/config.php");
 
 class service_controller {
-
+    public function preaction($action) {
+        login::assert();
+    }
     public function index_action() {
         $services = service::load_all();
 

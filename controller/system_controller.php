@@ -2,6 +2,10 @@
 include_once(dirname(__FILE__) . "/../app/config.php");
 
 class system_controller {
+    
+    public function preaction($action) {
+        login::assert();
+    }
 
     public function duty_event_action() {
         $tpl = new tpl("admin/header", "admin/footer");

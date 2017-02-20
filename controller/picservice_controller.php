@@ -2,7 +2,10 @@
 include_once(dirname(__FILE__) . "/../app/config.php");
 
 class picservice_controller {
-
+    
+    public function preaction($action) {
+        login::assert();
+    }
     public function update_code_ajax() {
         header("Access-Control-Allow-Origin: " . PICSERVICE_IP );
         $code = get_request('code');

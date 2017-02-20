@@ -24,6 +24,7 @@ include_once(dirname(__FILE__) . "/service.class.php");
 include_once(dirname(__FILE__) . "/staff.class.php");
 include_once(dirname(__FILE__) . "/duty.class.php");
 include_once(dirname(__FILE__) . "/customers.class.php");
+include_once(dirname(__FILE__) . "/login.class.php");
 include_once(dirname(__FILE__) . "/order.class.php");
 include_once(FRAMEWORK_PATH . "/helper.php");
 include_once(FRAMEWORK_PATH . "/logging.php");
