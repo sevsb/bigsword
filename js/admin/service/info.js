@@ -9,6 +9,14 @@ $(document).ready(function() {
         $("#upload_input").click();
         return false;
     });
+    
+    $('.do_del').click(function () {
+        var service_id = $('.service_id').html();
+        console.log(service_id);
+        __ajax('admin.service.del', {id: service_id},function(){
+            document.location.href = '?admin/service/index';
+        });
+    });
 
 
     $("#upload_input").change(function() {

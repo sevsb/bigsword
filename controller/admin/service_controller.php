@@ -28,6 +28,7 @@ class service_controller {
         }
         $tpl = new tpl("admin/header", "admin/footer");
         $tpl->set("service", $service);
+        $tpl->set("service_id", $service_id);
         $tpl->display("admin/service/info");
     }
 
@@ -46,6 +47,12 @@ class service_controller {
         $filename = $ret;
 
         $ret = db_service::inst()->add_service($title, $content, $filename);
+        return ($ret !== false) ? "success" : "fail|数据库操作失败，请稍后重试。";
+    }
+    
+    public function del_ajax() {
+        $id = get_request_assert("id");
+        $ret = db_service::inst()->del_service($id);
         return ($ret !== false) ? "success" : "fail|数据库操作失败，请稍后重试。";
     }
 

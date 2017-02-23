@@ -39,9 +39,9 @@ class db_service extends database {
     //     return $this->update(TABLE_SERVICES, array("title" => $title, "content" => $content, "service_time" => $time, "interval_time" => $interval, "price" => $price, "pic" => $filename_list), "id = '$id'");
     // }
     // 
-    // public function del($id) {
-    //     return $this->delete(TABLE_SERVICES, "id = '$id'");
-    // }
+    public function del_service($id) {
+        return $this->delete(TABLE_SERVICES, "id = '$id'");
+    }
 
     public function get_all_services() {
         return $this->get_all_table(TABLE_SERVICES);
