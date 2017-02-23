@@ -34,6 +34,10 @@ class db_staffs extends database {
     public function add_staff($name, $content, $photo) {
         return $this->insert(TABLE_STAFFS, array("name" => $name, "content" => $content, "photo" => $photo));
     }
+    
+    public function del_staff($id) {
+        return $this->delete(TABLE_STAFFS, "id = '$id'");
+    }
 
     public function update_staff($staff_id, $name, $content, $photo) {
         $staff_id = (int)$staff_id;

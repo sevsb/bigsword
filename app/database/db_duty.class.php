@@ -26,6 +26,10 @@ class db_duty extends database {
         return $this->insert(TABLE_DUTY, array("staff_id" => $id));
     }
     
+    public function del($id) {
+        return $this->delete(TABLE_DUTY, "staff_id = '$id'");
+    }
+    
     public function setrule($id, $type, $rule) {
         return $this->update(TABLE_DUTY, array("type" => $type, "rule" => $rule), "staff_id = '$id'");
     }

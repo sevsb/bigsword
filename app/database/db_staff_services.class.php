@@ -40,6 +40,10 @@ class db_staff_services extends database {
         return $this->update(TABLE_STAFF_SERVICES, array("service_id" => $skill), "staff_id = $id");
     }
     
+    public function del_staff_services($id) {
+        return $this->delete(TABLE_STAFF_SERVICES, "staff_id = '$id'");
+    }
+    
 };
 
 

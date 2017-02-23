@@ -10,6 +10,14 @@ $(document).ready(function() {
         return false;
     });
     
+    $('.do_del').click(function () {
+        var staff_id = $('.staff_id').html();
+        console.log(staff_id);
+        __ajax('admin.staff.del', {id: staff_id},function(){
+            document.location.href = '?admin/staff/index';
+        });
+    });
+    
     $('.item-btn').click(function (){
         $(this).toggleClass('btn-selected');
     });
