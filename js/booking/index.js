@@ -21,6 +21,8 @@ var vacation_list = new Array();
 var time_select_list = new Array();
 
 // There is the output parameter
+var customer_name = null;
+var customer_tel = null;
 var staff_id = -1;
 var service_item_id = -1;
 var service_item_time = 0;
@@ -89,7 +91,7 @@ $(document).ready(function() {
             toggle_staff_result();
             toggle_time_select();
         } else {
-            
+
         }
     });
 
@@ -250,9 +252,21 @@ $(document).ready(function() {
         }
     });
 
+    $('.continue_btn').on('click', function() {
+        customer_name = $('#customer_name').val();
+        customer_tel = $('#customer_tel').val();
+
+        console.debug(staff_id+','+service_item_id+','+service_item_start_time+','+customer_name+','+customer_tel);
+        //__ajax("orders.add", {staff_id: staff_id, service_id: service_item_id, start_time: service_item_start_time,customer_name: customer_name, customer_tel: customer_tel});
+    });
+
     $('.sumbit_btn').on('click', function() {
-        console.debug(staff_id+','+service_item_id +','+service_item_start_time);
-        __ajax("orders.add", {staff_id: staff_id, service_id: service_item_id, start_time: service_item_start_time});
+        if(customer_name == null || customer_tel == null) {
+            $('.get_customer_info').modal({backdrop: 'static', keyboard: false});
+        } else {
+            console.debug(staff_id+','+service_item_id+','+service_item_start_time+','+customer_name+','+customer_tel);
+            //__ajax("orders.add", {staff_id: staff_id, service_id: service_item_id, start_time: service_item_start_time, customer_name: customer_name, customer_tel: customer_tel});
+        }
     });
 });
 

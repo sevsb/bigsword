@@ -80,8 +80,8 @@ class order {
         return $ret;
     }
 
-    public static function add($staff_id, $service_id, $start_time) {
-        return db_order::inst()->add($staff_id, $service_id, $start_time);
+    public static function add($staff_id, $service_id, $start_time, $customer_name, $customer_tel) {
+        return db_order::inst()->add($staff_id, $service_id, $start_time, $customer_name, $customer_tel);
     }
 
 

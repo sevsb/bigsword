@@ -48,7 +48,7 @@
                 <div class="order_item_div">
                     <div class="order_item_title">
                         服务总数：<span class="text-danger" id="service_item_number">0</span> 个
-                        <div class="btn btn-default switch_btn" id="service_item_switch_btn" style="display: inline-block;" data-toggle="popover" data-placement="top" data-html="true" data-content="没有想要的技师？<br>点我试试。">切换</div>
+                        <div class="btn btn-primary switch_btn" id="service_item_switch_btn" style="display: inline-block;" data-toggle="popover" data-placement="top" data-html="true" data-content="没有想要的技师？<br>点我试试。">切换</div>
                     </div>
                     <div class="list-group order_item_body" id="service_items_list">
                         <?php foreach ($items as $item) { ?>
@@ -75,7 +75,7 @@
                 <div class="order_item_div">
                     <div class="order_item_title">
                         技师总数：<span class="text-danger" id="staff_number">0</span> 个
-                        <div class="btn btn-default switch_btn" id="staff_switch_btn" style="display: none;" data-toggle="popover" data-placement="top" data-html="true" data-content="没有想要的服务？<br>点我试试。">切换</div>
+                        <div class="btn btn-primary switch_btn" id="staff_switch_btn" style="display: none;" data-toggle="popover" data-placement="top" data-html="true" data-content="没有想要的服务？<br>点我试试。">切换</div>
                     </div>
                     <div class="list-group order_item_body" id="staffs_list">
                         <?php foreach ($staffs as $staff) { ?>
@@ -140,7 +140,7 @@
                     <div class="order_item_foot">
                         <!-- div class="result_intro">请选择时间</div>
                         <div class="result_show"></div -->
-                        <div class="btn btn-default btn-block sumbit_btn" style="display: none">提交</div>
+                        <div class="btn btn-primary btn-block sumbit_btn" style="display: none">提交</div>
                     </div>
                 </div>
             </div>
@@ -156,10 +156,49 @@
 
     <br><br><br>
 
-    <!-- div class="modal fade bs-example-modal-sm" role="dialog" aria-labelledby="time_alert">
-        <div class="modal-dialog modal-sm" role="document">
+    <div class="modal fade customer_info_modal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
-            不能选择此时间段！
+                <!-- div class="modal-header">
+                </div -->
+                <div class="modal-body">
+                    <h4 style="text-align: center;">为了方便联系，请留下您的联系电话与称呼。</h4>
+                    <div class="form-group">
+                        <label for="recipient-name" class="control-label">称呼：</label>
+                        <input type="text" class="form-control" id="customer_name">
+                    </div>
+                    <div class="form-group">
+                        <label for="message-text" class="control-label">联系电话：</label>
+                        <input type="text" class="form-control" id="customer_tel">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary continue_btn">继续</button>
+                </div>
             </div>
         </div>
-    </div -->
+    </div>
+
+    <div class="modal fade waiting_modal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel">
+        <div class="modal-dialog modal-sm" role="document" style="width: 140px;">
+            <div class="modal-content">
+                <div class="modal-body waiting_modal_body">
+                    <div class="loader">
+                        <div class="line-spin-fade-loader">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </div>
+                    </div>
+                    <div class="loader_text">
+                        提交中...
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

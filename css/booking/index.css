@@ -48,7 +48,7 @@
     padding: 0;
 }
 
-img { 
+img {
     width: 64px;
     height: 64px;
     object-fit: contain;
@@ -90,4 +90,144 @@ img {
 
 .time_block.selected {
     background: #337AB7;
+}
+
+@-webkit-keyframes line-spin-fade-loader {
+    50%
+    {
+        opacity: 0.3;
+    }
+
+    100%
+    {
+        opacity: 1;
+    }
+}
+
+@keyframes line-spin-fade-loader {
+    50%
+    {
+        opacity: 0.3;
+    }
+
+    100%
+    {
+        opacity: 1;
+    }
+}
+
+.loader {
+    box-sizing: border-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex: 0 1 auto;
+    flex: 0 1 auto;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    -ms-flex-preferred-size: 25%;
+    flex-basis: 25%;
+    max-width: 100%;
+    height: 60px;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+
+.loader_text {
+    margin-top: 30px;
+
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.line-spin-fade-loader {
+    position: relative;
+    margin: 0 auto;
+}
+
+.line-spin-fade-loader > div:nth-child(1) {
+    top: 20px;
+    left: 0;
+    -webkit-animation: line-spin-fade-loader 1.2s -0.84s infinite ease-in-out;
+    animation: line-spin-fade-loader 1.2s -0.84s infinite ease-in-out;
+}
+
+.line-spin-fade-loader > div:nth-child(2) {
+    top: 13.63636px;
+    left: 13.63636px;
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    -webkit-animation: line-spin-fade-loader 1.2s -0.72s infinite ease-in-out;
+    animation: line-spin-fade-loader 1.2s -0.72s infinite ease-in-out;
+}
+
+.line-spin-fade-loader > div:nth-child(3) {
+    top: 0;
+    left: 20px;
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
+    -webkit-animation: line-spin-fade-loader 1.2s -0.6s infinite ease-in-out;
+    animation: line-spin-fade-loader 1.2s -0.6s infinite ease-in-out;
+}
+
+.line-spin-fade-loader > div:nth-child(4) {
+    top: -13.63636px;
+    left: 13.63636px;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    -webkit-animation: line-spin-fade-loader 1.2s -0.48s infinite ease-in-out;
+    animation: line-spin-fade-loader 1.2s -0.48s infinite ease-in-out;
+}
+
+.line-spin-fade-loader > div:nth-child(5) {
+    top: -20px;
+    left: 0;
+    -webkit-animation: line-spin-fade-loader 1.2s -0.36s infinite ease-in-out;
+    animation: line-spin-fade-loader 1.2s -0.36s infinite ease-in-out;
+}
+
+.line-spin-fade-loader > div:nth-child(6) {
+    top: -13.63636px;
+    left: -13.63636px;
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    -webkit-animation: line-spin-fade-loader 1.2s -0.24s infinite ease-in-out;
+    animation: line-spin-fade-loader 1.2s -0.24s infinite ease-in-out;
+}
+
+.line-spin-fade-loader > div:nth-child(7) {
+    top: 0;
+    left: -20px;
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
+    -webkit-animation: line-spin-fade-loader 1.2s -0.12s infinite ease-in-out;
+    animation: line-spin-fade-loader 1.2s -0.12s infinite ease-in-out;
+}
+
+.line-spin-fade-loader > div:nth-child(8) {
+    top: 13.63636px;
+    left: -13.63636px;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    -webkit-animation: line-spin-fade-loader 1.2s 0s infinite ease-in-out;
+    animation: line-spin-fade-loader 1.2s 0s infinite ease-in-out;
+}
+
+.line-spin-fade-loader > div {
+    background-color: #333;
+    width: 4px;
+    height: 35px;
+    border-radius: 2px;
+    margin: 2px;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    position: absolute;
+    width: 5px;
+    height: 15px;
 }
