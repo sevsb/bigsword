@@ -276,8 +276,8 @@ $(document).ready(function() {
         }
     });
 
-    $('#success_modal').on('hide.bs.modal', function () {
-        location.reload(); 
+    $('.success_modal').on('hide.bs.modal', function () {
+        location.reload();
     });
 });
 
