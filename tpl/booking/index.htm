@@ -159,16 +159,14 @@
     <div class="modal fade customer_info_modal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
-                <!-- div class="modal-header">
-                </div -->
                 <div class="modal-body">
                     <h4 style="text-align: center;">为了方便联系，请留下您的联系电话与称呼。</h4>
                     <div class="form-group">
-                        <label for="recipient-name" class="control-label">称呼：</label>
+                        <label for="customer_name" class="control-label">称呼：</label>
                         <input type="text" class="form-control" id="customer_name">
                     </div>
                     <div class="form-group">
-                        <label for="message-text" class="control-label">联系电话：</label>
+                        <label for="customer_tel" class="control-label">联系电话：</label>
                         <input type="text" class="form-control" id="customer_tel">
                     </div>
                 </div>
@@ -198,7 +196,41 @@
                     <div class="loader_text">
                         提交中...
                     </div>
+                </div>  
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade success_modal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>提交成功！订单详情：</h4>
                 </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="success-service_item" class="control-label">服务：</label>
+                        <div class="success-info" id="success-service_item"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="success-staff" class="control-label">技师：</label>
+                        <div class="success-info" id="success-staff"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="success-time" class="control-label">时间：</label>
+                        <div class="success-info" id="success-time"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade fail_modal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>提交失败！订单详情：</h4>
+                </div>  
             </div>
         </div>
     </div>

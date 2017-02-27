@@ -92,6 +92,10 @@ img {
     background: #337AB7;
 }
 
+.control-label {
+    font-size: 18px;
+}
+
 @-webkit-keyframes line-spin-fade-loader {
     50%
     {
@@ -230,4 +234,9 @@ img {
     position: absolute;
     width: 5px;
     height: 15px;
+}
+
+.success-info {
+    float: right;
+    font-size: 16px;
 }

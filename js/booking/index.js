@@ -257,16 +257,27 @@ $(document).ready(function() {
         customer_tel = $('#customer_tel').val();
 
         console.debug(staff_id+','+service_item_id+','+service_item_start_time+','+customer_name+','+customer_tel);
-        //__ajax("orders.add", {staff_id: staff_id, service_id: service_item_id, start_time: service_item_start_time,customer_name: customer_name, customer_tel: customer_tel});
+
+        $('.customer_info_modal').modal('hide');
+        $('.waiting_modal').modal({backdrop: 'static', keyboard: false});
+
+        __ajax("orders.add", {staff_id: staff_id, service_id: service_item_id, start_time: service_item_start_time,customer_name: customer_name, customer_tel: customer_tel}, function() {success_sumbit();}, function() {fail_sumbit();});
     });
 
     $('.sumbit_btn').on('click', function() {
         if(customer_name == null || customer_tel == null) {
-            $('.get_customer_info').modal({backdrop: 'static', keyboard: false});
+            $('.customer_info_modal').modal({backdrop: 'static', keyboard: false});
         } else {
             console.debug(staff_id+','+service_item_id+','+service_item_start_time+','+customer_name+','+customer_tel);
-            //__ajax("orders.add", {staff_id: staff_id, service_id: service_item_id, start_time: service_item_start_time, customer_name: customer_name, customer_tel: customer_tel});
+
+            $('.waiting_modal').modal({backdrop: 'static', keyboard: false});
+
+            __ajax("orders.add", {staff_id: staff_id, service_id: service_item_id, start_time: service_item_start_time,customer_name: customer_name, customer_tel: customer_tel}, function() {success_sumbit();}, function() {fail_sumbit();});
         }
+    });
+
+    $('#success_modal').on('hide.bs.modal', function () {
+        location.reload(); 
     });
 });
 
@@ -462,4 +473,17 @@ function change_first() {
         toggle_staff_result();
         switch_flag =  SERVICE_ITEM_FIRST;
     }
+}
+
+function success_sumbit() {
+    $('.waiting_modal').modal('hide');
+    $('#success-service_item').text($('#service_item_div').find('.result_show').text());
+    $('#success-staff').text($('#staff_div').find('.result_show').text());
+    $('#success-time').text($('.date_show').text());
+    $('.success_modal').modal('show');
+}
+
+function fail_sumbit() {
+    $('.waiting_modal').modal('hide');
+    $('.fail_modal').modal('show');
 }
