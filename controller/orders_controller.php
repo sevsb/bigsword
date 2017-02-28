@@ -49,7 +49,10 @@ class orders_controller {
         $staff_id = get_request('staff_id');
         $service_id = get_request('service_id');
         $start_time = get_request('start_time');
-        $ret = order::add($staff_id, $service_id, $start_time);
+        $customer_name = get_request('customer_name');
+        $customer_tel = get_request('customer_tel');
+        $userid = get_request('userid');
+        $ret = order::add($staff_id, $service_id, $start_time, $customer_name, $customer_tel, $userid);
         return $ret ? array("ret" => "success", "info" => $ret) : array("ret" => "fail", "info" => "add_order_failed");
     }
     

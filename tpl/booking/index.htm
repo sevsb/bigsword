@@ -163,11 +163,16 @@
                     <h4 style="text-align: center;">为了方便联系，请留下您的联系电话与称呼。</h4>
                     <div class="form-group">
                         <label for="customer_name" class="control-label">称呼：</label>
-                        <input type="text" class="form-control" id="customer_name">
+                        <input value='{:$user->nick()}' type="text" class="form-control" id="customer_name">
                     </div>
                     <div class="form-group">
                         <label for="customer_tel" class="control-label">联系电话：</label>
                         <input type="text" class="form-control" id="customer_tel">
+                    </div>
+                    
+                    <div class="hide form-group">
+                        <label for="customer_tel" class="control-label">联系电话：</label>
+                        <input type="text" class="" id="userid" value='{:$userid}'>
                     </div>
                 </div>
                 <div class="modal-footer">

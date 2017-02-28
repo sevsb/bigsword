@@ -11,7 +11,11 @@ class booking_controller {
         $token = picservice::get_token();
         $staff_services = db_staff_services::inst()->load_all();
         $orders = order::load_all();
+        $userid = get_session('user.id','-1');
+        $user = user::create($userid);
         $tpl->set('id', $id);
+        $tpl->set('user', $user);
+        $tpl->set('userid', $userid);
         $tpl->set('items', $service_items);
         $tpl->set('staffs', $staffs);
         $tpl->set('items_count', count($service_items));

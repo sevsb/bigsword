@@ -22,8 +22,8 @@ class db_order extends database {
         }
     }
 
-    public function add($staff_id, $service_id, $start_time, $customer_name, $customer_tel) {
-        return $this->insert(TABLE_ORDERS, array("staff_id" => $staff_id, "service_id" => $service_id, "start_time" => $start_time, "customer_name" => $customer_name, "customer_tel" => $customer_tel, "status" => 1));
+    public function add($staff_id, $service_id, $start_time, $customer_name, $customer_tel, $userid) {
+        return $this->insert(TABLE_ORDERS, array("staff_id" => $staff_id, "service_id" => $service_id, "start_time" => $start_time, "customer_name" => $customer_name, "customer_tel" => $customer_tel, "userid" => $userid, "status" => 1));
     }
     
     public function update($id, $staff_id, $service_id, $start_time, $status, $content) {
