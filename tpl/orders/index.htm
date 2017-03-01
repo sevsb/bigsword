@@ -6,6 +6,7 @@
     <table class='table'>
     <tr>
         <td>编号</td>
+        <td>状态</td>
         <td>客户名称</td>
         <td>联系电话</td>
         <td>开始时间</td>
@@ -14,11 +15,13 @@
         <td>操作</td>
     </tr>
     <?php
+    
     //var_dump($orders);
     foreach ($orders as $order) {
         $orderid = $order->id();
         $service_id = $order->service_id();
         $staff_id = $order->staff_id();
+        $status = $order->status();
         $customer_name = $order->customer_name();
         $customer_tel = $order->customer_tel();
         $start_time_true = $order->start_time_true();
@@ -27,13 +30,17 @@
         ?>
             <tr id="{:$orderid}">
                 <td>{:$orderid}</td>
+                <td>{:$status}</td>
                 <td>{:$customer_name}</td>
                 <td>{:$customer_tel}</td>
                 <td>{:$start_time_true}</td>
                 <td>{:$item_title}</td>
                 <td>{:$staff_name}</td>
                 <td>
-                    <a href='?order/modify&id={:$orderid}'><button class='btn btn-primary'>操作</button></a>
+                    <?php if ($status != '已完成') { ?>
+                    <button class='btn btn-primary btn-xs done'>完成</button>
+                    <button class='btn btn-danger btn-xs cancel'>撤消</button>
+                    <?php } ?>
                 </td>
             </tr>
         <?php

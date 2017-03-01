@@ -14,7 +14,6 @@ class orders_controller {
         $orders = order::load_all();
         $token = picservice::get_token();
         $staff_services = db_staff_services::inst()->load_all();
-        $tpl->set('id', $id);
         $tpl->set('items', $service_items);
         $tpl->set('staffs', $staffs);
         $tpl->set('orders', $orders);
@@ -54,6 +53,18 @@ class orders_controller {
         $userid = get_request('userid');
         $ret = order::add($staff_id, $service_id, $start_time, $customer_name, $customer_tel, $userid);
         return $ret ? array("ret" => "success", "info" => $ret) : array("ret" => "fail", "info" => "add_order_failed");
+    }
+    
+    public function done_ajax() {
+        $id = get_request('id');
+        $ret = order::done($id);
+        return $ret ? array("ret" => "success", "info" => $ret) : array("ret" => "fail", "info" => "done_order_failed");
+    }
+    
+    public function cancel_ajax() {
+        $id = get_request('id');
+        $ret = order::cancel($id);
+        return $ret ? array("ret" => "success", "info" => $ret) : array("ret" => "fail", "info" => "done_order_failed");
     }
     
 

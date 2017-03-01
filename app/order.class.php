@@ -37,7 +37,7 @@ class order {
     }
 
     public function status() {
-        return $this->summary("status");
+        return $this->summary("status") == 2 ? '已完成' : "未完成" ;
     }
 
     public function start_time() {
@@ -82,6 +82,16 @@ class order {
 
     public static function add($staff_id, $service_id, $start_time, $customer_name, $customer_tel, $userid) {
         return db_order::inst()->add($staff_id, $service_id, $start_time, $customer_name, $customer_tel, $userid);
+    }
+    
+    public static function done($id) {
+        logging::d("doneid:",$id);
+        return db_order::inst()->done($id);
+    }
+    
+    public static function cancel($id) {
+        logging::d("doneid:",$id);
+        return db_order::inst()->cancel($id);
     }
 
 
