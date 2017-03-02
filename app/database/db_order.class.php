@@ -41,7 +41,7 @@ class db_order extends database {
     }
     
     public function get_all_orders() {
-        return $this->get_all_table(TABLE_ORDERS);
+        return $this->get_all_table(TABLE_ORDERS,'', "ORDER BY status");
     }
 
 }
