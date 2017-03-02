@@ -1,10 +1,22 @@
+<link rel="stylesheet" href="[:vendor]/bootstrap-select/bootstrap-select.min.css">
+<link rel="stylesheet" href="[:vendor]/datatables-plugins/dataTables.bootstrap.min.css">
+<link rel="stylesheet" href="[:vendor]/datatables-responsive/dataTables.responsive.min.css">
+<link rel="stylesheet" href="[:vendor]/datatables-responsive/dataTables.responsive.scss">
+<script type="text/javascript" language="javascript" src="[:vendor]/bootstrap-select/bootstrap-select.min.js"></script>
+<script type="text/javascript" language="javascript" src="[:vendor]/datatables-plugins/jquery.dataTables.min.js"></script>
+<script type="text/javascript" language="javascript" src="[:vendor]/datatables-plugins/dataTables.bootstrap.min.js"></script>
+<script type="text/javascript" language="javascript" src="[:vendor]/datatables-responsive/dataTables.responsive.min.js"></script>
+
 <div id="page-wrapper">
     <div>
         <h3 class="page_title" style='margin-left: 30px; display: inline-block;margin-bottom: 30px;'>订单列表</h3>
         <a href='?booking'target="_blank"><button style='float: right;margin-top: 15px;' class='btn btn-success'>新增订单</button></a>
     </div>
-    <table class='table'>
-    <tr>
+    <hr style='margin-top:0px;'>
+    <div>
+    <table class='table table-striped table-bordered table-hover' id='main_table' width="100%">
+    <thead>
+    <tr class='trr'>
         <td>编号</td>
         <td>状态</td>
         <td>客户名称</td>
@@ -14,8 +26,9 @@
         <td>技师</td>
         <td>操作</td>
     </tr>
+    </thead>
+    <tbody>
     <?php
-    
     //var_dump($orders);
     foreach ($orders as $order) {
         $orderid = $order->id();
@@ -28,7 +41,7 @@
         $item_title = $items[$service_id]->title();
         $staff_name = $staffs[$staff_id]->name();
         ?>
-            <tr id="{:$orderid}">
+            <tr class='trr' id="{:$orderid}">
                 <td>{:$orderid}</td>
                 <td>{:$status}</td>
                 <td>{:$customer_name}</td>
@@ -46,8 +59,9 @@
         <?php
     }
     ?>
-    
+    </tbody>
     <table>
+</div>
 </div>
 <div class=''></div>
 <div class=''></div>
