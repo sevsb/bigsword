@@ -205,18 +205,23 @@ $(document).ready(function() {
         var hour = Number(over_time[0]);
         var minute = Number(over_time[1]);
         var time_block_array = new Array();
-        for(var i = 0; i < service_item_time / 10; i++) {
-            time_block_array.push('#'+hour+'-'+minute);
-            minute += 10;
-            if(minute >= 60) {
-                hour++;
-                minute = 0;
+        for(i = 0; i < service_item_time / 10; i++) {
+            if($('#'+hour+'-'+minute).length > 0) {
+                time_block_array.push('#'+hour+'-'+minute);
+                minute += 10;
+                if(minute >= 60) {
+                    hour++;
+                    minute = 0;
+                }
             }
         }
         for(i in time_block_array) {
             if($(time_block_array[i]+'.in_use').length > 0) {
                 time_in_use = true;
             }
+        }
+        if(Number(i) + 1 < (service_item_time / 10)) {
+            time_in_use = true;
         }
         if(time_in_use) {
             for(i in time_block_array) {
