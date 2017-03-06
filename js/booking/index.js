@@ -42,8 +42,9 @@ window.onresize = function() {
 }
 
 $(document).ready(function() {
-
-    date_selected = timestamps[0];
+    console.log(timestamps);
+    //date_selected = timestamps[0];
+    date_selected = get_request('date_selected', timestamps[0]);
 
     vacation_list[timestamps[0]] = new Array();
     vacation_list[timestamps[1]] = new Array();

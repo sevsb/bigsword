@@ -1,10 +1,10 @@
 
-function get_request(name) {
+function get_request(name, default_var) {
     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
     var r = window.location.search.substr(1).match(reg);
     if (r != null)
         return unescape(r[2]);
-    return null;
+    return default_var;
 }
 
 function get_url_path() {
