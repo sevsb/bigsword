@@ -1,0 +1,51 @@
+.staff_status {
+    width: 100%;
+    height: 120px;
+}
+
+.staff_status_head {
+    width: 10%;
+    display: inline-block;
+    height: 120px;
+}
+
+.staff_status_body {
+
+    vertical-align: top;
+    width: 90%;
+    display: inline-block;
+    margin-left: -4px;
+    height: 120px;
+}
+
+.fst {
+    height: 30px !important;
+}
+
+.time_block {
+    
+    width: 18px;
+    margin-left: -4px;
+    height: 60px;
+    display: inline-block;
+    border: 1px solid #eee;
+
+}
+.time_block_info {
+    width: 18px;
+    margin-left: -4px;
+    height: 18px;
+    display: inline-block;
+}
+
+.not_work {
+    background-color: #eee;
+}
+
+.has_order {
+    background-color: #D9534F;
+}
+
+.thumb img {
+    height: 90px;
+}

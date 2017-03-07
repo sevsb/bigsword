@@ -63,7 +63,7 @@ class staff {
         return new staff();
     }
 
-    public static function is_workdate($timestamp, $staff_id) {
+    public static function is_workdate($staff_id, $timestamp) {
 
         $date = date("Y-m-d ", $timestamp);
 
@@ -100,6 +100,7 @@ class staff {
             $regular = $work_regular + $rest_regular;
             $start_date = $rule[2];
             $diff = diffBetweenTwoDays($start_date, $date);
+            logging::d("diff","$diff");
             $extra_day = $diff % (int)$regular;
             if ($extra_day >= $work_regular) {
                 return array("ret" => false, "reason" => "$date 这天是休息日来自RULE-2");

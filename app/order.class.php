@@ -44,6 +44,14 @@ class order {
         return $this->summary("start_time");
     }
     
+    public function end_time() {
+        $start_time = $this->summary("start_time");
+        $service_id = $this->summary("service_id");
+        $ser = service::create($service_id);
+        $waste_time = $ser->waste_time();
+        return $waste_time * 60 + $start_time;
+    }
+    
     public function start_time_true() {
         $time = $this->summary("start_time");
         return date('Y-m-d H:i:s', $time);
