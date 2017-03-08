@@ -6,19 +6,29 @@
 <script type="text/javascript" language="javascript" src="[:vendor]/datatables-plugins/jquery.dataTables.min.js"></script>
 <script type="text/javascript" language="javascript" src="[:vendor]/datatables-plugins/dataTables.bootstrap.min.js"></script>
 <script type="text/javascript" language="javascript" src="[:vendor]/datatables-responsive/dataTables.responsive.min.js"></script>
-
-<div id="page-wrapper">
-    <div>
-        <h3 class="page_title" style='margin-left: 30px; display: inline-block;margin-bottom: 30px;'>本日技师状态列表</h3>
-        <a href='?booking'target=""><button style='float: right;margin-top: 15px;' class='btn btn-success'>直接新增订单</button></a>
-    </div>
-    <?php
-    $today = date('Y-m-d');
+<?php
+    $day = get_request('day',0);
+    $weekarray = array("日","一","二","三","四","五","六");
+    $clock = 9;
+    $start_clock = 9;
+    $today = date('Y-m-d',strtotime("$day day"));
     $today_stamp = strtotime($today);
     $tomorrow_stamp = strtotime($today) + 3600 * 24;
     $statffs_status = array();
-    $today_orders = array();
-    $work_or_not = array();
+    $days = array(
+        "今天，" . date("m-d") . " (星期" . $weekarray[date("w")] . ")",
+        "明天，" . date("m-d",strtotime("+1 day")) . " (星期" . $weekarray[date("w", strtotime("+1 day"))] . ")",
+        "后天，" . date("m-d",strtotime("+2 day")) . " (星期" . $weekarray[date("w", strtotime("+2 day"))] . ")",
+        "" . date("m-d",strtotime("+3 day")) . " (星期" . $weekarray[date("w", strtotime("+3 day"))] . ")",
+        "" . date("m-d",strtotime("+4 day")) . " (星期" . $weekarray[date("w", strtotime("+4 day"))] . ")"
+    );
+    $timestamps = array(
+        strtotime(date("Y-m-d")),
+        strtotime(date("Y-m-d",strtotime("+1 day"))),
+        strtotime(date("Y-m-d",strtotime("+2 day"))),
+        strtotime(date("Y-m-d",strtotime("+3 day"))),
+        strtotime(date("Y-m-d",strtotime("+4 day")))
+    );
     foreach ($staffs as $staff) {
         $staff_id = $staff->id();
         $is_work = $staff::is_workdate($staff_id, $today_stamp);
@@ -32,29 +42,41 @@
             $statffs_status[$staff_id]['orders'][$start_time] = $order;
         }
     }
-    //var_dump($statffs_status);
     ?>
+<div id="page-wrapper">
+    <div><h3 class="page_title" style='margin-left: 30px; display: inline-block;margin-bottom: 30px;'>当日技师状态列表<small>&nbsp&nbsp&nbsp&nbsp提示：点击技师名称可进行下一步订单步骤</small></h3></div>
     <hr style='margin-top:0px;'>
+    <div style='padding:0 0 15px 15px;'>
+        <div class="dropdown" style='display: inline-block;'>
+            <button class="btn btn-default dropdown-toggle" type="button" id="date_dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="date_show">{:$days[$day]}</span>
+                <span class="date_caret caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="date_dropdownMenu">
+                <li role="presentation" class="choose_date_li" date="{:$timestamps[0]}"><a href="?orders/staff_orders&day=0" role="menuitem">{:$days[0]}</a></li>
+                <li role="presentation" class="choose_date_li" date="{:$timestamps[1]}"><a href="?orders/staff_orders&day=1" role="menuitem">{:$days[1]}</a></li>
+                <li role="presentation" class="choose_date_li" date="{:$timestamps[2]}"><a href="?orders/staff_orders&day=2" role="menuitem">{:$days[2]}</a></li>
+                <li role="presentation" class="choose_date_li" date="{:$timestamps[3]}"><a href="?orders/staff_orders&day=3" role="menuitem">{:$days[3]}</a></li>
+                <li role="presentation" class="choose_date_li" date="{:$timestamps[4]}"><a href="?orders/staff_orders&day=4" role="menuitem">{:$days[4]}</a></li>
+            </ul>
+        </div>
+        <a href='?booking'target=""><button style='' class='btn btn-success'>不选人了，我要直接新增订单</button></a>
+    </div>
     <div class='staff_status_list'>
     <div class='staff_status fst'>
         <div class='staff_status_head fst text-center'>技师</div>
         <div class='staff_status_body fst'>
         <?php
-        $clock = 9;
         $j = 0;
-        for($i = 0; $i < 54; $i++) {
+        for($i = 0; $i < $clock * 6; $i++) {
             $echo ='';
             if($i % 6 == 0){
                 $echo = $clock + $j . ":00" ;
                 $j++;
             }
         ?>
-        <div class='time_block_info'>
-        {:$echo}
-        </div>
-        <?php
-        }
-        ?>
+        <div class='time_block_info'>{:$echo}</div>
+        <?php } ?>
         </div>
     </div>
     <?php
@@ -63,18 +85,18 @@
         $name = $staff->name();
         $photo_thumbnail_url = $staff->photo_thumbnail_url();
         $is_work = $statffs_status[$staff_id]['is_work']['ret'];
+        $disab = $is_work == true ? '' : 'disabled';
         ?>
         <div class='staff_status' staff_id="{:$staff_id}">
-            <a href='?booking&staff_id={:$staff_id}'><div class='staff_status_head text-center'>
-                <div class='thumb'><img src="{:$photo_thumbnail_url}"></div>
-                <div>{:$name}</div>
-            </div></a>
-            <div class='staff_status_body'>
+            <div class='staff_status_head text-center'>
+                 <div class='btn btn-success togo {:$disab}' style='width: 80px' url="?booking&staff_id={:$staff_id}&stamp={:$today_stamp}">{:$name}</div>
+            </div>
+            <div class='staff_status_body' style='height: 38px;'>
             <?php
             $not_work = $is_work == true ? '' : 'not_work';
-            $block_end = $today_stamp + 9 * 60 * 60; 
+            $block_end = $today_stamp + $start_clock * 60 * 60; 
             $detail_info = $is_work == true ? '' : '此人今日休息';
-            for($i = 0; $i < 54; $i++) {
+            for($i = 0; $i < $clock * 6; $i++) {
                 $block_start = $block_end;
                 $block_end = $block_start + 600;
                 $has_order = '';
@@ -90,19 +112,17 @@
                             $service = service::create($service_id);
                             $title = $service->title();
                             $waste_time = $service->waste_time();
-                            $detail_info = "
-                            项目：$title  
-                            时间：$waste_time
-                            ";
+                            $detail_info = "项目：$title  时间：$waste_time 分";
                         }
                     }
                 }
                 ?>
-                <div class='time_block {:$not_work} {:$has_order}' 
+                <div class='time_block {:$not_work} {:$has_order}' style='margin-top:8px;' 
                 order_id='{:$order_id}' block_start='{:$block_start}' block_end='{:$block_end}'
-                data-toggle="popover" data-placement="top" title="详细信息" data-content="{:$detail_info}">
-                </div>
-                <?php
+                <?php if($detail_info != '') { ?>
+                data-toggle="popover" data-placement="top" title="详细信息" data-content="{:$detail_info}"
+                <?php } ?>></div>
+            <?php
             }
             ?>
             </div>
@@ -110,7 +130,6 @@
         <?php
     }
     ?>
-
 
 </div>
 </div>

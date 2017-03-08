@@ -14,6 +14,13 @@ $(document).ready(function() {
         $(this).popover('hide');
     });
 
+    $('.togo').click(function (){
+        url = $(this).attr("url");
+        if($(this).hasClass('disabled')) {
+            return;
+        }
+        document.location.href = url;
+    });
    
 });
 

@@ -30,7 +30,9 @@ class orders_controller {
         $duties = duty::get_all_duties();
         $orders = order::load_all();
         $token = picservice::get_token();
+        $event_settings = db_settings::inst()->load_event_settings();
         $staff_services = db_staff_services::inst()->load_all();
+        $tpl->set('event_settings', $event_settings);
         $tpl->set('items', $service_items);
         $tpl->set('staffs', $staffs);
         $tpl->set('orders', $orders);

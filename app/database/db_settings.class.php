@@ -48,6 +48,10 @@ class db_settings extends database {
         return $this->get_all_table(TABLE_EVENT_SETTINGS, "", "order by type");
     }
     
+    public function load_event_setting($id) {
+        return $this->get_one_table(TABLE_EVENT_SETTINGS, "id = $id");
+    }
+    
     public function add_event_setting($title, $color, $type) {
         return $this->insert(TABLE_EVENT_SETTINGS, array("title" => $title, "color" => $color, "type" => $type));
     } 

@@ -64,23 +64,22 @@ class staff {
     }
 
     public static function is_workdate($staff_id, $timestamp) {
-
         $date = date("Y-m-d ", $timestamp);
-
+        $event_settings = db_settings::inst()->load_event_settings();
         $duty = duty::create($staff_id);
         $type = $duty->type();
-        $vacations = $duty->vacations();
         $rule = $duty->rule();
-        logging::e("vacations",$vacations);
+        $vacations = $duty->vacations();
         $vacations = json_decode($vacations);
         $vacations = get_object_vars($vacations);
-        //logging::e("timestamp",$timestamp);
-        //logging::e("vacations",$vacations);
+
         if (array_key_exists($timestamp, $vacations)) {
             logging::e("array_key_exists",$vacations);
-            if ($vacations[$timestamp]->type > 0) {
+            $event_id = $vacations[$timestamp]->type;
+            $event_detail = $event_settings[$event_id];
+            if ($event_detail['type'] == 1) {
                 return array("ret" => false, "reason" => "$date 单日是休息日子");
-            }else if ($vacations[$timestamp]->type < 0) {
+            }else if ($event_detail['type'] == 2) {
                 return array("ret" => true, "detail" => "$date 是工作日");
             }
         }
@@ -99,7 +98,7 @@ class staff {
             $rest_regular = $rule[1];
             $regular = $work_regular + $rest_regular;
             $start_date = $rule[2];
-            $diff = diffBetweenTwoDays($start_date, $date);
+            $diff = diffBetweenTwoDays($start_date, $timestamp);
             logging::d("diff","$diff");
             $extra_day = $diff % (int)$regular;
             if ($extra_day >= $work_regular) {
@@ -111,9 +110,9 @@ class staff {
 
 };
 
-function diffBetweenTwoDays ($day1, $day2){
-  $second1 = strtotime($day1);
-  $second2 = strtotime($day2);
+function diffBetweenTwoDays ($second1, $second2){
+ // $second1 = strtotime($day1);
+ //$second2 = strtotime($day2);
 
   if ($second1 < $second2) {
     $tmp = $second2;
