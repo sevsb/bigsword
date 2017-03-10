@@ -9,8 +9,11 @@
 <?php
     $day = get_request('day',0);
     $weekarray = array("日","一","二","三","四","五","六");
-    $clock = 9;
-    $start_clock = 9;
+    $start_clock = get_request('start_clock',9);;
+    $end_clock = get_request('end_clock',19);;
+    $clock = $end_clock - $start_clock;
+    $nowstamp = time();
+    $min_w = $clock * 6 * 18;
     $today = date('Y-m-d',strtotime("$day day"));
     $today_stamp = strtotime($today);
     $tomorrow_stamp = strtotime($today) + 3600 * 24;
@@ -63,15 +66,15 @@
         <a href='?booking'target=""><button style='' class='btn btn-success'>不选人了，我要直接新增订单</button></a>
     </div>
     <div class='staff_status_list'>
-    <div class='staff_status fst'>
-        <div class='staff_status_head fst text-center'>技师</div>
-        <div class='staff_status_body fst'>
+    <div class='staff_status '>
+        <div class='staff_status_head text-center'>技师</div>
+        <div class='staff_status_body style="min-width: {:$min_w}px;">
         <?php
         $j = 0;
         for($i = 0; $i < $clock * 6; $i++) {
             $echo ='';
             if($i % 6 == 0){
-                $echo = $clock + $j . ":00" ;
+                $echo = $start_clock + $j . ":00" ;
                 $j++;
             }
         ?>
@@ -91,16 +94,24 @@
             <div class='staff_status_head text-center'>
                  <div class='btn btn-success togo {:$disab}' style='width: 80px' url="?booking&staff_id={:$staff_id}&stamp={:$today_stamp}">{:$name}</div>
             </div>
-            <div class='staff_status_body' style='height: 38px;'>
+            <div class='staff_status_body' style='height: 38px; min-width: {:$min_w}px;'>
             <?php
-            $not_work = $is_work == true ? '' : 'not_work';
             $block_end = $today_stamp + $start_clock * 60 * 60; 
-            $detail_info = $is_work == true ? '' : '此人今日休息';
+            $not_work = ($is_work == true) ? '' : 'not_work';
             for($i = 0; $i < $clock * 6; $i++) {
                 $block_start = $block_end;
                 $block_end = $block_start + 600;
                 $has_order = '';
                 $order_id = '-1';
+                $pass_time = ($nowstamp < $block_start) ? '' : 'not_work';
+                //$just_pass_time = ($nowstamp > $block_start && $nowstamp < $block_end) ? 'just_pass_time' : '';
+                $just_pass_time_span = ($nowstamp > $block_start && $nowstamp < $block_end) ? "<span class='just_pass_time_span'></span>" : '';
+                if($pass_time == 'not_work'){
+                    $detail_info = "此时间已过";
+                }
+                if($not_work == 'not_work'){
+                    $detail_info = '此人今日休息';
+                }
                 if (!empty($statffs_status[$staff_id]['orders'])) {
                     foreach ($statffs_status[$staff_id]['orders'] as $start_ttime => $order) {
                         $start_time = $order->start_time();
@@ -117,11 +128,11 @@
                     }
                 }
                 ?>
-                <div class='time_block {:$not_work} {:$has_order}' style='margin-top:8px;' 
+                <div class='time_block {:$not_work} {:$has_order} {:$pass_time}  {:$just_pass_time}'
                 order_id='{:$order_id}' block_start='{:$block_start}' block_end='{:$block_end}'
                 <?php if($detail_info != '') { ?>
                 data-toggle="popover" data-placement="top" title="详细信息" data-content="{:$detail_info}"
-                <?php } ?>></div>
+                <?php } ?>></div>{:$just_pass_time_span}
             <?php
             }
             ?>
