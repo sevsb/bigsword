@@ -12,7 +12,8 @@
 }
 
 .staff_status_body {
-    vertical-align: top;
+
+    vertical-align: middle;
     display: inline-block;
     margin-left: -4px;
     position: absolute;
@@ -30,26 +31,38 @@
 }
 
 .time_block {
+    margin-top: 10px;
     width: 18px;
     margin-left: -4px;
     height: 18px;
     display: inline-block;
     border: 1px solid #eee;
-    position: relative;
-    bottom: 10px;
 
 }
 .just_pass_time_span {
     height: 38px;
     background-color: #D9534F;
     width: 1px;
-    overflow: visible;
+    margin-top:-10px;
     display: inline-block;
 }
 
-.just_pass_time {
-    border-right: 1px solid #D9534F !important;
+.staff_status_list .staff_status:nth-child(2) .just_pass_time_span{
+    height: 18px;
+    background-color: #D9534F;
+    width: 1px;
+    margin-top:-10px;
+    display: inline-block;
 }
+
+.staff_status_list .staff_status:last-child .just_pass_time_span{
+    height: 38px;
+    background-color: #D9534F;
+    width: 1px;
+    margin-top:-10px;
+    display: inline-block;
+}
+
 .time_block_info {
     padding: 1px;
     width: 18px;
