@@ -2,6 +2,10 @@
     overflow: auto;
 }
 
+.staff_status {
+    height: 38px;
+}
+
 .staff_status_head {
     display: inline-block;
     width: 100px;
@@ -17,7 +21,12 @@
 
 
 .fst {
+    vertical-align: top;
     height: 30px !important;
+    font-size: 15px;
+    color: grey;
+    font-weight: bold;
+    padding-top: 8px;
 }
 
 .time_block {
@@ -42,10 +51,13 @@
     border-right: 1px solid #D9534F !important;
 }
 .time_block_info {
+    padding: 1px;
     width: 18px;
     margin-left: -4px;
     height: 18px;
     display: inline-block;
+    overflow: visible;
+    vertical-align:top;
 }
 
 .not_work {

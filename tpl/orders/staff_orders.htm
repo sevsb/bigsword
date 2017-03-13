@@ -9,8 +9,8 @@
 <?php
     $day = get_request('day',0);
     $weekarray = array("日","一","二","三","四","五","六");
-    $start_clock = get_request('start_clock',9);;
-    $end_clock = get_request('end_clock',19);;
+    $start_clock = get_request('start_clock',8);;
+    $end_clock = get_request('end_clock',22);;
     $clock = $end_clock - $start_clock;
     $nowstamp = time();
     $min_w = $clock * 6 * 18;
@@ -46,7 +46,7 @@
         }
     }
     ?>
-<div id="page-wrapper">
+<div id="page-wrapper" clock="{:$clock}" start_clock="{:$start_clock}">
     <div><h3 class="page_title" style='margin-left: 30px; display: inline-block;margin-bottom: 30px;'>当日技师状态列表<small>&nbsp&nbsp&nbsp&nbsp提示：点击技师名称可进行下一步订单步骤</small></h3></div>
     <hr style='margin-top:0px;'>
     <div style='padding:0 0 15px 15px;'>
@@ -66,9 +66,9 @@
         <a href='?booking'target=""><button style='' class='btn btn-success'>不选人了，我要直接新增订单</button></a>
     </div>
     <div class='staff_status_list'>
-    <div class='staff_status '>
+    <div class='staff_status fst'>
         <div class='staff_status_head text-center'>技师</div>
-        <div class='staff_status_body style="min-width: {:$min_w}px;">
+        <div class='staff_status_body' id='time_scale' style=" height: 38px; min-width: {:$min_w}px;">
         <?php
         $j = 0;
         for($i = 0; $i < $clock * 6; $i++) {
@@ -141,12 +141,15 @@
         <?php
     }
     ?>
-
 </div>
 </div>
 <div class=''></div>
 <div class=''></div>
-<div class=''></div>
+<div style='padding:10px;'>
+    <div class='btn btn-default zoom_in'>-</div>
+    <div class='btn btn-default  zoom_out'>+</div>
+    <span>&nbsp请点击进行放大缩小</span>
+</div>
 
 <div class="modal fade" id="del-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
