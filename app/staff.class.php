@@ -70,19 +70,22 @@ class staff {
         $type = $duty->type();
         $rule = $duty->rule();
         $vacations = $duty->vacations();
-        $vacations = json_decode($vacations);
-        $vacations = get_object_vars($vacations);
-
-        if (array_key_exists($timestamp, $vacations)) {
-            logging::e("array_key_exists",$vacations);
-            $event_id = $vacations[$timestamp]->type;
-            $event_detail = $event_settings[$event_id];
-            if ($event_detail['type'] == 1) {
-                return array("ret" => false, "reason" => "$date 单日是休息日子");
-            }else if ($event_detail['type'] == 2) {
-                return array("ret" => true, "detail" => "$date 是工作日");
+        if (!empty($vacations)) {
+            //logging::d("vacations",$staff_id . ":" . $vacations);
+            $vacations = json_decode($vacations);
+            $vacations = get_object_vars($vacations);
+            if (array_key_exists($timestamp, $vacations)) {
+                logging::d("array_key_exists",$vacations);
+                $event_id = $vacations[$timestamp]->type;
+                $event_detail = $event_settings[$event_id];
+                if ($event_detail['type'] == 1) {
+                    return array("ret" => false, "reason" => "$date 单日是休息日子");
+                }else if ($event_detail['type'] == 2) {
+                    return array("ret" => true, "detail" => "$date 是工作日");
+                }
             }
         }
+        
         if ($type == 1) {
             $rule = explode(',', $rule);
             $wkd = date('w',$timestamp);

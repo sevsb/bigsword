@@ -86,6 +86,7 @@ function time_scale_change(scale, width) {
     }
     $('#time_scale').html(output);
     $("#time_sacle").css('min-width', min_width + 'px');
+    $("#time_sacle").css('margin-left', '-4px');
     $('.time_block_info').each(function (){
         $(this).css("width", width + 'px');
         $(this).css("margin-left",'0px');
