@@ -47,9 +47,9 @@ class settings {
     }
     
     
-    public function event_settings() {
-        $this->event_settings = db_settings::inst()->load_event_settings();
-        return $this->event_settings;
+    public static function event_settings() {
+        return db_settings::inst()->load_event_settings();
+        
     }
     
     public function add_event_setting($title, $color, $type) {
