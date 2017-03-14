@@ -63,13 +63,20 @@ function zoom(width) {
 }
 
 function time_scale_change(scale, width) {
+    var block_start;
+    var block_end;
     var scale = parseInt(scale);
     var start_clock = parseInt($('#page-wrapper').attr('start_clock'));
     var clock =  parseInt($('#page-wrapper').attr('clock'));
+    var today_stamp =  parseInt($('#page-wrapper').attr('today_stamp'));
+    var hidden_time =  parseInt($('#page-wrapper').attr('hidden_time'));
     min_width = clock * 6 * width;
+    block_end = today_stamp + start_clock * 60 * 60; 
     output = '';
     j = 0;
     for(i = 0; i < clock * 6; i++) {
+        block_start = block_end;
+        block_end = block_start + 600;
         echo ='';
         if(scale == 3) {
             if(i % 6 == 0){
@@ -82,7 +89,9 @@ function time_scale_change(scale, width) {
                 j += 2;
             }
         }
-        output += "<div class='time_block_info'>" + echo + "</div>";
+        hidden_flag = hidden_time < block_end ? "" : 'hide';
+        console.log(hidden_flag);
+        output += "<div class='time_block_info " + hidden_flag + "'>" + echo + "</div>";
     }
     $('#time_scale').html(output);
     $("#time_sacle").css('min-width', min_width + 'px');

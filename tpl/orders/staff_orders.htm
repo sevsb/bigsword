@@ -13,6 +13,7 @@
     $end_clock = get_request('end_clock',22);;
     $clock = $end_clock - $start_clock;
     $nowstamp = time();
+    $hidden_time = strtotime(date("Y-m-d H") . ":00:00") - 3600;
     $min_w = $clock * 6 * 18;
     $today = date('Y-m-d',strtotime("$day day"));
     $today_stamp = strtotime($today);
@@ -46,7 +47,7 @@
         }
     }
     ?>
-<div id="page-wrapper" clock="{:$clock}" start_clock="{:$start_clock}">
+<div id="page-wrapper" clock="{:$clock}" start_clock="{:$start_clock}" today_stamp="{:$today_stamp}" hidden_time="{:$hidden_time}">
     <div><h3 class="page_title" style='margin-left: 30px; display: inline-block;margin-bottom: 30px;'>当日技师状态列表<small>&nbsp&nbsp&nbsp&nbsp提示：点击技师名称可进行下一步订单步骤</small></h3></div>
     <hr style='margin-top:0px;'>
     <div style='padding:0 0 15px 15px;'>
@@ -71,14 +72,18 @@
         <div class='staff_status_body' id='time_scale' style=" height: 38px; min-width: {:$min_w}px;">
         <?php
         $j = 0;
+        $block_end = $today_stamp + $start_clock * 60 * 60; 
         for($i = 0; $i < $clock * 6; $i++) {
+            $block_start = $block_end;
+            $block_end = $block_start + 600;
             $echo ='';
             if($i % 6 == 0){
                 $echo = $start_clock + $j . ":00" ;
                 $j++;
             }
+            $hidden_flag = $hidden_time < $block_end ? "" : 'hide';
         ?>
-        <div class='time_block_info'>{:$echo}</div>
+        <div class='time_block_info {:$hidden_flag}'>{:$echo}</div>
         <?php } ?>
         </div>
     </div>
@@ -104,6 +109,7 @@
                 $has_order = '';
                 $order_id = '-1';
                 $pass_time = ($nowstamp < $block_start) ? '' : 'not_work';
+                $hidden_flag = $hidden_time < $block_end ? "" : 'hide';
                 //$just_pass_time = ($nowstamp > $block_start && $nowstamp < $block_end) ? 'just_pass_time' : '';
                 $just_pass_time_span = ($nowstamp > $block_start && $nowstamp < $block_end) ? "<span class='just_pass_time_span'></span>" : '';
                 if($pass_time == 'not_work'){
@@ -128,7 +134,7 @@
                     }
                 }
                 ?>
-                <div class='time_block {:$not_work} {:$has_order} {:$pass_time}  '
+                <div class='time_block {:$not_work} {:$has_order} {:$pass_time} {:$hidden_flag} '
                 order_id='{:$order_id}' block_start='{:$block_start}' block_end='{:$block_end}'
                 <?php if($detail_info != '') { ?>
                 data-toggle="popover" data-placement="top" title="详细信息" data-content="{:$detail_info}"
@@ -148,7 +154,7 @@
 <div style='padding:10px;'>
     <div class='btn btn-default zoom_in'>-</div>
     <div class='btn btn-default  zoom_out'>+</div>
-    <span>&nbsp请点击进行放大缩小</span>
+    <span>&nbsp请点击进行放大缩小</span><span class='text-info'>&nbsp每一时间格代表10分钟</span>
 </div>
 
 <div class="modal fade" id="del-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
