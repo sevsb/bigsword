@@ -32,6 +32,9 @@ class orders_controller {
         $token = picservice::get_token();
         $event_settings = db_settings::inst()->load_event_settings();
         $staff_services = db_staff_services::inst()->load_all();
+        $work_hours = settings::instance()->get_work_hours();
+        $tpl->set('start_clock', $work_hours['start']);
+        $tpl->set('end_clock', $work_hours['end']);
         $tpl->set('event_settings', $event_settings);
         $tpl->set('items', $service_items);
         $tpl->set('staffs', $staffs);

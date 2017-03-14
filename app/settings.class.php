@@ -38,6 +38,15 @@ class settings {
     
 //----------------------EVENT-SETTINGS----------------------------------------------    
     
+    public function get_work_hours() {
+        $configs = $this->configs;
+        $work_hours = $this->load("work_hours") == '' ? '9,19' : $this->load("work_hours");
+        logging::d("work_hours", $work_hours);
+        $work_hours = explode("," ,$work_hours);
+        return array('start' => $work_hours[0], 'end' => $work_hours[1]);
+    }
+    
+    
     public function event_settings() {
         $this->event_settings = db_settings::inst()->load_event_settings();
         return $this->event_settings;

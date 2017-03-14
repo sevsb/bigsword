@@ -23,6 +23,14 @@ class system_controller {
         $tpl->display("system/personal_config");
     }
     
+    public function work_hours_setting_action() {
+        $tpl = new tpl("admin/header", "admin/footer");
+        $work_hours = settings::instance()->get_work_hours();
+        $tpl->set('start_hour', $work_hours['start']);
+        $tpl->set('end_hour', $work_hours['end']);
+        $tpl->display("system/work_hours_setting");
+    }
+    
     public function new_event_setting_ajax() {
         $title = get_request('title');
         $color = get_request('color');
@@ -73,9 +81,14 @@ class system_controller {
         $_SESSION["user.name"] = $nick;
         return ($ret !== false) ? "success" : "fail|数据库操作失败，请稍后重试。";
     }
-
- 
-
+    
+    public function set_work_hours_ajax() {
+        $start = get_request('start');
+        $end = get_request('end');
+        $work_hours = $start . "," . $end;
+        $ret = settings::instance()->save('work_hours', $work_hours);
+        return ($ret !== false) ? "success" : "fail|数据库操作失败，请稍后重试。";
+    }
 
 }
 
