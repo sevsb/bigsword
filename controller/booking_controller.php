@@ -13,17 +13,15 @@ class booking_controller {
         $orders = order::load_all();
         $userid = get_session('user.id','-1');
         $user = user::create($userid);
-        $tpl->set('id', $id);
         $tpl->set('user', $user);
         $tpl->set('userid', $userid);
-        $tpl->set('items', $service_items);
+        $tpl->set('service_items', $service_items);
         $tpl->set('staffs', $staffs);
         $tpl->set('items_count', count($service_items));
         $tpl->set('staffs_count', count($staffs));
         $tpl->set('duties', $duties);
         $tpl->set('token', $token["token"]);
         $tpl->set('staff_services', $staff_services);
-        $tpl->set('service_items', $service_items);
         $tpl->set('orders', $orders);
         $tpl->display("booking/index");
     }

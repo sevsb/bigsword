@@ -305,7 +305,7 @@ function init_data() {
         var _staff_id = duties[i]['summary']['staff_id'];
         var _type = duties[i]['summary']['type'];
         var _rule = duties[i]['summary']['rule'].split(',');
-        var _vacation = duties[i]['summary']['vacation'];
+        var _vacation = JSON.parse(duties[i]['summary']['vacation']);
         var _rest = false;
         for(j in timestamps) {
             var _now = new Date(timestamps[j] * 1000);

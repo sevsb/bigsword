@@ -51,15 +51,15 @@
                         <div class="btn btn-primary switch_btn" id="service_item_switch_btn" style="display: inline-block;" data-toggle="popover" data-placement="top" data-html="true" data-content="没有想要的技师？<br>点我试试。">切换</div>
                     </div>
                     <div class="list-group order_item_body" id="service_items_list">
-                        <?php foreach ($items as $item) { ?>
-                            <a class='col-xs-12 list-group-item item_show' id='service_item-{:$item->id()}' time='{:$item->waste_time()}' title='{:$item->title()}'>
+                        <?php foreach ($service_items as $service_item) { ?>
+                            <a class='col-xs-12 list-group-item item_show' id='service_item-{:$service_item->id()}' time='{:$service_item->waste_time()}' title='{:$service_item->title()}'>
                                 <div class='col-xs-4 item_preview'>
-                                    <img src='{:$item->photo_thumbnail_url()}'>
+                                    <img src='{:$service_item->photo_thumbnail_url()}'>
                                 </div>
                                 <div class='col-xs-8 item_detail'>
-                                    <div class='item_title'>{:$item->title()}</div>
-                                    <div class='item_price'>价格：{:$item->price()}</div>
-                                    <div class='item_time'>时间：{:$item->waste_time()}</div>
+                                    <div class='item_title'>{:$service_item->title()}</div>
+                                    <div class='item_price'>价格：{:$service_item->price()}</div>
+                                    <div class='item_time'>时间：{:$service_item->waste_time()}</div>
                                 </div>
                             </a>
                         <?php } ?>
