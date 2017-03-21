@@ -325,7 +325,11 @@ function init_data() {
             } else {
             }
             if(_vacation && typeof(_vacation[timestamps[j]]) != 'undefined') {
-                _rest = true;
+                if(event_settings[_vacation[timestamps[j]]['type']]['type'] == 1){ 
+                    _rest = true;
+                } else if(event_settings[_vacation[timestamps[j]]['type']]['type'] == 2) {
+                    _rest = false;
+                }
             }
             if(_rest) {
                 vacation_list[timestamps[j]].push(_staff_id);

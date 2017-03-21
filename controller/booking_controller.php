@@ -13,6 +13,7 @@ class booking_controller {
         $orders = order::load_all();
         $userid = get_session('user.id','-1');
         $user = user::create($userid);
+        $event_settings = settings::event_settings();
         $tpl->set('user', $user);
         $tpl->set('userid', $userid);
         $tpl->set('service_items', $service_items);
@@ -23,6 +24,7 @@ class booking_controller {
         $tpl->set('token', $token["token"]);
         $tpl->set('staff_services', $staff_services);
         $tpl->set('orders', $orders);
+        $tpl->set('event_settings', $event_settings);
         $tpl->display("booking/index");
     }
 
