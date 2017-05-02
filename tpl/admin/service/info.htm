@@ -38,8 +38,8 @@
                                 <button class='btn btn-default upload_btn <?php echo $service->is_valid() ? "hidden" : ""; ?>'>添加图片</button>
                                 <input type='file' class='hidden' id="upload_input">
 
-                                <div class="service-wrapper">
-                                    <div class="pull-left service-photo">
+                                <div class="service-wrapper <?php echo $service->is_valid() ? "" : "hidden"; ?>">
+                                    <div class="pull-left service-photo ">
                                         <a href="#" class="upload_btn1"><img src="{:$service->photo_thumbnail_url()}" id="photo" class="<?php echo $service->is_valid() ? "" : "hidden"; ?>" /></a>
                                     </div>
                                 </div>

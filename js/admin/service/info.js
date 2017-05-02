@@ -33,6 +33,7 @@ $(document).ready(function() {
 
         $(".upload_btn").addClass("hidden");
         $("#photo").removeClass("hidden");
+        $(".service-wrapper").removeClass("hidden");
 
         var reader = new FileReader();
         reader.onload = function(e) {
