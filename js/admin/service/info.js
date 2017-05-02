@@ -48,17 +48,20 @@ $(document).ready(function() {
         var service_id = $("#service-id").val();
         var title = $('#title').val();
         var content = $('#content').val();
+        var price = $('#price').val();
         var service_time = $('#service_time').val();
         var interval_time = $('#interval_time').val();
         var photo = $("#photo").attr("src");
 
+        console.log("123:" + "123");
         console.log("action:" + action);
         console.log("title:" + title);
+        console.log("price:" + price);
         console.log("content:" + content);
         console.log("service_time:" + service_time);
         console.log("interval_time:" + interval_time);
 
-        if (title == '' || content == '' || service_time == '' || interval_time == '') {
+        if (title == '' || content == '' || price == ''  || service_time == '' || interval_time == '') {
             alert('请将内容填写完整');
             return;
         }
@@ -68,7 +71,7 @@ $(document).ready(function() {
             return;
         }
 
-        __ajax(action, {service_id: service_id, title: title, content: content, service_time: service_time, interval_time: interval_time, photo: photo}, "?admin/service/index");
+        __ajax(action, {service_id: service_id, title: title, content: content, price: price, service_time: service_time, interval_time: interval_time, photo: photo}, "?admin/service/index");
         // __ajax("service_item.add", {title: title, content: content, time: time, interval: interval, price: price, filename_list: filename_list}, "?service_item/index");
     });
 

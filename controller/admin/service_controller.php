@@ -38,6 +38,7 @@ class service_controller {
         $photo = get_request_assert("photo");
         $service_time = get_request_assert("service_time");
         $interval_time = get_request_assert("interval_time");
+        $price = get_request_assert("price");
 
         $filename = null;
         $ret = uploadImageViaFileReader($photo, function($filename) {
@@ -48,7 +49,7 @@ class service_controller {
         }
         $filename = $ret;
 
-        $ret = db_service::inst()->add_service($title, $content, $filename, $service_time, $interval_time);
+        $ret = db_service::inst()->add_service($title, $content, $filename, $service_time, $interval_time, $price);
         return ($ret !== false) ? "success" : "fail|数据库操作失败，请稍后重试。";
     }
     
@@ -63,6 +64,9 @@ class service_controller {
         $title = get_request_assert("title");
         $content = get_request_assert("content");
         $photo = get_request_assert("photo");
+        $service_time = get_request_assert("service_time");
+        $interval_time = get_request_assert("interval_time");
+        $price = get_request_assert("price");
 
         $filename = null;
         if (strncmp($photo, "http", 4) != 0) {
@@ -75,7 +79,7 @@ class service_controller {
             $filename = $ret;
         }
 
-        $ret = db_service::inst()->update_service($service_id, $title, $content, $filename);
+        $ret = db_service::inst()->update_service($service_id, $title, $content, $filename, $service_time, $interval_time, $price);
         return ($ret !== false) ? "success" : "fail|数据库操作失败，请稍后重试。";
     }
 
