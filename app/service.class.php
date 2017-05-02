@@ -41,6 +41,14 @@ class service {
     public function waste_time() {
         return $this->summary("service_time") + $this->summary("interval_time") * 2;
     }
+    
+    public function service_time() {
+        return $this->summary("service_time");
+    }
+    
+    public function interval_time() {
+        return $this->summary("interval_time");
+    }
 
     public function id() {
         return (int)$this->summary("id", 0);

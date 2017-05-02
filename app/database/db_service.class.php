@@ -22,16 +22,16 @@ class db_service extends database {
         }
     }
 
-    public function add_service($title, $content, $photo) {
-        return $this->insert(TABLE_SERVICES, array("title" => $title, "content" => $content, "pic" => $photo));
+    public function add_service($title, $content, $photo, $service_time, $interval_time) {
+        return $this->insert(TABLE_SERVICES, array("title" => $title, "service_time" => $service_time, "interval_time" => $interval_time, "content" => $content, "pic" => $photo));
     }
 
-    public function update_service($id, $title, $content, $photo) {
+    public function update_service($id, $title, $content, $photo, $service_time, $interval_time) {
         $id = (int)$id;
         if ($photo == null) {
-            return $this->update(TABLE_SERVICES, array("title" => $title, "content" => $content), "id = $id");
+            return $this->update(TABLE_SERVICES, array("title" => $title, "service_time" => $service_time, "interval_time" => $interval_time, "content" => $content), "id = $id");
         } else {
-            return $this->update(TABLE_SERVICES, array("title" => $title, "content" => $content, "pic" => $photo), "id = $id");
+            return $this->update(TABLE_SERVICES, array("title" => $title, "service_time" => $service_time, "interval_time" => $interval_time, "content" => $content, "pic" => $photo), "id = $id");
         }
     }
 
