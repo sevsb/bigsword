@@ -69,7 +69,8 @@ class service_controller {
         $price = get_request_assert("price");
 
         $filename = null;
-        if (strncmp($photo, "http", 4) != 0) {
+        if (strpos($photo, THUMBNAIL_URL)) {
+        //if (strncmp($photo, "http", 4) != 0) {
             $ret = uploadImageViaFileReader($photo, function($filename) {
                 return $filename;
             });

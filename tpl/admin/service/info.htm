@@ -18,17 +18,17 @@
                             </div>
                             
                             <div class="form-group">
-                                <label>服务时间</label>
-                                <input class="form-control" type='text' id="service_time" value="{:$service->service_time()}" />
-                            </div>    
-                            
-                            <div class="form-group">
                                 <label>服务价格</label>
                                 <input class="form-control" type='text' id="price" value="{:$service->price()}" />
                             </div>
                             
                             <div class="form-group">
-                                <label>间隔时间</label>
+                                <label>服务时间(分钟)</label>
+                                <input class="form-control" type='text' id="service_time" value="{:$service->service_time()}" />
+                            </div>    
+                            
+                            <div class="form-group">
+                                <label>前后间隔时间(分钟)</label>
                                 <input class="form-control" type='text' id="interval_time" value="{:$service->interval_time()}" />
                             </div>
 
