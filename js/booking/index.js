@@ -306,9 +306,9 @@ function init_data() {
         var _type = duties[i]['summary']['type'];
         var _rule = duties[i]['summary']['rule'].split(',');
         var _vacation = JSON.parse(duties[i]['summary']['vacation']);
-        var _rest = false;
         for(j in timestamps) {
             var _now = new Date(timestamps[j] * 1000);
+            var _rest = false;
             if(_type == 1) {
                 for(m in _rule) {
                     if(_rule[m] == _now.getDay()) {
@@ -336,6 +336,8 @@ function init_data() {
             }
         }
     }
+
+    console.log(vacation_list);
 
     for(i in orders) {
         var _staff_id = orders[i]['summary']['staff_id'];
